@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MlButtonModule } from '@material-lite/angular/button';
+import { MlButtonModule } from 'src/material-lite/angular/button';
 import { DocsNavbarModule } from 'src/app/components/docs-navbar';
 import { DocsViewerModule } from 'src/app/components/docs-viewer/docs-viewer.module';
 
 import { SlideToggleComponent } from './slide-toggle.component';
 import { SlideToggleRoutingModule } from './slide-toggle-routing.module';
 import { ExampleComponent, OverviewComponent, ReferenceComponent } from './pages';
-import { MlSlideToggleModule } from 'src/material-lite/components/slide-toggle';
+import { MlSlideToggleModule } from 'src/material-lite/angular/slide-toggle';
 
 @NgModule({
   declarations: [

@@ -1,0 +1,47 @@
+//$material-lite: (
+//  default: (
+//    theme: ml.$light-theme,
+//    color: ml.$indigo-pink-template,
+//  ) 
+//
+//  '.dark-theme': (
+//    foreground: ml.$dark-foreground-theme,
+//    background: ml.$dark-foreground-palette,
+//    color: (
+//      primary: define-palette()
+//    );
+//    config: (
+//      ripple: (
+//        transition-timing-function: null; // priority
+//      )
+//    )
+//  )
+// 
+// '.my-theme': ()
+// 
+//  config: (
+//    ripple: (
+//      transition-timing-function: transition(standard);
+//    )  
+//  )
+//)
+$material-lite: null !default;
+
+$__test: (
+  default: (
+    theme: ml.$light-theme,
+    color: ml.$indigo-pink-template,
+  ) 
+
+  '.dark-theme': define-dark-theme((
+    color: ml.$indigo-pink-template
+  )),
+
+  '.my-theme': (),
+
+  config: (
+    ripple: (
+      transition-timing-function: transition(standard)
+    )  
+  )
+)

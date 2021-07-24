@@ -1,0 +1,112 @@
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:string';
+
+
+// Polyfill
+$_div-exists: meta.function-exists('div', 'math');
+@function div($a, $b) {
+  @if ($_div-exists) {
+    @return math.div($a, $b);
+
+  } @else {
+    @return $a / $b;
+  }
+}
+
+$_slash-exists: meta.function-exists('slash', 'list');
+@function slash($a, $b) {
+  @if ($_slash-exists) {
+    @return list.slash($a, $b);
+
+  } @else {
+    @return #{$a}#{' / '}#{$b};
+  }
+}
+
+
+// Prefixes
+@mixin color-adjust($value) {
+  -webkit-print-color-adjust: $value;
+  color-adjust: $value;
+}
+
+@mixin background-clip($value) {
+  -webkit-background-clip: $value;
+  background-clip: $value;
+}
+
+@mixin cursor-grab {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+@mixin cursor-grabbing {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+
+// Original methods
+
+@function map-unquote($map) {
+  @each $key, $value in $map {
+    @if (meta.type-of($value) == string) {
+      $newMap: (
+        $key: unquote($value),
+      );
+
+      $map: map-merge($map, $newMap);
+    }
+  }
+
+  @return $map;
+}
+
+// Whether the list contains value of second argument
+// $result: contains((red, green, blue), blue);
+// @debug($result) // => true
+@function contains($list, $value) {
+  @return (null != list.index($list, $value));
+}
+
+// Return changed opacity value
+@function adjust-opacity($color, $opacity) {
+  @if string.index('#{$color}', 'rgb') {
+    @return rgba(red($color), green($color), blue($color), $opacity);
+
+  } @else {
+    @return rgba($color, $opacity);
+  }
+}
+
+@function replace-string($str, $search, $replace, $all: false) {
+  $index : string.index($str, $search);
+
+  @while $index != null {
+    $str-len: string.length($search);
+    $start: string.slice($str, 0, $index - 1);
+    $end: string.slice($str, $index + $str-len);
+    $str: $start + $replace + $end;
+
+    $index: if($all, string.index($str, $search), null);
+  }
+
+  @return $str;
+}
+
+@function multiple-properties($prop) {
+  @if meta.type-of($prop) == string {
+    @return $prop;
+
+  } @else {
+    $result: '';
+
+    @each $value in $prop {
+      $result: $result + ',' + $value;
+    }
+
+    @return string.slice($result, 1);
+  }
+}

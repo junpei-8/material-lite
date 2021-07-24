@@ -1,0 +1,7 @@
+@use '../../cdk';
+@use './ripple/ripple';
+
+@mixin core() {
+  @include cdk.cdk();
+  @include ripple.ripple();
+}

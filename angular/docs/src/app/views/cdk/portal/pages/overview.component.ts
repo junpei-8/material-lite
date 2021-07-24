@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { MlPortal, MlPortalConfig, MlPortalContent } from '@material-lite/angular-cdk/portal';
+import { MlPortal, MlPortalConfig, MlPortalContent } from 'src/material-lite/angular-cdk/portal';
 import { DocsCode } from 'src/app/components/docs-viewer';
 import { commonPortalCss, PortalContentComponent } from './content.components';
 

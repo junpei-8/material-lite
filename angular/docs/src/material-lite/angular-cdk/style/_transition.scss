@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use './animation';
+@use './private';
+
+// .foo {
+//   transition: ml.transition((box-sizing, opacity), normal, angular-material);
+// }
+@function transition($prop, $duration: normal, $timing-function: angular-material) {
+  @return private.multiple-properties($prop)
+    map.get(animation.$duration, $duration)
+    map.get(animation.$timing-function, $timing-function);
+}

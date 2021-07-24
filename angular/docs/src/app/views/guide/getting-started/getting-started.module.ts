@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MlButtonModule } from '@material-lite/angular/button';
+import { MlButtonModule } from 'src/material-lite/angular/button';
 import { DocsViewerModule } from 'src/app/components/docs-viewer';
 import { GettingStartedRoutingModule } from './getting-started-routing.module';
 

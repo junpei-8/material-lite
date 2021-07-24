@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MlButtonModule } from '@material-lite/angular/button';
+import { MlButtonModule } from 'src/material-lite/angular/button';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';

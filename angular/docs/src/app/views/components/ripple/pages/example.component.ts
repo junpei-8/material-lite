@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MlRippleAnimation, MlRippleEntrance } from '@material-lite/angular/core';
+import { MlRippleAnimation, MlRippleEntrance } from 'src/material-lite/angular/core';
 import { DocsCode } from 'src/app/components/docs-viewer';
 
 type TP = 'example';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { VERSION } from '@material-lite/angular-cdk/utils';
+import { VERSION } from 'src/material-lite/angular-cdk/utils';
 
 @Component({
   selector: 'app-home',

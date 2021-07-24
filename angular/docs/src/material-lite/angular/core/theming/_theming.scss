@@ -1,0 +1,5 @@
+@use 'sass:map';
+@use '../global';
+
+@mixin themes($ml: global.$material-lite) {
+}

@@ -1,0 +1,53 @@
+@mixin foreground($foreground, $config: ()) {
+  $sliderOffActive: map-get($foreground, sliderOffActive);
+  $sliderThumb: map-get($foreground, sliderThumb);
+
+  .ml-slide-toggle-bar-palette {
+    background-color: $sliderOffActive;
+  }
+
+  .ml-slide-toggle-thumb {
+    background-color: $sliderThumb;
+  }
+}
+
+@mixin background($background, $config: ()) {
+}
+
+@mixin color($color, $config: ()) {
+  @each $name, $value in $palette {
+    $default: map-get($value, default);
+
+    .ml-checked.ml-#{$name} .ml-slide-toggle-bar-palette {
+      background-color: $default;
+      opacity: 0.56;
+    }
+
+    .ml-checked.ml-#{$name} .ml-slide-toggle-thumb {
+      background-color: $default;
+    }
+
+    .ml-checked.ml-#{$name} .ml-slide-toggle-ripple-outlet {
+      color: $default;
+    }
+  }
+}
+
+
+@mixin theme($base, $config: ()) {
+  @if map.get($config, foreground) != null {
+    @include foreground(map.get($base, foreground), $config);
+  }
+
+  @if map.get($config, background) != null {
+    @include background(map.get($base, background), $config)
+  }
+
+  @if map.get($config, color) != null {
+    @include color(map.get($base, color), $config);
+  }
+
+  // @if map.get($config, typography) != null {
+  //   @include typography($typography, $config);
+  // }
+}

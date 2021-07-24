@@ -23,30 +23,30 @@
     ],
     "paths": {
       "@material-lite/angular": [
-        "./src/material-lite/components/"
+        "src/material-lite/angular"
       ],
       "@material-lite/angular/core": [
-        "./src/material-lite/components/core"
+        "src/material-lite/angular/core"
       ],
       "@material-lite/angular/contents": [
-        "./src/material-lite/components/card"
+        "src/material-lite/angular/card"
       ],
       "@material-lite/angular/card-contents": [
-        "./src/material-lite/components/card-contents"
+        "src/material-lite/angular/card-contents"
       ],
       "@material-lite/angular/button": [
-        "./src/material-lite/components/button"
+        "src/material-lite/angular/button"
       ],
 
       // CDK
       "@material-lite/angular-cdk": [
-        "./src/material-lite/cdk/"
+        "src/material-lite/angular-cdk"
       ],
       "@material-lite/angular-cdk/portal": [
-        "./src/material-lite/cdk/portal"
+        "src/material-lite/angular-cdk/portal"
       ],
       "@material-lite/angular-cdk/utils": [
-        "./src/material-lite/cdk/utils"
+        "src/material-lite/angular-cdk/utils"
       ]
     }
   },
