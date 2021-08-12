@@ -1,0 +1,90 @@
+<h2>Square Button</h2>
+<docs-viewer [code]="docsCode.squareButton" hideCode>
+  <div class="form">
+    <div>
+      <span>theme</span>
+      <input placeholder="theme" [(ngModel)]="suqTheme" />
+    </div>
+  
+    <div>
+      <span>variant</span>
+      <select [(ngModel)]="suqVariant">
+        <option value="basic">basic</option>
+        <option value="raised">raised</option>
+        <option value="stroked">stroked</option>
+        <option value="flat">flat</option>
+      </select>
+    </div>
+  
+    <div>
+      <span>hoverAction</span>
+      <select [(ngModel)]="suqHoverAction">
+        <option value="auto">auto</option>
+        <option value="enabled">enabled</option>
+        <option value="disabled">disabled</option>
+      </select>
+    </div>
+  
+    <label for="suqDisabled">
+      <input type="checkbox" id="suqDisabled" [(ngModel)]="suqDisabled">
+      Disabled
+    </label>
+  </div>
+
+  <div class="prod">
+    <button
+      mlButton
+      [disabled]="suqDisabled"
+      [variant]="suqVariant"
+      [theme]="suqTheme"
+      [hoverAction]="suqHoverAction"
+    >
+      BUTTON
+    </button>
+  </div>
+</docs-viewer>
+
+
+<h2>Circle Button</h2>
+<docs-viewer [code]="docsCode.circleButton" hideCode>
+  <div class="form">
+    <div>
+      <span>theme</span>
+      <input placeholder="theme" [(ngModel)]="cirTheme" />
+    </div>
+  
+    <div>
+      <span>variant</span>
+      <select [(ngModel)]="cirVariant">
+        <option value="fab">fab</option>
+        <option value="icon">icon</option>
+      </select>
+    </div>
+  
+    <div>
+      <span>hoverAction</span>
+      <select [(ngModel)]="cirHoverAction">
+        <option value="auto">auto</option>
+        <option value="enabled">enabled</option>
+        <option value="disabled">disabled</option>
+      </select>
+    </div>
+  
+    <label for="cirDisabled">
+      <input type="checkbox" id="cirDisabled" [(ngModel)]="cirDisabled">
+      Disabled
+    </label>
+  </div>
+
+  <div class="prod">
+    <button
+      mlButton
+      [disabled]="cirDisabled"
+      [variant]="cirVariant"
+      [theme]="cirTheme"
+      [hoverAction]="cirHoverAction"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </button>
+  </div>
+</docs-viewer>

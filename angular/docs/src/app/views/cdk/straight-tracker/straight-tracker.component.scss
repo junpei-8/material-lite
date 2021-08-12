@@ -1,0 +1,54 @@
+:host::ng-deep {
+  .prod {
+    flex-wrap: nowrap;
+  }
+
+  .item {
+    text-align: center;
+    font-weight: 500;
+    padding: 8px 0;
+
+    &:hover {
+      background-color: rgba(0,0,0,.064);
+    }
+  }
+
+  .horizontal-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    .item {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .ink-bar {
+      height: 2px;
+      width: 100%;
+      background: #3F51B5;
+    }
+  }
+
+  .vertical-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    .item {
+      padding: 24px 0;
+      width: 100%;
+    }
+
+    .ink-bar {
+      width: 2px;
+      height: 100%;
+      background: #E91E63;
+    }
+  }
+}

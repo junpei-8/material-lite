@@ -1,0 +1,16 @@
+<h2>Example</h2>
+<docs-viewer [code]="docsCode.example" hideCode>
+  <div class="form">
+    <div>
+      <span>variant</span>
+      <select [(ngModel)]="variant">
+        <option value="raised">raised</option>
+        <option value="stroked">stroked</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="prod">
+    <ml-card [variant]="variant">Card</ml-card>
+  </div>
+</docs-viewer>

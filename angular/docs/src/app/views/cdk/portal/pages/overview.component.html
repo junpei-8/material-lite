@@ -1,0 +1,59 @@
+<h2>Content Type</h2>
+<p>３種類の要素をAttachすることができます。</p>
+<docs-viewer [code]="docsCode.contentType" disableActions></docs-viewer>
+
+
+<h2>Private or Public</h2>
+<p>PortalのOutletには、Directiveから出力する"Private outlet"と、<code>DI(MlPortal)</code>を用いて出力する"Public outlet"があります。</p>
+<p>"Private outlet"は、<code>[mlPortalOutlet]</code>に値を代入することで使用でき、"Public outlet"は<code>[mlPortalOutletKey]</code>を入力することで使用できます。</p>
+<docs-viewer [code]="docsCode.privateOrPublic" disableActions></docs-viewer>
+<p>
+  "Private outlet"は１つのみ出力でき、コンポーネント内の変数を用いる必要があります。<br>
+  "Public outlet"は制限なしに出力でき、<code>DI(MlPortal)</code>を使える環境であれば、どこからでも出力できます。
+</p>
+
+<h3>Private outlet</h3>
+<docs-viewer [code]="docsCode.privateOutlet" hideCode>
+  <div class="prod">
+    <button mlButton variant="raised" (click)="privateOutlet.attach()">Attach</button>
+
+    <div class="portal-outlet">
+      <ng-template
+        [mlPortal]="privateOutlet.content"
+        [mlPortalConfig]="privateOutlet.config"
+      ></ng-template>
+    </div>
+  </div>
+</docs-viewer>
+
+<h3>Public outlet</h3>
+<docs-viewer [code]="docsCode.publicOutlet" hideCode>
+  <div class="prod">
+    <button mlButton variant="raised" (click)="publicOutlet.attach()">Attach</button>
+    
+    <div class="portal-outlet">
+      <ng-template mlPortal mlPortalKey="publicOutlet"></ng-template>
+    </div>
+  </div>
+</docs-viewer>
+
+
+<h2>Animations</h2>
+<p><code>Vue.js</code>の<code><a href="https://v3.vuejs.org/guide/migration/transition.html#overview" target="_blank" rel="noopener noreferrer">Transition Class</a></code>を参考に作成した機能です。</p>
+<p>Angularは自動でスタイルをカプセル化するため、カプセル化を適切に回避する必要があります。</p>
+<!-- <p>configで<code>className</code>を指定しない場合、Animation用のクラスが付与されることはありませんが、<code>enter</code>,<code>leave</code>で指定した秒数分、それらに対応する処理を待機させます。この操作は基本的に、<code>Angular animations</code>を組み合わせる際に使用します。</p> -->
+<docs-viewer [code]="docsCode.animations">
+  <div class="prod">
+    <button mlButton variant="raised" (click)="animations.attach()">Attach</button>
+
+    <div class="portal-outlet">
+      <ng-template mlPortal mlPortalKey="animations"></ng-template>
+    </div>
+  </div>
+</docs-viewer>
+<p class="comment">現在、本家のような自動的にAnimationのDurationを割り当てるシステムはありません。</p>
+
+
+<h2>DOM</h2>
+<p>レンダリング済みのDOMをポータルから出力する際、レンダリング済みのDOMを一旦削除してからDOMを出力します。</p>
+<p>レンダリング済みのDOMを削除したくない場合は、<code>cloneDOM: true</code>を設定してください。</p>

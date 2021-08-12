@@ -1,0 +1,12 @@
+{
+  "ml-card/variant": {
+    "type": "string",
+    "description": "You can choose 'raised' or 'stroked'",
+    "examples": ["raised", "stroked"]
+  },
+
+
+  "comment": "ここから下はCDK"
+
+
+}

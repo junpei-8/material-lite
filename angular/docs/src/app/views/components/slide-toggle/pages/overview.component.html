@@ -1,0 +1,36 @@
+<h2>Overview</h2>
+<p>ON・OFFの状態を切り替えるボタンです。</p>
+<p><code>[theme]</code>を設定しないとON・OFFの状態を見分けることができないので注意してください。</p>
+<docs-viewer [code]="docsCode.overview" disableActions>
+  <div class="prod">
+    <ml-slide-toggle>Slide me!</ml-slide-toggle>
+  </div>
+</docs-viewer>
+<!-- <p class="commnet">Slide toggleはCheckboxのように機能しますが、<code>&lt;ml-checkbox&gt;</code>の<code>indeterminate</code>のような状態はサポートしていません。</p> -->
+
+
+<h2>Theming</h2>
+<p>設定したthemeの名前を<code>[theme]</code>に入力することで、それに対応した配色に変更できます。</p>
+<p>themeの設定に関しては、<a routerLink="/guide/theming/typescript">こちら</a>のページを参考にしてください。</p>
+<docs-viewer [code]="docsCode.theming" disableActions>
+  <div class="prod">
+    <ml-slide-toggle theme="primary">Primary</ml-slide-toggle>
+    <ml-slide-toggle theme="accent">Accent</ml-slide-toggle>
+    <ml-slide-toggle theme="warn">Warn</ml-slide-toggle>
+  </div>
+</docs-viewer>
+
+
+<h2></h2>
+<p></p>
+
+
+<h2>Ripple config</h2>
+<p><code>[disableRipple], [rippleConfig]</code>を用いることで、Rippleの設定をカスタマイズできます。</p>
+<p><code>[rippleConfig]</code>の値に関しては、<a routerLink="/components/ripple/overview">こちら</a>を参考にしてください。</p>
+<docs-viewer [code]="docsCode.rippleConfig" disableActions>
+  <div class="prod">
+    <ml-slide-toggle theme="primary" disableRipple>Ripple is disabled</ml-slide-toggle>
+    <ml-slide-toggle theme="primary" [rippleConfig]="{ overdrive: true }">Overdrive ripple</ml-slide-toggle>
+  </div>
+</docs-viewer>

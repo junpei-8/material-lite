@@ -1,0 +1,13 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "./index.ts",
+      "amdId": "button",
+      "flatModuleFile": "button",
+      "umdModuleIds": {
+        "@material-lite/angular/core": "core",
+        "@material-lite/angular-cdk/utils": "utils"
+      }
+    }
+  }
+}

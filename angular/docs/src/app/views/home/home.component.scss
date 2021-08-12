@@ -1,0 +1,80 @@
+@import '../../media-query';
+
+app-home {
+  display: block;
+}
+
+.home {
+  &-header {
+    padding: 72px 0;
+    text-align: center;
+  }
+
+  &-heading {
+    &-ml {
+      display: block;
+      font-size: 48px;
+    }
+  
+    &-for {
+      display: block;
+      font-size: 32px;
+      line-height: 1;
+    }
+  
+    &-angular {
+      display: block;
+      font-size: 40px;
+    }
+  }
+
+  &-version {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 32px 16px;
+    height: 100%;
+  }
+
+  &-section {
+    padding: 32px 0;
+    text-align: center;
+
+    @include mp {
+      padding: 24px 0;
+    }
+  
+    &-heading {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+  
+    &-text {
+      margin: 0 0 4px;
+
+      code {
+        margin: 0 4px;
+      }
+    }
+  }
+
+  &-docs-codeblock {
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+
+    pre {
+      max-width: 100%;
+      white-space: pre-wrap;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "source": "index.js",
+  "main": "dist/utils.js",
+  "umd:main": "dist/utils.umd.js",
+  "module": "dist/utils.m.js", 
+  "exports": {
+    "require": "./dist/utils.js",
+    "default": "./dist/utils.modern.js"
+  },
+  "types": "dist/utils.d.ts"
+}

@@ -1,0 +1,108 @@
+<h2>Variants</h2>
+<p>カードのスタイルの種類は２種類あり、<code>[variants]</code>を変更することで設定できます。</p>
+<docs-viewer [code]="docsCode.variants" disableActions>
+  <div class="prod">
+    <ml-card>Default</ml-card>
+    <ml-card variant="raised">Raised</ml-card>
+    <ml-card variant="stroked">Stroked</ml-card>
+  </div>
+</docs-viewer>
+
+
+<h2>Contents</h2>
+<p>Card内で使用する便利なコンポーネント集を<code>MlCardModule</code>とは別にimportすることができます。</p>
+<docs-viewer [code]="docsCode.contents" disableActions></docs-viewer>
+<table>
+  <tr>
+    <td style="width:50%">Element</td>
+    <td>Directive</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-title&gt;</td>
+    <td>mlCardTitle</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-subtitle&gt;</td>
+    <td>mlCardSubtitle</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-content&gt;</td>
+    <td>mlCardContent</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-header&gt;</td>
+    <td>mlCardHeader</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>mlCardAvatar</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>mlCardImage</td>
+  </tr>
+
+
+  <tr>
+    <td>&lt;ml-card-footer&gt;</td>
+    <td>mlCardFooter</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-actions&gt;</td>
+    <td>mlCardActions</td>
+  </tr>
+</table>
+
+
+<h2>Usage of Contents</h2>
+<docs-viewer [code]="docsCode.usageOfContents">
+  <div class="prod">
+    <ml-card style="max-width: 400px;">
+      <ml-card-header>
+        <img mlCardAvatar src="assets/img/japanese-hare-avatar.jpeg" />
+        <ml-card-title>Japanese hare</ml-card-title>
+        <ml-card-subtitle>Hare Breed</ml-card-subtitle>
+      </ml-card-header>
+
+      <img mlCardImage src="assets/img/japanese-hare.jpeg" />
+
+      <ml-card-content>
+        <p>
+          The Japanese hare is reddish-brown. In areas of northern Japan, the west coast, and the island of Sado, where snowfall is heavy, the Japanese hare loses its coloration in the autumn, remaining white until the spring, when the reddish-brown fur returns.
+        </p>
+      </ml-card-content>
+      
+      <ml-card-actions align='end'>
+        <button mlButton>LIKE</button>
+        <button mlButton>SHARE</button>
+      </ml-card-actions>
+    </ml-card>
+  </div>
+</docs-viewer>
+
+
+<h2>Image</h2>
+<p><code>[mlCardImage]</code>は<code>&lt;img&gt;</code>ではないタグでも用いることができます。</p>
+<p>これらは表示方法に違いがあり、<code>&lt;img&gt;</code>ではないタグには、css<code>(background-image)</code>を用いて表示させています。</p>
+<docs-viewer [code]="docsCode.image" disableActions>
+  <div class="prod">
+    <ml-card style="max-width: 320px">
+      <ml-card-title>Japanese Sushi</ml-card-title>
+      <img mlCardImage src="assets/img/sushi.jpeg" />
+    </ml-card>
+
+    <ml-card>
+      <ml-card-title>Japanese Sushi</ml-card-title>
+      <div mlCardImage src="assets/img/sushi.jpeg"></div>
+    </ml-card>
+  </div>
+</docs-viewer>
+<p><code>&lt;img&gt;</code>を用いた場合、画像の横幅に合わせて拡大するため<code>max-width</code>を用いて大きさを制御しています。</p>
+<p>対して、<code>&lt;div&gt;</code>を用いた場合、コンテナの大きさに合わせて画像が拡縮するため、<code>max-width</code>を用いる必要はありません。しかし、コンテナの大きさ存在しないと画像が表示されないので注意してください。</p>

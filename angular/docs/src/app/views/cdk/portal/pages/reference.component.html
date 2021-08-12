@@ -1,0 +1,194 @@
+<docs-viewer [code]="docsCode.importing" disableActions></docs-viewer>
+
+<h2>MlPortalOutlet</h2>
+<h5>
+  <code>selector: <span>[mlPortal]</span></code>
+  <code>exportAs: <span>mlPortal</span></code>
+</h5>
+
+<div class="desc-block">
+  <h3>Directives</h3>
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>mlPortal</td>
+      <td>content</td>
+      <td>代入した要素を出力する。</td>
+    </tr>
+
+    <tr>
+      <td>mlPortalKey</td>
+      <td>key</td>
+      <td><code>DI(MlPortal)</code>からportalにアクセスするためのIDを設定する。</td>
+    </tr>
+
+    <tr>
+      <td>mlPortalConfig</td>
+      <td>config</td>
+      <td><code>[mlPortalOutlet]</code>に値を代入され、Portalに出力する際に参照される設定。Portalへ出力した後に変更しても途中で設定を変えることはできない。</td>
+    </tr>
+
+    <tr>
+      <td>mlPortalDestroyingDuration</td>
+      <td>destroyingDuration</td>
+      <td>portalが、<code>BrowserAnimationsModule</code>の影響を受ける際、そのDurationを入力することで<code>transition classes</code>アニメーションではなく、<code>BrowserAnimationsModule</code>のAnimationを優先して行うことができる。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.inputDirectives" disableActions></docs-viewer>
+
+  <h4>@Output</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>$event</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>mlPortalAttach</td>
+      <td>MlPortalPrivateAttachedRef</td>
+      <td><code>[mlPortalOutlet]</code>の値が変更されPortalが出力が完了した時に呼び出される。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.outputDirectives" disableActions></docs-viewer>
+
+
+  <h3>Members</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>attachedRef</td>
+      <td>Variable</td>
+      <td>
+        出力されているcontentのデータ。<br>
+        "Private outlet"時のみ有効。
+      </td>
+    </tr>
+
+    <tr>
+      <td>portalData</td>
+      <td>Variable</td>
+      <td>
+        portalのデータ。<br>
+        "Private outlet"時のみ有効。
+      </td>
+    </tr>
+  </table>
+
+  <docs-viewer [code]="docsCode.members" disableActions></docs-viewer>
+</div>
+
+
+<h2>MlPortal</h2>
+<code>providerIn: <span>root</span></code>
+<div class="desc-block">
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>attach</td>
+      <td>Function</td>
+      <td>第１引数に代入したcontentを、第２引数に代入した値に対応したportalへ出力する。</td>
+    </tr>
+
+    <tr>
+      <td>detachAll</td>
+      <td>Function</td>
+      <td>引数に代入した値に対応したportalから、出力されているcontentをすべて削除する。</td>
+    </tr>
+
+    <tr>
+      <td>detachAllOfPortalData</td>
+      <td>Function</td>
+      <td>引数に代入した<code>portalData</code>内に出力されているcontentをすべて削除する。</td>
+    </tr>
+
+    <tr>
+      <td>hasPortalData</td>
+      <td>Function</td>
+      <td>引数に代入した値の<code>portalData</code>が存在するかどうか。</td>
+    </tr>
+
+    <tr>
+      <td>setPortalData</td>
+      <td>Function</td>
+      <td><code>portalData</code>を保存する。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.mlPortal" disableActions></docs-viewer>
+</div>
+
+
+
+<h2>MlPortalAttachedRef</h2>
+<div class="desc-block">
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>hasClosed</td>
+      <td>Variable</td>
+      <td>detach済みかどうか。</td>
+    </tr>
+
+    <tr>
+      <td>data</td>
+      <td>Variable</td>
+      <td>portalのデータ。</td>
+    </tr>
+
+    <tr>
+      <td>animationConfig</td>
+      <td>Variable</td>
+      <td>アニメーションの設定。中身を変更することでアニメーションの設定を途中で変更することが可能。</td>
+    </tr>
+
+    <tr>
+      <td>detach</td>
+      <td>Function</td>
+      <td>portalから削除する。</td>
+    </tr>
+
+    <tr>
+      <td>lifecycle.afterAttached</td>
+      <td>Function</td>
+      <td>attachされ、アニメーション終了時に伝達する<code>Observable</code>を出力する。</td>
+    </tr>
+
+    <tr>
+      <td>lifecycle.beforeDetached</td>
+      <td>Function</td>
+      <td>detachされた直後に伝達する<code>Observable</code>を出力する。</td>
+    </tr>
+
+    <tr>
+      <td>lifecycle.afterDetached</td>
+      <td>Function</td>
+      <td>detachされ、アニメーション終了時に伝達する<code>Observable</code>を出力する。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.mlPortalAttachedRef" disableActions></docs-viewer>
+</div>
+
+
+<h2>Interfaces</h2>
+<docs-viewer [code]="docsCode.interfaces" disableActions></docs-viewer>

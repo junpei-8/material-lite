@@ -1,0 +1,61 @@
+@use './views';
+
+@use '../material-lite/components/theming' as *;
+@use './media-query' as *;
+
+
+
+.root-header {
+  position: fixed;
+  width: 100%;
+  top: 0; left: 0;
+  z-index: 4;
+  @include ml-elevation(4);
+
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    border-radius: 0;
+  }
+
+  @include mp {
+    &-left-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    &-right-nav {
+      display: none;
+    }
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.root-main {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 68px);
+  padding-top: 36px;
+}
+
+.root-footer {
+  display: flex;
+  padding: 24px 16px;
+  justify-content: space-evenly;
+  font-size: 14px;
+
+  &-anchor {
+    text-align: center;
+    text-decoration: none;
+    border-bottom: none;
+
+    &:link,
+    &:visited {
+      color: currentColor;
+    }
+  }
+}
+

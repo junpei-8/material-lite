@@ -1,0 +1,34 @@
+@use './media-query' as *;
+
+.app-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 24px 16px;
+  width: 100%;
+
+  @include mp {
+    padding-top: 40px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin: 16px 0 24px;
+    width: 100%;
+  }
+
+  .ml-card {
+    margin: 0 24px 24px;
+    width: 280px;
+
+    @include mp {
+      width: 100%;
+      max-width: 560px;
+    }
+  }
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}

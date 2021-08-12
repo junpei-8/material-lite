@@ -1,0 +1,11 @@
+{
+  "ml-card": {
+    "attributes": [
+      "variant"
+    ],
+    "description": "Material design card"
+  },
+
+  "comment": "ここから下はCDK"
+
+}

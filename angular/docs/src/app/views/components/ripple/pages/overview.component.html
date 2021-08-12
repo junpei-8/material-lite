@@ -1,0 +1,96 @@
+<h2>Color</h2>
+<p><code>[mlRippleColor], [mlRippleTheme]</code>を用いて設定することができます。</p>
+<p>透過度はRGBAなどではなく、<code>[opacity]</code>で設定してください。</p>
+<docs-viewer [code]="docsCode.color" disableActions>
+  <div class="prod">
+    <div mlRipple mlRippleTheme="primary" class="box">primary</div>
+    <div mlRipple mlRippleTheme="accent" class="box">accent</div>
+    <div mlRipple mlRippleTheme="warn" class="box">warn</div>
+  
+    <div mlRipple mlRippleColor="#8BC34A" class="box">#8BC34A</div>
+    <div mlRipple mlRippleColor="#03A9F4" class="box">#03A9F4</div>
+  </div>
+</docs-viewer>
+
+
+<h2>Type</h2>
+<p>Rippleには、通常の<code>Ripple</code>と<code>OverdriveRipple</code>の２種類が存在します。</p>
+<docs-viewer [code]="docsCode.color" disableActions>
+  <div class="prod">
+    <div mlRipple class="square-box">Default</div>
+    <div mlRipple mlRippleOverdrive class="square-box">Overdrive</div>
+  </div>
+</docs-viewer>
+
+
+<h2>Type Breakpoint</h2>
+<p>Breakpointを指定することで、自動的にTypeを変更することができます。</p>
+<p>クリック時、コンテナのサイズが設定したBreakpointより小さい場合は<code>Ripple</code>を表示し、同じか大きい場合は<code>OverdriveRipple</code>が表示されます。</p>
+<docs-viewer [code]="docsCode.typeBP" disableActions>
+  <div class="form type-bp-form">
+    <div style="display: flex">
+      <div class="type-bp-actions">
+        <button mlButton variant="raised" (click)="bpWidth = bpWidth === 250 ? 500 : 250">Change Width</button>
+        <code>Width:<span class="strong">{{ bpWidth }}</span>px</code>
+      </div>
+  
+      <div class="type-bp-actions">
+        <button mlButton variant="raised" (click)="bpHeight = bpHeight === 250 ? 500 : 250">Change Height</button>
+        <code>Height:<span class="strong">{{ bpHeight }}</span>px</code>
+      </div>
+    </div>
+
+    <div>
+      <code>Type: <span class="strong">{{ (bpWidth === 250 && bpHeight === 250)  ? 'Default' : 'Overdrive' }}</span></code>
+    </div>
+  </div>
+  
+  <div class="prod">
+    <div mlRipple [mlRippleOverdrive]="{ width: 500, height: 500 }" [style.width]="bpWidth + 'px'" [style.height]="bpHeight + 'px'"></div>
+  </div>
+</docs-viewer>
+
+
+<h2>Trigger and Entrance</h2>
+<p><code>[mlRippleTrigger]</code>にElementを入力することで、入力したElementをクリックしたときにRippleが出現するよう変更できます。</p>
+<p>Rippleの出力場所は<code>[mlRippleEntrance]</code>を設定することで変更できます。</p>
+<docs-viewer [code]="docsCode.tae" disableActions>
+  <div class="form">
+    <button mlButton variant="raised" (click)="taeVisualize = !taeVisualize">{{ taeVisualize ? 'Invisualize' : 'Visualize' }}</button>
+  </div>
+
+  <div class="prod">
+    <div class="tae-section">
+      <div #trigger1 class="ml-ripple-outlet square-box">Trigger 1</div>
+      <span class="tae-arrow">→</span>
+      <div
+        mlRipple [mlRippleTrigger]="trigger1"
+        class="square-box" [class.visible-ripple]="taeVisualize"
+      >
+        Default
+      </div>
+    </div>
+
+    <div class="tae-section">
+      <div #trigger2 class="ml-ripple-outlet square-box">Trigger 2</div>
+      <span class="tae-arrow">→</span>
+      <div
+        mlRipple [mlRippleTrigger]="trigger2" mlRippleEntrance="center"
+        class="square-box" [class.visible-ripple]="taeVisualize"
+      >
+        Center
+      </div>
+    </div>
+
+    <div class="tae-section">
+      <div #trigger3 class="ml-ripple-outlet square-box">Trigger 3</div>
+      <span class="tae-arrow">→</span>
+      <div
+        mlRipple [mlRippleTrigger]="trigger3" mlRippleEntrance="resonance"
+        class="square-box" [class.visible-ripple]="taeVisualize"
+      >
+        Resonance
+      </div>
+    </div>
+  </div>
+</docs-viewer>

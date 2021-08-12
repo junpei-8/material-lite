@@ -1,0 +1,75 @@
+<h2>Variants</h2>
+<p>ボタンのスタイルの種類は７種類あり、<code>[variant]</code>を変更することで設定できます。</p>
+<docs-viewer [code]="docsCode.variants" disableActions>
+  <div class="prod">
+    <button mlButton>Default</button>
+    <button mlButton variant="basic">Basic</button>
+    <button mlButton variant="raised">Raised</button>
+    <button mlButton variant="stroked">Stroked</button>
+    <button mlButton variant="flat">Flat</button>
+    <button mlButton variant="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+    <button mlButton variant="fab"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+  </div>
+</docs-viewer>
+
+
+<h2>Theming</h2>
+<p>設定したthemeの名前を<code>[theme]</code>に入力することで、それに対応した配色に変更できます。</p>
+<p>themeの設定に関しては、<a routerLink="/guide/theming/typescript">こちら</a>のページを参考にしてください。</p>
+<docs-viewer [code]="docsCode.theming" disableActions>
+  <div class="prod">
+    <button mlButton variant="basic" theme="primary">Basic</button>
+    <button mlButton variant="raised" theme="accent">Raised</button>
+    <button mlButton variant="stroked" theme="warn">Stroked</button>
+    <button mlButton variant="flat" theme="primary">Flat</button>
+    <button mlButton variant="icon" theme="accent"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+    <button mlButton variant="fab" theme="warn"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+  </div>
+</docs-viewer>
+
+
+<h2>Anchor button</h2>
+<p>アンカーボタンのスタイルは２パターン存在し、<span class="strong">Hover時の背景色</span>と<span class="strong">Rippleの色</span>が異なります。</p>
+<docs-viewer [code]="docsCode.anchorButton" disableActions>
+  <div class="prod">
+    <a mlButton href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Anchor</a>
+
+    <button mlButton wrappedAnchor>
+      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Wrapped Anchor</a>
+    </button>
+  </div>
+</docs-viewer>
+<p class="comment">(React版を制作するときに必要になり、便利だったためAngularに輸入しました(ﾟ∀ﾟ))</p>
+
+
+<h2>Disabled button</h2>
+<docs-viewer [code]="docsCode.disabledButton" disableActions>
+  <div class="prod">
+    <button mlButton [disabled]="true" variant="basic">Disabled</button>
+    <button mlButton disabled variant="raised">Disabled</button>
+    <button mlButton disabled variant="stroked">Disabled</button>
+    <button mlButton disabled variant="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+    <button mlButton disabled variant="fab"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+  </div>
+</docs-viewer>
+
+
+<h2>Hover action</h2>
+<p>ホバー時の背景色の変更を有効にするかどうかを<code>[hoverAction]</code>で設定できます。</p>
+<docs-viewer [code]="docsCode.hoverAction" disableActions>
+  <div class="prod">
+    <button mlButton hoverAction="disabled">Disabled</button>
+    <button mlButton variant="raised" hoverAction="enabled">Enabled</button>
+  </div>
+</docs-viewer>
+
+
+<h2>Ripple config</h2>
+<p><code>[disableRipple], [rippleConfig]</code>を用いることで、Rippleの設定をカスタマイズできます。</p>
+<p><code>[rippleConfig]</code>の値に関しては、<a routerLink="/components/ripple/overview">こちら</a>を参考にしてください。</p>
+<docs-viewer [code]="docsCode.rippleConfig" disableActions>
+  <div class="prod">
+    <button mlButton disableRipple>Disable Ripple</button>
+    <button mlButton [rippleConfig]="{ overdrive: true }">Ripple Overdrive</button>
+  </div>
+</docs-viewer>

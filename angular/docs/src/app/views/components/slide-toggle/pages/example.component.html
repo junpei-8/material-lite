@@ -1,0 +1,29 @@
+<h2>Example</h2>
+<docs-viewer [code]="docsCode.example" hideCode>
+  <div class="form">
+    <div>
+      <span>theme</span>
+      <input placeholder="theme" [(ngModel)]="theme" />
+    </div>
+
+    <label for="checked">
+      <input type="checkbox" id="checked" [(ngModel)]="checked">
+      Checked
+    </label>
+
+    <label for="disabled">
+      <input type="checkbox" id="disabled" [(ngModel)]="disabled">
+      Disabled
+    </label>
+  </div>
+
+  <div class="prod">
+    <ml-slide-toggle
+      [theme]="theme"
+      [checked]="checked"
+      [disabled]="disabled"
+    >
+      Slide toggle
+    </ml-slide-toggle>
+  </div>
+</docs-viewer>

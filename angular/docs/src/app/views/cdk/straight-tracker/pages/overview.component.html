@@ -1,0 +1,124 @@
+<h2>Overview</h2>
+<p>兄弟要素の上下もしくは左右を、追跡するシステムを実装します。</p>
+<docs-viewer [code]="docsCode.overview">
+  <div class="prod">
+    <div class="horizontal-wrapper">
+      <ml-straight-tracker [targetIndex]="overviewSelectedIndex">
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+    
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="overviewSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+  </div>
+</docs-viewer>
+
+
+<h2>Orientation</h2>
+<p><code>[orientation]</code>を設定することで、追跡する方向を変更することできます。</p>
+<p>Defaultでは横並びのコンテナ専用ですが、<code>[orientation]="vertical"</code>を設定することで、縦並びのコンテナにも対応できます。</p>
+<docs-viewer [code]="docsCode.orientations">
+  <div class="prod">
+    <div class="horizontal-wrapper">
+      <ml-straight-tracker [targetIndex]="orientations.horSelectedIndex">
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+    
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="orientations.horSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+
+    <div class="vertical-wrapper">
+      <ml-straight-tracker orientation="vertical" [targetIndex]="orientations.verSelectedIndex">
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="orientations.verSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+  </div>
+</docs-viewer>
+
+
+<h2>Position</h2>
+<p><code>[position]</code>を変更することで、contentの位置を変えることができます。</p>
+<docs-viewer [code]="docsCode.position">
+  <div class="prod">
+    <div class="horizontal-wrapper">
+      <ml-straight-tracker
+        position="before"
+        [targetIndex]="position.horSelectedIndex"
+      >
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+    
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="position.horSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+
+
+    <div class="vertical-wrapper">
+      <ml-straight-tracker
+        position="before"
+        orientation="vertical"
+        [targetIndex]="position.verSelectedIndex"
+      >
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="position.verSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+  </div>
+</docs-viewer>
+
+
+<h2>Animations</h2>
+<p><code>[transition]</code>に値を設定することでアニメーションをすることができます。</p>
+<p>cssから<code>.ml-tracker</code>に直接<code>transition</code>スタイルを付与することでアニメーションすることも可能ですが、Angularにはスタイルのカプセル化があるので注意して下さい。</p>
+<docs-viewer [code]="docsCode.animations" firstCodeType="scss">
+  <div class="prod">
+    <div class="horizontal-wrapper">
+      <ml-straight-tracker
+        [targetIndex]="animationsSelectedIndex"
+        [transition]="{duration: '400ms', property: 'left'}"
+      >
+        <div class="ink-bar"></div>
+      </ml-straight-tracker>
+    
+      <div
+        class="item"
+        *ngFor="let char of ['A', 'B', 'C']; let i = index;"
+        (click)="animationsSelectedIndex = i"
+      >
+        item {{ char }}
+      </div>
+    </div>
+  </div>
+</docs-viewer>
+

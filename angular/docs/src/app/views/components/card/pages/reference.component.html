@@ -1,0 +1,135 @@
+<docs-viewer [code]="docsCode.importing" disableActions></docs-viewer>
+
+<h2>MlCard</h2>
+<h5>
+  <code>selector: <span>&lt;ml-card&gt;</span></code>
+  <code>exportAs: <span>mlCard</span></code>
+</h5>
+<div class="desc-block">
+  <h3>Directives</h3>
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>variant</td>
+      <td>variant</td>
+      <td>見た目の種類を設定する。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.cardInputDirectives" disableActions></docs-viewer>
+</div>
+
+
+<h2>MlCardImage</h2>
+<h5>
+  <code>selector: <span>[mlCardImage]</span></code>
+  <code>exportAs: <span>mlCardImage</span></code>
+</h5>
+<div class="desc-block">
+  <h3>Directives</h3>
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>src</td>
+      <td>src</td>
+      <td>画像のパスを入力し表示する。</td>
+    </tr>
+    <tr>
+      <td>mlCardImageSize</td>
+      <td>size</td>
+      <td>
+        Imageのサイズを設定する。<br>
+        初期値は<code>'fw'</code>。
+      </td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.cardImageInputDirectives" disableActions></docs-viewer>
+
+  <h3>Members</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>isImageElement</td>
+      <td>Variable</td>
+      <td><code>&lt;img&gt;</code>にバインドしているかどうか。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.cardImageMembers" disableActions></docs-viewer>
+</div>
+
+
+<h2>mlCardActions</h2>
+<h5>
+  <code>selector: <span>&lt;ml-card-actions&gt;, mlCardActions</span></code>
+  <code>exportAs: <span>mlCardActions</span></code>
+</h5>
+<div class="desc-block">
+  <h3>Directives</h3>
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>align</td>
+      <td>align</td>
+      <td>コンテンツを寄せる場所を設定する。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.cardActionsInputDirectives" disableActions></docs-viewer>
+</div>
+
+
+<h2>Misc</h2>
+<table>
+  <tr>
+    <td style="width:50%">Element</td>
+    <td>Directive</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-title&gt;</td>
+    <td>mlCardTitle</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-subtitle&gt;</td>
+    <td>mlCardSubtitle</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-content&gt;</td>
+    <td>mlCardContent</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-header&gt;</td>
+    <td>mlCardHeader</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>mlCardAvatar</td>
+  </tr>
+
+  <tr>
+    <td>&lt;ml-card-footer&gt;</td>
+    <td>mlCardFooter</td>
+  </tr>
+</table>

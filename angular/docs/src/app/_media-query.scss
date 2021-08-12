@@ -1,0 +1,40 @@
+@mixin max-width-bp($bp) {
+  $bp: $bp - 1;
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin min-width-bp($before-bp, $after-bp: 0) {
+  @if $after-bp == 0 {
+    $before-bp: $before-bp + 1;
+    @media screen and (min-width: $before-bp) {
+      @content;
+    }
+  } @else if $before-bp == 0 {
+    @media screen and (min-width: $before-bp) and (max-width: $after-bp) {
+      @content;
+    }
+  } @else {
+    $before-bp: $before-bp + 1;
+    @media screen and (min-width: $before-bp) and (max-width: $after-bp) {
+      @content;
+    }
+  }
+}
+
+// MP: 0 >= 1024
+// PC: 1025~
+$breakpoint: 1024px !default;
+
+@mixin pc {
+  @include min-width-bp($breakpoint) {
+    @content;
+  }
+}
+
+@mixin mp {
+  @include min-width-bp(0, $breakpoint) {
+    @content;
+  }
+}

@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'src/../../../docs-scss/entry';
+@use './app/prism/prism';
+
+@use './app/app-theme' as *;
+// @use './material-lite/components/theming' as ml;
+
+// @include ml-theming(cssVariable);
+@include ml-theming();

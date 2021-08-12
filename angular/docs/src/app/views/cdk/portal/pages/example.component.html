@@ -1,0 +1,61 @@
+<h2>Private portal outlet</h2>
+<docs-viewer [code]="docsCode.private" hideCode>
+  <div class="form">
+    <button mlButton variant="raised" (click)="private.content = PortalContentComponent">Attach component</button>
+    <button mlButton variant="raised" (click)="private.content = privateTemplateRef">Attach template</button>
+    <button 
+      mlButton variant="raised"
+      (click)="private.content = privateDomRef; private.config.cloneDOM = false"
+    >
+      Attach DOM
+    </button>
+    <button
+      mlButton variant="raised"
+      (click)="private.content = privateClonedDomRef; private.config.cloneDOM = true"
+    >
+      Attach cloned DOM
+    </button>
+  </div>
+
+  <div class="prod">
+    <div class="portal-outlet">
+      <ng-template
+        [mlPortal]="private.content"
+        [mlPortalConfig]="private.config"
+      ></ng-template>
+    </div>
+
+    <ng-template #privateTemplateRef>
+      <div class="portal-content">Template</div>
+    </ng-template>
+
+    <div class="portal-content" #privateDomRef>DOM</div>
+
+    <div class="portal-content" #privateClonedDomRef>Cloned DOM</div>
+  </div>
+</docs-viewer>
+
+
+<h2>Public portal outlet</h2>
+<docs-viewer [code]="docsCode.public" hideCode>
+  <div class="form">
+    <button mlButton variant="raised" (click)="publicAttachComponent()">Attach component</button>
+    <button mlButton variant="raised" (click)="publicAttachTemplate()">Attach template</button>
+    <button mlButton variant="raised" (click)="publicAttachDom()">Attach DOM</button>
+    <button mlButton variant="raised" (click)="publicAttachClonedDom()">Attach cloned DOM</button>
+  </div>
+
+  <div class="prod">
+    <div class="portal-outlet">
+      <ng-template mlPortal mlPortalKey="public"></ng-template>
+    </div>
+
+    <ng-template #publicTemplateRef>
+      <div class="portal-content">Template</div>
+    </ng-template>
+
+    <div class="portal-content" #publicDomRef>DOM</div>
+
+    <div class="portal-content" #publicClonedDomRef>Cloned DOM</div>
+  </div>
+</docs-viewer>

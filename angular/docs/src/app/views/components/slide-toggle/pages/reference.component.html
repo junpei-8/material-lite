@@ -1,0 +1,139 @@
+<docs-viewer [code]="docsCode.importing" disableActions></docs-viewer>
+
+<h2>MlSlideToggle</h2>
+<h5>
+  <code>selector: <span>&lt;ml-slide-toggle&gt;</span></code>
+  <code>exportAs: <span>mlSlideToggle</span></code>
+</h5>
+<div class="desc-block">
+  <h3>Directives</h3>
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>checked</td>
+      <td>checked</td>
+      <td>ONの状態かどうか</td>
+    </tr>
+  
+    <tr>
+      <td>disabled</td>
+      <td>disabled</td>
+      <td>無効にするかどうか。</td>
+    </tr>
+  
+    <tr>
+      <td>required</td>
+      <td>required</td>
+      <td>入力を必須にするかどうか</td>
+    </tr>
+  
+    <tr>
+      <td>aria-label</td>
+      <td>ariaLabel</td>
+      <td>内部に生成されるInput要素の<code>aria-label</code>属性を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>aria-labelledby</td>
+      <td>ariaLabelledby</td>
+      <td>内部に生成されるInput要素の<code>aria-labelledby</code>属性を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>id</td>
+      <td>id</td>
+      <td>ユニークなIDを設定する。何も指定されてない場合は自動で生成される。</td>
+    </tr>
+  
+    <tr>
+      <td>name</td>
+      <td>name</td>
+      <td>内部に生成されるInput要素の<code>name</code>属性を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>labelPosition</td>
+      <td>labelPosition</td>
+      <td>
+        ラベルの位置を設定する。<br>
+        初期値は<code>'after'</code>。
+      </td>
+    </tr>
+  
+    <tr>
+      <td>disableRipple</td>
+      <td>rippleIsDisabled</td>
+      <td>Rippleを無効にするかどうか。</td>
+    </tr>
+  
+    <tr>
+      <td>rippleConfig</td>
+      <td>rippleConfig</td>
+      <td>Rippleの設定を変更する。<a routerLink="/components/ripple/reference">(参考)</a></td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.inputDirectives" disableActions></docs-viewer>
+  
+  <h4>@Output</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>change</td>
+      <td>changeEmitter</td>
+      <td>Inputの値が変更されたタイミングで発火します。このタイミングでは値は更新されません。</td>
+    </tr>
+  
+    <tr>
+      <td>toggleChange</td>
+      <td>toggleChangeEmitter</td>
+      <td>Inputの値が切り替わったタイミングで発火します。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.outputDirectives" disableActions></docs-viewer>
+  
+  
+  <h3>Members</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>inputId</td>
+      <td>Variable</td>
+      <td>内部に生成されるInput要素に付与されているid属性。</td>
+    </tr>
+  
+    <tr>
+      <td>stringChecked</td>
+      <td>Variable</td>
+      <td><code>checked</code>の値を文字列に変換したもの。</td>
+    </tr>
+  
+    <tr>
+      <td>rippleCore</td>
+      <td>Variable</td>
+      <td>使用しているRippleの参照。</td>
+    </tr>
+  
+    <tr>
+      <td>toggle</td>
+      <td>Function</td>
+      <td><code>checked</code>の状態を切り替える。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.members" disableActions></docs-viewer>  
+</div>

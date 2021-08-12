@@ -1,0 +1,9 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "./index.ts",
+      "amdId": "utils",
+      "flatModuleFile": "utils"
+    }
+  }
+}

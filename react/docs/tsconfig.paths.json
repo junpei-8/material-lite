@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@material-lite/react-cdk/utils": [
+        "./src/material-lite/cdk/utils"
+      ],
+      "@material-lite/react/core": [
+        "./src/material-lite/components/core"
+      ]
+    },
+  }
+}

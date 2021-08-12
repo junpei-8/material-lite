@@ -1,0 +1,31 @@
+<h1>Getting Started</h1>
+
+
+<h2>Install</h2>
+<docs-viewer [code]="docsCode.install" disableActions></docs-viewer>
+
+
+<h2>Usage of Component</h2>
+<p>
+  例として、<code>app.module.ts</code>に<code>button</code>コンポーネントを読み込んでみます。<br>
+</p>
+<docs-viewer [code]="docsCode.usageTypescript" disableActions></docs-viewer>
+<br>
+
+<p>次に、<code>app.component.html</code>に対して書き込んでいきます。</p>
+<docs-viewer [code]="docsCode.usageHtml" disableActions></docs-viewer>
+<br>
+
+<p>次に、<code>src</code>ディレクトリ直下の<code>styles.scss</code>で、コンポーネントのスタイルを設定します。</p>
+<p>今回は一例として<code>scss</code>を用いていますが、<code>typescript</code>でも可能です。詳しくは<a routerLink="/guide/theming/scss">こちら</a>を参照してください。</p>
+<docs-viewer [code]="docsCode.setTheme" disableActions></docs-viewer>
+<br>
+
+<p><code>ng serve</code>をterminalに打ち込み、<a href="http://localhost:4200" target="_blank">http://localhost:4200</a>にアクセスし、実際に表示されているかを確認してみましょう。</p>
+
+
+<h2>Next steps</h2>
+<ul>
+  <li><a routerLink="/guide/theming/scss">SCSSを用いてテーマを設定する。</a></li>
+  <li><a routerLink="/guide/theming/typescript">Typescriptを用いてテーマを設定する。</a></li>
+</ul>

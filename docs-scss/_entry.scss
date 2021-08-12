@@ -1,0 +1,46 @@
+@import './app';
+@import './docs';
+@import './docs-components';
+@import './prism';
+
+body, html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-y: scroll;
+}
+
+div, span, p,
+header, footer,
+main, section, article, nav {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+pre, code {
+  font-family: Roboto Mono, monospace;
+  font-weight: 400;
+}
+pre {
+  font-size: 14px;
+}
+code {
+  font-size: 100%;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+button a {
+  border-bottom: none;
+}
+

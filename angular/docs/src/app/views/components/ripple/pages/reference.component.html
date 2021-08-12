@@ -1,0 +1,214 @@
+<docs-viewer [code]="docsCode.importing" disableActions></docs-viewer>
+
+<h2>MlRipple</h2>
+<h5>
+  <code>selector: <span>[mlRipple]</span></code>
+  <code>exportAs: <span>mlRipple</span></code>
+</h5>
+
+<div class="desc-block">
+  <h3>Directives</h3>
+
+  <h4>@Input</h4>
+  <table>
+    <tr>
+      <th>Selector</th>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  
+    <tr>
+      <td>mlRipple</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>mlRippleTrigger</td>
+      <td></td>
+      <td>
+        入力した<code>EventTarget</code>にイベントリスナーを追加し、クリック時にRippleが出力されるようになる。<br>
+        また、<code>Falsy</code>な値を代入することでTriggerを削除することができる。<br>
+        初期値は<code>'outlet'</code>。
+      </td>
+    </tr>
+
+    <tr>
+      <td>mlRippleDisabled</td>
+      <td>disabled</td>
+      <td>Rippleを無効にするかどうか。</td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleOpacity</td>
+      <td>opacity</td>
+      <td>Rippleの背景色の透過度を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleRadius</td>
+      <td>radius</td>
+      <td>Rippleの半径を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleColor</td>
+      <td>color</td>
+      <td>
+        Rippleの背景色を設定する。<br>
+        <code>[mlRippleTheme]</code>と重複した場合は、<code>[mlRippleTheme]</code>が優先される。
+      </td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleTheme</td>
+      <td>theme</td>
+      <td>事前に設定されているthemeに対応した配色へ変化する。</td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleEntrance</td>
+      <td>entrance</td>
+      <td>Rippleの出力場所を設定できる。</td>
+    </tr>
+
+    <tr>
+      <td>mlRippleFadeOutEvents</td>
+      <td>fadeOutEvents</td>
+      <td>
+        イベント名を入力することで、それらイベントを監視し発火したタイミングでRippleがフェードアウトする。<br>
+        初期値は<code>['mouseup', 'touchend', 'pointerout']</code>。
+      </td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleAnimation</td>
+      <td>animation</td>
+      <td>Rippleが広がる速度と、消える速度を設定する。</td>
+    </tr>
+  
+    <tr>
+      <td>mlRippleOverdrive</td>
+      <td>overdrive</td>
+      <td>
+        <code>boolean</code>が入力されると、Overdriveを有効にするかどうかを設定する。<br>
+        <code>object</code>が入力されると、クリック時にコンテナのサイズを判定して自動的にtypeを切り替える。
+      </td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.inputDirectives" disableActions></docs-viewer>
+
+
+  <h3>Members</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>trigger</td>
+      <td>Variable</td>
+      <td>現在、triggerとして監視されているElement。triggerがない場合は<code>null</code>になる。</td>
+    </tr>
+
+    <tr>
+      <td>core</td>
+      <td>Variable</td>
+      <td><code>MlRippleCore</code><code>(class)</code>を参照。</td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.members" disableActions></docs-viewer>
+</div>
+
+
+<h2>MlRippleCore</h2>
+<div class="desc-block">
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>activeRippleSize</td>
+      <td>Variable</td>
+      <td>存在しているRippleの数。</td>
+    </tr>
+
+    <tr>
+      <td>setup</td>
+      <td>Function</td>
+      <td>
+        Rippleの機能を有効にする。<br>
+        <code>presetTrigger()</code>で設定されたtriggerや、<code>teardown()</code>で無効になったtriggerを有効にする。
+      </td>
+    </tr>
+
+    <tr>
+      <td>teardown</td>
+      <td>Function</td>
+      <td>
+        Rippleの機能を<span class="strong">一時的</span>に無効にする。<br>
+        削除するわけではないため、後に<code>setup()</code>を呼ぶことで元の状態へ復元することが可能。
+      </td>
+    </tr>
+
+    <tr>
+      <td>presetTrigger</td>
+      <td>Function</td>
+      <td>次に<code>setup()</code>が呼ばれた際に監視されるtriggerを設定する。</td>
+    </tr>
+
+    <tr>
+      <td>addTrigger</td>
+      <td>Function</td>
+      <td>
+        引数に代入した<code>EventTarget</code>に対して<code>mousedown,touchstart</code>のlistenerを追加する。<br>
+        戻り値にはtrigger(listener)を削除する関数が返る。
+      </td>
+    </tr>
+
+    <tr>
+      <td>getRemoveTriggerEvent</td>
+      <td>Function</td>
+      <td>
+        引数に代入した<code>EventTarget</code>に対応するtriggerを削除する関数を取得する。<br>
+        <code>EventTarget</code>がtriggerとして存在しない場合は<code>undefined</code>が返る。
+      </td>
+    </tr>
+
+    <tr>
+      <td>removeAllTrigger</td>
+      <td>Function</td>
+      <td>アタッチされているすべてのtriggerを削除する。</td>
+    </tr>
+
+    <tr>
+      <td>fadeInRipple</td>
+      <td>Function</td>
+      <td>
+        Rippleを表示する。引数には座標を入力する必要がある。<br>
+        戻り値にはRippleを削除するための参照(DOM)が返る。
+      </td>
+    </tr>
+
+    <tr>
+      <td>fadeOutRipple</td>
+      <td>Function</td>
+      <td>引数に<code>fadeInRipple()</code>の戻り値を代入することで、対象のRippleを削除する。</td>
+    </tr>
+
+    <tr>
+      <td>autoFadeOutRipple</td>
+      <td>Function</td>
+      <td>
+        第１引数に<code>fadeInRipple()</code>の戻り値を代入することで、自動的に対象のRippleを削除するように設定する。<br>
+        第２引数に<code>EventTarget</code>を入力することで、削除するためのイベントを監視するターゲットを変更できる。
+      </td>
+    </tr>
+  </table>
+  <docs-viewer [code]="docsCode.mlRippleCore" disableActions></docs-viewer>
+</div>
