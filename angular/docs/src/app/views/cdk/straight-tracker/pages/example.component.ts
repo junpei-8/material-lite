@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DocsCode } from 'src/app/components/docs-viewer';
-import { MlStraightTrackerOrientation, MlStraightTrackerPosition, MlStraightTrackerSizingMode } from 'src/material-lite/angular-cdk/straight-tracker';
+import { MlStraightTrackerOrientation, MlStraightTrackerPosition, MlStraightTrackerSizingMode } from '@material-lite/angular-cdk/straight-tracker';
 
 type TD = 'example';
 const DOCS_CODE: DocsCode<TD> = {
@@ -99,7 +99,7 @@ const DOCS_CODE: DocsCode<TD> = {
           MlStraightTrackerOrientation,
           MlStraightTrackerPosition,
           MlStraightTrackerSizingMode
-      } from 'src/material-lite/cdk/straight-tracker';
+      } from '@material-lite/cdk/straight-tracker';
 
       @Component({
         selector: 'app-example',

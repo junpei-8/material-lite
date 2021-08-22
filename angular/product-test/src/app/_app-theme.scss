@@ -1,0 +1,8 @@
+@forward '@material-lite/angular';
+@use '@material-lite/angular' as *;
+
+$material-lite: (
+  default: define-light-theme((
+    color: $indigo-pink-color
+  ))
+)

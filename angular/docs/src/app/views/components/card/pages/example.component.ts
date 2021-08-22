@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DocsCode } from 'src/app/components/docs-viewer';
-import { MlCardVariant } from 'src/material-lite/angular/card';
+import { MlCardVariant } from '@material-lite/angular/card';
 
 type TD = 'example';
 const DOCS_CODE: DocsCode<TD> = {

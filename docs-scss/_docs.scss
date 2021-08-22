@@ -64,7 +64,6 @@
 
   td {
     &:empty {
-      // background-color: #E0E0E0;
       @include ml.style(background-color, (background, disabled-list-option))
     }
   }

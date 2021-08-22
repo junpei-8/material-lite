@@ -1,0 +1,16 @@
+@forward '../angular-cdk' hide elevation, overridable-elevation, elevation-transition, elevation-hierarchy;
+@forward '../angular-cdk/style/elevation' as cdk-*;
+
+// Overrides
+@forward './core/override';
+
+// Structures
+@forward './core/core';
+@forward './core/global';
+@forward './core/theming/';
+
+
+// Components
+@forward './button/theme' as button-*;
+@forward './card/theme' as card-*;
+@forward './slide-toggle/theme' as slide-toggle-*;

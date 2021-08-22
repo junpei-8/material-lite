@@ -3,7 +3,7 @@ import {
   AfterContentInit, ChangeDetectionStrategy, Component, ElementRef,
   Inject, Input, OnChanges, OnInit, SimpleChange, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { Falsy, MlDocument, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from 'src/material-lite/angular-cdk/utils';
+import { Falsy, MlDocument, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from '@material-lite/angular-cdk/utils';
 import {
   MlStraightTrackerCore, MlStraightTrackerOrientation, MlStraightTrackerPosition, MlStraightTrackerSizingMode,
   MlStraightTrackerTransitionClasses

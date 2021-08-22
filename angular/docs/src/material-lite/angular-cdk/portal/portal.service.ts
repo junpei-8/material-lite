@@ -3,7 +3,7 @@ import {
   ComponentFactoryResolver, Inject, Injectable, Injector,
   StaticProvider, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import { Class, Falsy, MlDocument, ML_DATA, ML_REF, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from 'src/material-lite/angular-cdk/utils';
+import { Class, Falsy, MlDocument, ML_DATA, ML_REF, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from '@material-lite/angular-cdk/utils';
 import { MlPortalAttachedRef } from './portal-attached-ref';
 
 export type MlPortalContent = Class<any> | TemplateRef<any> | Element;

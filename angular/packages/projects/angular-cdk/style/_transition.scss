@@ -1,0 +1,65 @@
+@use 'sass:map';
+@use './animation';
+@use './private';
+
+$duration: (
+  very-fast: 160ms,
+  faster:    200ms,
+  fast:      240ms,
+  normal:    280ms,
+  slow:      320ms,
+  slower:    360ms,
+  very-slow: 400ms,
+
+  swift-ease-out:    400ms,
+  swift-ease-in:     300ms,
+  swift-ease-in-out: 500ms,
+  swift-linear:       80ms
+) !default;
+
+$timing-function: (
+  // fast-out => liner-in
+  standard:         cubic-bezier(0.4, 0, 0.2, 1),
+  fast-out-liner-in: cubic-bezier(0.4, 0, 0.2, 1),
+  
+  // fast-out => slow-in
+  strong-acceleration: cubic-bezier(0.36, 0, 0.24, 1),
+  fast-out-slow-in:    cubic-bezier(0.36, 0, 0.24, 1),
+
+  // fast-out => liner-in
+  acceleration:       cubic-bezier(0.4, 0, 1, 1),
+  fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1),
+  
+  // linear-out => slow-in
+  deceleration:       cubic-bezier(0, 0, 0.2, 1),
+  linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1),
+
+  swift-ease-out:    cubic-bezier(0.25, 0.8, 0.25, 1),
+  swift-ease-in:     cubic-bezier(0.55, 0, 0.55, 0.2),
+  swift-ease-in-out: cubic-bezier(0.35, 0, 0.25, 1),
+  swift-liner:       linear
+) !default;
+
+@function duration($value) {
+  $result: map.get($duration, $value);
+  @return $result or $value;
+}
+
+@function timing-function($value) {
+  $result: map.get($timing-function, $value);
+  @return $result or $value;
+}
+
+// .foo {
+//   transition: transition-value((box-sizing, color)), opacity 160ms ease;;
+// }
+@function value($prop, $duration: normal, $timing-function: angular-material) {
+  @return private.multiple-properties($prop) duration($duration) timing-function($duration);
+}
+
+// .foo {
+//   @include transition(opacity, normal, standard);
+// }
+@mixin transition($prop, $duration: normal, $timing-function: angular-material) {
+  transition: transition-value($prop, $duration, $timing-function);
+}

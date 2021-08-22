@@ -1,0 +1,81 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+
+@function typography-list(
+  $font-size,
+  $line-height: $font-size,
+  $font-weight: 400,
+  $font-family: null,
+  $letter-spacing: normal
+) {
+  $config: (
+    font-size:      $font-size,
+    line-height:    $line-height,
+    font-weight:    $font-weight,
+    font-family:    $font-family,
+    letter-spacing: $letter-spacing
+  );
+
+  @if meta.type-of($font-size) == map {
+    $_font-size: map.get($font-size, font-size) or 16px;
+    $_line-height: map.get($font-size, line-height) or $_font-size;
+
+    $new-config: map.merge($font-size, (font-size: $_font-size, line-height: $_line-height));
+    $config: map.merge($config, $new-config);
+  }
+
+  @return $config;
+}
+
+$default-font-family: 'Roboto, "Helvetica Neue", sans-serif';
+@function typography(
+  $font-family:  $default-font-family,
+  $display-4:    typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:    typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2:    typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1:    typography-level(34px, 40px, 400),
+  $headline:     typography-level(24px, 32px, 400),
+  $title:        typography-level(20px, 32px, 500),
+  $subheading-2: typography-level(16px, 28px, 400),
+  $subheading-1: typography-level(15px, 24px, 400),
+  $body-2:       typography-level(14px, 24px, 500),
+  $body-1:       typography-level(14px, 20px, 400),
+  $caption:      typography-level(12px, 20px, 400),
+  $button:       typography-level(14px, 14px, 500),
+  $input:        typography-level(inherit, 1.125, 400)
+) {
+  $config: (
+    display-4:      $display-4,
+    display-3:      $display-3,
+    display-2:      $display-2,
+    display-1:      $display-1,
+    headline:       $headline,
+    title:          $title,
+    subheading-2:   $subheading-2,
+    subheading-1:   $subheading-1,
+    body-2:         $body-2,
+    body-1:         $body-1,
+    caption:        $caption,
+    button:         $button,
+    input:          $input,
+  );
+
+  @if meta.type-of($font-family) == map {
+    $config: map.merge($config, $font-family);
+    $font-family: map.get($config, font-family) or $default-font-family;
+    $config: map.remove($config, font-family);
+  }
+
+  // Loop through the levels and set the `font-family` of the ones that don't have one to the base.
+  // Note that Sass can't modify maps in place, which means that we need to merge and re-assign.
+  @each $key, $level in $config {
+    @if map.get($level, font-family) == null {
+      $new-level: map.merge($level, (font-family: $font-family));
+      $config: map.merge($config, ($key: $new-level));
+    }
+  }
+
+  @return $config;
+}
+

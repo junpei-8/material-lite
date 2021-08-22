@@ -5,10 +5,10 @@
     "baseUrl": "./",
     "paths": {
       "cdk": [
-        "dist/cdk"
+        "dist/angular-cdk"
       ],
       "components": [
-        "dist/components"
+        "dist/angular"
       ]
     },
     "outDir": "./dist/out-tsc",

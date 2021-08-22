@@ -1,4 +1,4 @@
-import { CoreDynamicConfig } from 'src/material-lite/angular-cdk/utils';
+import { CoreDynamicConfig } from '@material-lite/angular-cdk/utils';
 import { MlRippleCoreConfig } from '../ripple';
 import { NoConstructor } from './mixin';
 

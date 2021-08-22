@@ -1,4 +1,4 @@
-import { RunOutsideNgZone, noop, CoreConfig, setCoreConfig, Falsy, FalsyObject } from 'src/material-lite/angular-cdk/utils';
+import { RunOutsideNgZone, noop, CoreConfig, setCoreConfig, Falsy, FalsyObject } from '@material-lite/angular-cdk/utils';
 
 interface WH {
   width: number;

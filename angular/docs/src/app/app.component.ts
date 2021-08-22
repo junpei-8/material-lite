@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
-import { VERSION } from 'src/material-lite/angular-cdk/utils';
+import { VERSION } from '@material-lite/angular-cdk/utils';
 
 @Component({
   selector: 'app-root',

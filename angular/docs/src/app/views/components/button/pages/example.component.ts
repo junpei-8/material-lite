@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MlButtonHoverAction, MlButtonVariant } from 'src/material-lite/angular/button';
+import { MlButtonHoverAction, MlButtonVariant } from '@material-lite/angular/button';
 import { DocsCode } from 'src/app/components/docs-viewer';
 
 type TP = 'squareButton' | 'circleButton';

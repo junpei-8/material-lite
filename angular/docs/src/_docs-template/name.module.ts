@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MlButtonModule } from 'src/material-lite/angular/button';
+import { MlButtonModule } from '@material-lite/angular/button';
 import { DocsNavbarModule } from 'src/app/components/docs-navbar';
 import { DocsViewerModule } from 'src/app/components/docs-viewer/docs-viewer.module';
 

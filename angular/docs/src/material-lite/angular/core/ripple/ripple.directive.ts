@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Falsy, MlDocument, noop, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from 'src/material-lite/angular-cdk/utils';
+import { Falsy, MlDocument, noop, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from '@material-lite/angular-cdk/utils';
 import { MlRippleAnimation, MlRippleCore, MlRippleEntrance, MlRippleOverdrive } from './ripple-core';
 
 

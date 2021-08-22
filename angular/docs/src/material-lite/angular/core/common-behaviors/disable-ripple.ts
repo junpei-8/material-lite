@@ -1,4 +1,4 @@
-import { Falsy } from 'src/material-lite/angular-cdk/utils';
+import { Falsy } from '@material-lite/angular-cdk/utils';
 import { MlRippleCore } from '../ripple';
 import { NoConstructor } from './mixin';
 

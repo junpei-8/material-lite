@@ -1,5 +1,5 @@
 import { ElementRef } from '@angular/core';
-import { Falsy } from 'src/material-lite/angular-cdk/utils';
+import { Falsy } from '@material-lite/angular-cdk/utils';
 import { NoConstructor } from './mixin';
 
 export declare abstract class CanTheme {

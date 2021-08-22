@@ -28,7 +28,7 @@
       "@material-lite/angular/core": [
         "src/material-lite/angular/core"
       ],
-      "@material-lite/angular/contents": [
+      "@material-lite/angular/card": [
         "src/material-lite/angular/card"
       ],
       "@material-lite/angular/card-contents": [
@@ -37,17 +37,23 @@
       "@material-lite/angular/button": [
         "src/material-lite/angular/button"
       ],
+      "@material-lite/angular/slide-toggle": [
+        "src/material-lite/angular/slide-toggle"
+      ],
 
       // CDK
       "@material-lite/angular-cdk": [
         "src/material-lite/angular-cdk"
       ],
+      "@material-lite/angular-cdk/utils": [
+        "src/material-lite/angular-cdk/utils"
+      ],
       "@material-lite/angular-cdk/portal": [
         "src/material-lite/angular-cdk/portal"
       ],
-      "@material-lite/angular-cdk/utils": [
-        "src/material-lite/angular-cdk/utils"
-      ]
+      "@material-lite/angular-cdk/straight-tracker": [
+        "src/material-lite/angular-cdk/straight-tracker"
+      ],
     }
   },
   "angularCompilerOptions": {
