@@ -1,11 +1,14 @@
-@forward './animation';
+@forward './animation' as animation-*;
 
-@forward './elevation' as elevation-* hide elevation overridable-elevation;
-@forward './elevation' show elevation overridable-elevation;
+@forward './elevation' show elevation, overridable-elevation;
+@forward './elevation' as elevation-* hide elevation-elevation, elevation-overridable-elevation;
 
-@forward './normalize' as normalize-*;
+@forward './initialize' as initialize-*;
 @forward './opacity';
 @forward './private' as private-*;
-@forward './transition';
+
+@forward './transition' show transition;
+@forward './transition' as transition-* hide transition-transition;
+
 @forward './vendor-prefixes';
-@forward './z-index';
+@forward './z-index' as z-index-*;

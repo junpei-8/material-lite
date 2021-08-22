@@ -5,12 +5,12 @@
   user-select: $value;
 }
 
-@mixin focus-visible($opacity) {
-  &:focus {
+@mixin focus-visible($opacity, $selector: null) {
+  &:focus #{$selector} {
     opacity: $opacity;
   }
 
-  &:not(:focus-visible) {
+  &:not(:focus-visible) #{$selector} {
     opacity: 0;
   }
 }

@@ -1,4 +1,4 @@
-@import "../theming";
+@use '../../angular-cdk' as cdk;
 
 .ml-button {
   display: inline-flex;
@@ -8,33 +8,16 @@
   align-items: center;
   vertical-align: middle;
 
-  cursor: pointer;
-
   font-weight: 500;
   font-family: inherit;
   font-size: 14px;
   white-space: nowrap;
 
   color: inherit;
-  border: none;
-  outline: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-
   box-sizing: border-box;
-
   will-change: opacity;
 
-  &:focus .ml-button-overlay {
-    opacity: $ml-hovered-opacity;
-  }
-
-  &:not(:focus-visible) .ml-button-overlay {
-    opacity: 0;
-  }
+  @include cdk.initialize-button();
 
   svg {
     fill: currentColor;
@@ -79,44 +62,11 @@ a.ml-button {
   fill: currentColor;
 }
 
-.ml-raised-button {
-  .ml-button-ripple-outlet {
-    $z-index: map-get($ml-z-index, resting-contained-button);
-
-    // z-index: $z-index;
-    @include ml-elevation($z-index);
-
-    transition: ml-box-shadow-transition();
-  }
-
-  &:active .ml-button-ripple-outlet {
-    $z-index: map-get($ml-z-index, pressed-contained-button);
-
-    // z-index: $z-index;
-    @include ml-elevation($z-index);
-  }
-}
-
 .ml-stroked-button {
   padding: 0 15px;
-  border: 1px solid;
+  border-width: 1px;
 }
 
-.ml-fab {
-  .ml-button-ripple-outlet {
-    $z-index: map-get($ml-z-index, resting-fab);
-    // z-index: $z-index;
-    @include ml-elevation($z-index);
-
-    transition: ml-box-shadow-transition();
-  }
-
-  &:active .ml-button-ripple-outlet {
-    $z-index: map-get($ml-z-index, pressed-fab);
-    // z-index: $z-index;
-    @include ml-elevation($z-index);
-  }
-}
 
 .ml-anchor-button {
   padding: 0;
@@ -131,7 +81,6 @@ a.ml-button {
   }
 }
 
-.ml-button-ripple-outlet,
 .ml-button-overlay {
   position: absolute;
   top: 0;
@@ -140,32 +89,31 @@ a.ml-button {
   height: 100%;
   border-radius: inherit;
   pointer-events: none;
+  overflow: hidden;
+  transform: translateZ(0);
 }
 
-.ml-button-overlay {
+.ml-button-focus,
+.ml-button-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background-color: currentColor;
-  opacity: 0; 
+  transition-property: opacity;
 }
 
-.ml-hoverable-button {
+.ml-button-hover {
+  opacity: 0;
+}
+
+.ml-disabled {
+  .#{ml-button + &} {
+    cursor: default;
+  }
+
   .ml-button-overlay {
-    transition: ml-opacity-transition();
+    box-shadow: 0 0 0 0 transparent !important;
   }
-
-  &:hover .ml-button-overlay {
-    opacity: $ml-hovered-opacity;
-  }
-}
-
-.ml-button.ml-disabled {
-  cursor: default;
-  box-shadow: 0 0 0 0 transparent !important;
-}
-
-.ml-disabled .ml-button-ripple-outlet {
-  box-shadow: 0 0 0 0 transparent !important;
-}
-
-.ml-disabled .ml-button-overlay {
-  display: none !important;
 }

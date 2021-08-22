@@ -2,6 +2,7 @@
 @use 'sass:math';
 @use 'sass:meta';
 @use './z-index';
+@use './transition';
 
 
 @function _get-umbra-map($color, $opacity) {
@@ -101,48 +102,58 @@
 }
 
 // Default values
-$transition-duration: map-get(animation.$duration, normal) !default;
-$transition-timing-function: map-get(animation.$timing-function, standard) !default;
+$transition-duration: map.get(transition.$duration, normal) !default;
+$transition-timing-function: map.get(transition.$timing-function, standard) !default;
 $color: black !default;
 $opacity: 1 !default;
-$prefix: 'ml-elevation-z';
 
-// The $zIndex must be between 0 and 24.
-@mixin elevation($zIndex, $color: $color, $opacity: $opacity) {
-  @if meta.type-of($zIndex) != number or not math.is-unitless($zIndex) {
-    @error '$zIndex must be a unitless number';
+// The $z-index must be between 0 and 24.
+@mixin elevation($z-index, $color: $color, $opacity: $opacity) {
+  @if meta.type-of($z-index) != number or not math.is-unitless($z-index) {
+    @error '$z-index must be a unitless number';
   }
-  @if $zIndex < 0 or $zIndex > z-index.$limit {
-    @error '$zIndex must be between 0 and #{z-index.$limit}';
+  @if $z-index < 0 or $z-index > z-index.$limit {
+    @error '$z-index must be between 0 and #{z-index.$limit}';
   }
 
-  box-shadow: #{map.get(_get-umbra-map($color, $opacity), $zIndex)},
-              #{map.get(_get-penumbra-map($color, $opacity), $zIndex)},
-              #{map.get(_get-ambient-map($color, $opacity), $zIndex)};
+  box-shadow: #{map.get(_get-umbra-map($color, $opacity), $z-index)},
+              #{map.get(_get-penumbra-map($color, $opacity), $z-index)},
+              #{map.get(_get-ambient-map($color, $opacity), $z-index)};
 }
 
 // Applies the elevation to an element in a manner that allows
 // consumers to override it via the Material elevation classes.
-@mixin overridable-elevation($zIndex, $color: $color, $opacity: $opacity) {
-  &:not([class*='#{$prefix}']) {
-    @include elevation($zIndex, $color, $opacity);
+@mixin overridable-elevation($z-index, $color: $color, $opacity: $opacity) {
+  &:not([class*='ml-elevation-z']) {
+    @include elevation($z-index, $color, $opacity);
   }
 }
 
 
 // .foo {
-//   transition: elevation-transition-property-value(), opacity 100ms ease;
+//   transition: elevation-transition-value(), opacity 160ms ease;
 // }
-@function private-transition-property-value(
+@function transition-value(
   $duration: $transition-duration,
-  $easing: $transition-timing-function
+  $timing-function: $transition-timing-function
 ) {
-  @return box-shadow #{$duration} #{$easing};
+  @return transition.value(box-shadow, $duration, $timing-function);
 }
 
-@mixin elevation-transition(
+// .foo {
+//   @include elevation-transition()
+// }
+@mixin transition(
   $duration: $transition-duration,
-  $easing: $transition-timing-function
+  $timing-function: $transition-timing-function
 ) {
-  transition: private-transition-property-value($duration, $easing);
+  transition: transition-value($duration, $timing-function);
+}
+
+@mixin hierarchy($color: $color, $opacity: $opacity) {
+  @for $i from 1 through z-index.$limit {
+    .ml-elevation-z#{$i} {
+      @include elevation($i, $color, $opacity);
+    }
+  }
 }

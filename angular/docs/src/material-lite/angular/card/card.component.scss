@@ -1,11 +1,7 @@
 @use 'sass:math';
-@use '../theming' as *;
+@use '../../angular-cdk/' as cdk;
 
 $card-padding: 16px;
-
-.ml-raised-card {
-  @include ml-elevation(1);
-}
 
 /* 弱いオーバーライド */
 .ml-card {
@@ -201,4 +197,9 @@ $card-padding: 16px;
 
     object-fit: cover;
   }
+}
+
+.ml-stroked-card {
+  border-width: 1px;
+  border-style: solid;
 }

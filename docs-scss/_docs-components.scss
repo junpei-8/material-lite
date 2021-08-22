@@ -1,6 +1,5 @@
-@use './app-theme';
+@use './app-theme' as ml;
 @use './media-query' as *;
-@use './ml-theme-methods' as *;
 
 .docs-navbar {
   display: flex;
@@ -11,18 +10,18 @@
   margin-bottom: 24px;
   box-sizing: border-box;
 
-  @include ml-style(background, background);
-  @include ml-elevation(2);
+  @include ml.style(background-color, (background, background));
+  @include ml.elevation(2);
 
   @include mp {
     padding-left: 40px;
   }
 
-  .ml-button, .Ml-button {
+  .ml-button {
     border-radius: 0 !important;
   }
 
-  .ml-tracker, .Ml-tracker {
+  .ml-tracker {
     will-change: left;
   }
 
@@ -44,7 +43,7 @@
   height: 100%;
   z-index: 3;
 
-  .ml-button, .Ml-button {
+  .ml-button {
     border-radius: 0 !important;
     &:link, &:visited {
       color: currentColor;
@@ -76,7 +75,7 @@
       height: 100%;
 
       background-color: black;
-      transition: ml-opacity-transition();
+      @include ml.transition(opacity, faster, standard);
     }
   }
 
@@ -100,19 +99,19 @@
     display: inline-block;
     overflow-y: auto;
     height: 100%;
-    @include ml-style(background-color, background);
+    @include ml.style(background-color, (background, background));
 
-    .ml-button, .Ml-button {
+    .ml-button {
       height: 40px;
       flex-shrink: 0;
     }
 
     @include mp {
       transform: translateX(-100%);
-      transition: ml-transition(transform);
-      @include ml-elevation(18);
+      @include ml.elevation(18);
+      @include ml.transition(transform, faster, standard);
 
-      .ml-button, .Ml-button {
+      .ml-button {
         min-width: 240px;
         justify-content: flex-start;
         padding: 0 24px;
@@ -137,7 +136,7 @@
     }
     
     &::-webkit-scrollbar-thumb {
-      @include ml-style(background-color, scrollbar);
+      @include ml.style(background-color, (foreground, divider));
     }
   }
 }

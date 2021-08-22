@@ -74,10 +74,13 @@ export class MlRippleCore {
     private _outletElement: HTMLElement,
     private _runOutsideNgZone: RunOutsideNgZone,
     private _createElement: Document['createElement'],
+    disuseWrapperClass?: boolean
   ) {
     setCoreConfig(this, config);
 
-    _outletElement.classList.add('ml-ripple-outlet');
+    if (!disuseWrapperClass) {
+      _outletElement.classList.add('ml-ripple');
+    }
   }
 
   setup(): void {
@@ -237,7 +240,7 @@ export class MlRippleCore {
     const rippleEl: MlRippleElement = this._createElement('div');
     const rippleClassList = rippleEl.classList;
 
-    rippleClassList.add('ml-ripple-element', 'ml-ripple');
+    rippleClassList.add('ml-ripple-element');
 
     const outletEl = this._outletElement;
     const outletRect = this._outletElementRect || (this._outletElementRect = outletEl.getBoundingClientRect());
@@ -289,7 +292,7 @@ export class MlRippleCore {
     let rippleStyle: string = `top:${y - outletRect.top - radius}px;left:${x - outletRect.left - radius}px;width:${size}px;height:${size}px;transition-duration:${enterDur}ms;opacity:${conf.opacity || 0.12}`;
 
     if (conf.theme) {
-      rippleClassList.add(`ml-${conf.theme}-bg`);
+      rippleClassList.add(`ml-${conf.theme}-background`);
 
     } else if (conf.color) {
       rippleStyle += `;background-color:${conf.color}`;
@@ -320,7 +323,7 @@ export class MlRippleCore {
     const rippleEl = this._createElement('div') as MlRippleElement;
     const rippleClassList = rippleEl.classList;
 
-    rippleClassList.add('ml-ripple-element', 'ml-overdrive');
+    rippleClassList.add('ml-overdrive-element');
 
     const conf = this._config;
 
@@ -328,7 +331,7 @@ export class MlRippleCore {
     let rippleStyle = `transition-duration:${enterDur}ms`;
 
     if (conf.theme) {
-      rippleClassList.add(`ml-${conf.theme}-bg`);
+      rippleClassList.add(`ml-${conf.theme}-background`);
 
     } else if (conf.color) {
       rippleStyle += `background-color: ${conf.color};`;

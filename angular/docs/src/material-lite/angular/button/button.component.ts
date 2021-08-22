@@ -116,7 +116,7 @@ export class MlButton extends ButtonMixin implements OnInit, OnChanges {
     this._rippleCoreFactory = (outletEl) =>
       new MlRippleCore(
         dynamicConfig, outletEl, runOutsideNgZone,
-        _document.createElement.bind(_document)
+        _document.createElement.bind(_document), true
       );
   }
 

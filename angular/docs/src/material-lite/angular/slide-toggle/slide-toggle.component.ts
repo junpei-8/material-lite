@@ -8,30 +8,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Falsy, MlDocument, noop, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from 'src/material-lite/angular-cdk/utils';
 import { mixinBundleFactory, mixinDisableRipple, mixinRippleDynamicConfig, mixinTabIndex, mixinTheme, MlRippleCore } from 'src/material-lite/angular/core';
 
-/*
-<theme>
-.ml-slide-toggle-bar-palette {
-  background-color: ${theme.sliderOffActive};
-}
-.ml-slide-toggle-thumb {
-  background-color: ${theme.sliderThumb};
-}
-
-<palette>
-.ml-checked.ml-${name} .ml-slide-toggle-bar-palette {
-  background-color: ${color};
-  opacity: 0.56;
-}
-
-.ml-checked.ml-${name} .ml-slide-toggle-thumb {
-  background-color: ${color};
-}
-
-.ml-checked.ml-${name} .ml-slide-toggle-ripple-outlet {
-  color: ${color};
-}
-*/
-
 export const ML_SLIDE_TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MlSlideToggle),
@@ -175,7 +151,7 @@ export class MlSlideToggle extends SlideToggleMixin implements OnInit, ControlVa
     this._rippleCoreFactory = (outletEl) =>
       new MlRippleCore(
         rippleConf, outletEl, runOutsideNgZone,
-        _document.createElement.bind(_document),
+        _document.createElement.bind(_document), true
       );
   }
 

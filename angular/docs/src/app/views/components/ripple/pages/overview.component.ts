@@ -54,7 +54,7 @@ const DOCS_CODE: DocsCode<TD> = {
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styles: [`
-    .ml-ripple-outlet {
+    .ml-ripple {
       display: flex;
       justify-content: center;
       align-items: center;

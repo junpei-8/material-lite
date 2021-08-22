@@ -2,8 +2,9 @@
 @use 'src/../../../docs-scss/entry';
 @use './app/prism/prism';
 
-@use './app/app-theme' as *;
-// @use './material-lite/components/theming' as ml;
+@use 'sass:meta';
 
-// @include ml-theming(cssVariable);
-@include ml-theming();
+@use './app/app-theme' as ml;
+
+@include ml.core();
+@include ml.themes();

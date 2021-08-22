@@ -1,8 +1,12 @@
-@use './ml-theme-methods' as *;
+@use '../angular/docs/src/material-lite/angular' as *;
+@forward '../angular/docs/src/material-lite/angular';
 
-$ml-themes: (
-  default: (
-    theme: ml-theme(cssVariable),
-    palette: ml-theme(cssVariable)
-  )
+$material-lite: (
+  default: define-light-theme((
+    color: $indigo-pink-color
+  )),
+
+  '.dark-theme': define-dark-theme((
+    color: $deep-purple-amber-color,
+  ))
 );

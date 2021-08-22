@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
 import { VERSION } from 'src/material-lite/angular-cdk/utils';
 
@@ -12,22 +13,18 @@ export class AppComponent {
   title = 'docs';
   version = VERSION;
 
-  darkTheme: boolean;
+  isDarkTheme: boolean = true;
 
-  constructor() {
-    // _mlTheming.initialize([{
-    //   theme: ML_CSS_VARIABLE_THEME,
-    //   palette: ML_CSS_VARIABLE_PALETTE
-    // }]);
-    // _mlTheming.setCssVariables(ML_LIGHT_THEME, ML_INDIGO_PINK_PALETTE)
+  constructor(
+    @Inject(DOCUMENT) private _document: Document
+  ) {
+    this.toggleDarkTheme();
   }
 
   toggleDarkTheme(): void {
-    // const is = this.darkTheme = !this.darkTheme;
-    // const theme = is
-    //   ? ML_DARK_THEME
-    //   : ML_LIGHT_THEME;
-
-    // this._mlTheming.setCssVariables(theme, ML_INDIGO_PINK_PALETTE);
+    const isDark = this.isDarkTheme = !this.isDarkTheme;
+    isDark
+      ? this._document.body.classList.add('dark-theme')
+      : this._document.body.classList.remove('dark-theme');
   }
 }

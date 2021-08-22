@@ -1,42 +1,11 @@
-$duration: (
-  very-fast: 160ms,
-  faster: 200ms,
-  fast: 240ms,
-  normal: 280ms,
-  slow: 320ms,
-  slower: 360ms,
-  very-slow: 400ms,
-);
 
-$timing-function: (
-  // ease => fast-in
-  angular-material: cubic-bezier(0.25, 0.8, 0.25, 1),
-  
-  // fast-out => slow-in
-  standard: cubic-bezier(0.4, 0, 0.2, 1),
-  
-  // fast-out => slow-in
-  strong-acceleration: cubic-bezier(0.36, 0, 0.24, 1),
-  
-  // fast-out => liner-in
-  acceleration: cubic-bezier(0.4, 0, 1, 1),
-  
-  // linear-out => slow-in
-  deceleration: cubic-bezier(0, 0, 0.2, 1)
-);
-
+// .my-root {
+//   .my-subclass {
+//      @include mat-private-animation-noop();
+//    }
+// }
+// => ._mat-animation-noopable.my-root .my-subclass { ... }
 @mixin noop() {
-  // @at-root is used to steps outside of the hierarchy of the scss rules. This is
-  // done to allow a class to be added to be added to base of the scss nesting
-  // context.
-  // For example:
-  // .my-root {
-  //   .my-subclass {
-  //      @include mat-private-animation-noop();
-  //    }
-  // }
-  // results in:
-  // ._mat-animation-noopable.my-root .my-subclass { ... }
   @at-root ._ml-animation-noopable#{&} {
     transition: none;
     animation: none;

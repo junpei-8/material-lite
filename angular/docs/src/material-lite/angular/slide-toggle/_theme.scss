@@ -1,52 +1,106 @@
-@mixin foreground($foreground, $config: ()) {
-  $sliderOffActive: map-get($foreground, sliderOffActive);
-  $sliderThumb: map-get($foreground, sliderThumb);
+@use 'sass:map';
+@use 'sass:color';
+@use '../../angular-cdk/' as cdk;
+@use '../core/theming/private';
+@use '../core/override/elevation';
 
-  .ml-slide-toggle-bar-palette {
-    background-color: $sliderOffActive;
-  }
+@mixin foreground($foreground: null, $ml: null) {
+  $ml: private.create-ml-map(foreground, $foreground, $ml);
 
-  .ml-slide-toggle-thumb {
-    background-color: $sliderThumb;
-  }
-}
-
-@mixin background($background, $config: ()) {
-}
-
-@mixin color($color, $config: ()) {
-  @each $name, $value in $palette {
-    $default: map-get($value, default);
-
-    .ml-checked.ml-#{$name} .ml-slide-toggle-bar-palette {
-      background-color: $default;
-      opacity: 0.56;
-    }
-
-    .ml-checked.ml-#{$name} .ml-slide-toggle-thumb {
-      background-color: $default;
-    }
-
-    .ml-checked.ml-#{$name} .ml-slide-toggle-ripple-outlet {
-      color: $default;
+  @include private.for-each-theme(foreground, (slider-off, slider-off-active), $ml, slide-toggle)
+  using ($_, $__, $slider-off, $slider-off-active) {
+    .ml-slide-toggle-bar-palette {
+      background-color: $slider-off-active;
     }
   }
 }
 
 
-@mixin theme($base, $config: ()) {
-  @if map.get($config, foreground) != null {
-    @include foreground(map.get($base, foreground), $config);
+@mixin background($background: null, $ml: null) {
+  $ml: private.create-ml-map(background, $background, $ml);
+
+  @include private.for-each-theme(background, (raised-button, disabled-button, hovered, focused), $ml, slide-toggle)
+  using ($_, $config, $raised-button, $disabled-button, $hovered, $focused) {
+    .ml-slide-toggle-thumb {
+      background-color: $raised-button;
+    }
+
+    @if $hovered {
+      @if not map.get($config, button, hovered, current-color) {
+        .ml-slide-toggle-hover {
+          background: rgb(color.red($hovered), color.green($hovered), color.blue($hovered));
+        }
+      }
+
+      .ml-slide-toggle-bar {
+        &:hover .ml-slide-toggle-hover {
+          opacity: color.opacity($hovered);
+        }
+      }
+    }
+
+    @if $focused {
+      @if not map.get($config, button, focused, current-color) {
+        .ml-slide-toggle-focus {
+          background: rgb(color.red($focused), color.green($focused), color.blue($focused));
+        }
+      }
+
+      .ml-slide-toggle-input {
+        @include cdk.focus-visible(color.opacity($focused), '+ .ml-slide-toggle-thumb-container .ml-slide-toggle-focus');
+      }
+    }
+  }
+}
+
+
+@mixin color($color: null, $ml: null) {
+  $ml: private.create-ml-map(color, $color, $ml);
+
+  @include private.for-each-theme-color(default, $ml, slide-toggle) using ($_, $__, $name, $color) {
+    .ml-checked.ml-#{$name} {
+      @if $color {
+        .ml-slide-toggle-bar-palette {
+          background-color: $color;
+          opacity: 0.64;
+        }
+      }
+
+      .ml-slide-toggle-thumb {
+        background-color: $color;
+      }
+
+      .ml-slide-toggle-overlay {
+        color: $color;
+      }
+    }
+  }
+}
+
+
+@mixin config($config: null, $ml: null) {
+  @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
+    .ml-slide-toggle-thumb {
+      @include cdk.elevation(1, $color, $opacity);
+    }
   }
 
-  @if map.get($config, background) != null {
-    @include background(map.get($base, background), $config)
+  @include elevation.transition-zone(null, null, $ml: $ml) using ($duration, $timing-function) {
+    .ml-slide-toggle-thumb {
+      transition: box-shadow $duration $timing-function;
+    }
   }
+}
 
-  @if map.get($config, color) != null {
-    @include color(map.get($base, color), $config);
-  }
 
+@mixin theme($theme: null, $config: null, $ml: null) {
+  $theme: private.component-theme-init($theme);
+  @include foreground(map.get($theme, foreground), $ml);
+  @include background(map.get($theme, background), $ml);
+  @include color(map.get($theme, color), $ml);
+  @include config(map.get($theme, config), $ml);
+
+  // $typography: typography.get-typography($theme);
   // @if map.get($config, typography) != null {
   //   @include typography($typography, $config);
   // }

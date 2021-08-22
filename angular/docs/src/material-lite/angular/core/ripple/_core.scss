@@ -1,5 +1,5 @@
-@mixin ripple($config: ()) {
-  .ml-ripple-outlet {
+@mixin ripple() {
+  .ml-ripple {
     position: relative;
     overflow: hidden;
   
@@ -8,7 +8,7 @@
     }
   }
 
-  .ml-ripple {
+  .ml-ripple-element {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
@@ -16,10 +16,9 @@
 
     transform: scale(0);
     transition-property: opacity, transform;
-    transition-timing-function: cubic-bezier(0,0,.2,1);
   }
 
-  .ml-overdrive {
+  .ml-overdrive-element {
     position: absolute;
     top: 0;
     left: 0;
@@ -31,6 +30,5 @@
 
     opacity: 0;
     transition-property: opacity;
-    transition-timing-function: cubic-bezier(0,0,.2,1);
   }
 }

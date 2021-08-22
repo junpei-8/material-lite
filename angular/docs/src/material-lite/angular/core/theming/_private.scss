@@ -1,0 +1,295 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+@use '../../../angular-cdk' as cdk;
+@use '../global';
+@use './status';
+
+
+// $local-config takes precedence.
+// local-config > global-config
+@function merge-theme-config($ml, $theme) {
+  $global-config: map.get($ml, config) or ();
+  $local-config:  map.get($theme, config) or ();
+
+  $extend: map.get($local-config, extend);
+  @return if(
+    $extend or $extend == null,
+    if(
+      map.get($local-config, extend-list),
+      cdk.private-deep-merge-map($global-config, $local-config),
+      map.deep-merge($global-config, $local-config)
+    ),
+    $local-config
+  );
+}
+
+
+@function merge-component-config($config, $local-config, $component) {
+  $config: map.merge($config, $local-config or ());
+  @return map.get($config, $component);
+}
+
+
+@function component-theme-init($theme) {
+  @if $theme == null {
+    @return ();
+
+  } @else {
+    @each $key in status.$theme-map-keys {
+      $value: map.get($theme, $key);
+      @if not $value {
+        $theme: map.set($theme, $key, false);
+      }
+    }
+    
+    @return $theme;
+  }
+}
+
+
+@function create-ml-map($key, $value: null, $ml: null) {
+  @return if($value, (default: (key: $value)), $ml);
+}
+
+
+@function create-includes($config) {
+  $includes: map-get($config, includes) or status.$components;
+  $excludes: map-get($config, excludes);
+
+  @return if(
+    $excludes,
+    cdk.private-remove-list($includes, $excludes),
+    $includes
+  );
+}
+
+
+@function is-component-included($config, $component) {
+  $includes: create-includes($config);
+  @return if($component == null or list.index($includes, $component), true, false);
+}
+
+@mixin _wrap-in-class($data-list) {
+  @each $data in $data-list {
+    $selector: list.nth($data, 1);
+
+    @if $selector == default {
+      @content($data);
+  
+    } @else if & {
+      #{$selector} & {
+        @content($data);
+      }
+
+    } @else {
+      #{$selector} {
+        @content($data);
+      }
+    }
+  }
+}
+
+@mixin should-for-each-theme($ml) {
+  @if $ml != false {
+    $ml: $ml or global.$material-lite;
+
+    @if $ml {
+      @content($ml);
+
+    } @else {
+      @error '$material-lite is undefined';
+    }
+  }
+}
+
+@mixin for-each-theme($fixed-paths: null, $paths-list: null, $ml: null, $component: null, $unwrap-class: null) {
+  @include should-for-each-theme($ml) using ($ml) {
+    $data-list: ();
+    $default-theme: map.get($ml, default) or ();
+
+    @each $selector, $theme in map.remove($ml, config) {
+      $config: merge-theme-config($ml, $theme);
+
+      @if is-component-included($config, $component) {
+        $def-theme: if($selector == default, (), $default-theme);
+
+        @if cdk.private-is-empty($fixed-paths) and cdk.private-is-empty($paths-list) {
+          $data: (
+            $selector,
+            $config,
+            if($def-theme == $theme, null, $theme)
+          );
+
+          $data-list: list.append($data-list, $data);
+
+        } @else {
+          $data: ($selector, $config);
+
+          @if $fixed-paths {
+            @each $path in $fixed-paths {
+              $def-theme: map.get($def-theme or (), $path);
+              $theme:     map.get($theme or (), $path);
+            }
+          }
+
+          @each $paths in $paths-list {
+            $def: $def-theme;
+            $col: $theme;
+
+            @each $path in $paths {
+              $def: map.get($def or (), $path);
+              $col: map.get($col or (), $path);
+            }
+
+            @if $col == $def { $col: null }
+            $data: list.append($data, $col);
+          }
+
+          $data-list: list.append($data-list, $data);
+        }
+      }
+    }
+
+    @if $unwrap-class {
+      @each $data in $data-list {
+        @content($data...);
+      }
+
+    } @else {
+      @include _wrap-in-class($data-list) using ($data) {
+        @content($data...);
+      }
+    }
+  }
+}
+
+
+@mixin for-each-theme-config($fixed-paths: null, $paths-list: null, $base-default-config: null, $ml: null, $component: null, $unwrap-class: null) {
+  @include should-for-each-theme($ml) using ($ml) {
+    $data-list: ();
+
+    $default-config: map.get($ml, default, config) or ();
+    @if $base-default-config {
+      $default-config: map.deep-merge($base-default-config, $default-config);
+    }
+
+    @each $selector, $theme in map.remove($ml, config) {
+      $config: merge-theme-config($ml, $theme);
+
+      @if is-component-included($config, $component) {
+        $def-config: null;
+        $local-config: null;
+
+        @if $selector == default {
+          $def-config: ();
+          $local-config: $default-config;
+        } @else {
+          $def-config: $default-config;
+          $local-config: map.get($theme, config);
+        }
+
+        @if cdk.private-is-empty($paths-list) and cdk.private-is-empty($fixed-paths) {
+          $data: (
+            $selector,
+            $config,
+            if($def-config == $local-config, null, $local-config)
+          );
+          $data-list: list.append($data-list, $data);
+
+        } @else {
+          $data: ($selector, $config);
+
+          @if $fixed-paths {
+            @each $path in $fixed-paths {
+              $def-config:    map.get($def-config or (), $path);
+              $local-config:  map.get($local-config or (), $path);
+            }
+          }
+
+          @each $paths in $paths-list {
+            $def: $def-config;
+            $loc: $local-config;
+
+            @each $path in $paths {
+              $def: map.get($def or (), $path);
+              $loc: map.get($loc or (), $path);
+            }
+
+            @if $loc == $def { $loc: null }
+            $data: list.append($data, $loc);
+          }
+
+          $data-list: list.append($data-list, $data);
+        }
+      }
+    }
+
+    @if $unwrap-class {
+      @each $data in $data-list {
+        @content($data...);
+      }
+
+    } @else {
+      @include _wrap-in-class($data-list) using ($data) {
+        @content($data...);
+      }
+    }
+  }
+}
+
+
+@mixin for-each-theme-color($paths: null, $ml: null, $component: null, $unwrap-class: null) {
+  @include should-for-each-theme($ml) using ($ml) {
+    $data-list: ();
+    $default-color-plt: map.get($ml, default, color) or ();
+
+    @each $selector, $theme in map.remove($ml, config) {
+      $config: merge-theme-config($ml, $theme);
+      @if is-component-included($config, $component) {
+        $def-color-plt: if($selector != default, $default-color-plt, ());
+        $color-plt:     map.get($theme, color) or ();
+
+        @each $name, $plt in $color-plt {
+          $default-plt: map.get($def-color-plt, $name);
+          $plt: map.get($color-plt, $name);
+
+          @if cdk.private-is-empty($paths) {
+            $data: (
+              $selector,
+              $config,
+              if($default-plt == $plt, null, $plt)
+            );
+  
+            $data-list: list.append($data-list, $plt);
+  
+          } @else {
+            $data: ($selector, $config, $name);
+
+            @each $path in $paths {
+              $def: map.get($default-plt or (), $path);
+              $col: map.get($plt or (), $path);
+
+              @if $col == $def { $col: null }
+              $data: list.append($data, $col);
+            }
+  
+            $data-list: list.append($data-list, $data);
+          }
+        }
+      }
+    }
+
+    @if $unwrap-class {
+      @each $data in $data-list {
+        @content($data...);
+      }
+
+    } @else {
+      @include _wrap-in-class($data-list) using ($data) {
+        @content($data...);
+      }
+    }
+  }
+}
+

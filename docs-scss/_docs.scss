@@ -1,6 +1,5 @@
-@use './app-theme';
+@use './app-theme' as ml;
 @use './media-query' as *;
-@use './ml-theme-methods' as *;
 
 .docs-view {
   display: block;
@@ -55,17 +54,18 @@
   }
 
   tr:nth-child(odd) {
-    @include ml-style(background-color, primaryContainer);
+    @include ml.style(background-color, (background, app-bar));
   }
 
   th {
-    @include ml-style(background-color, tertiaryContainer);
+    @include ml.style(background-color, (background, selected-button));
     text-align: center;
   }
 
   td {
     &:empty {
-      background-color: #E0E0E0;
+      // background-color: #E0E0E0;
+      @include ml.style(background-color, (background, disabled-list-option))
     }
   }
 
@@ -73,7 +73,7 @@
     text-align: left;
     min-width: 80px;
     padding: 8px;
-    @include ml-style((border: 1px solid [color]), divider);
+    @include ml.style((border: 1px solid [color]), (foreground, divider));
     box-sizing: border-box;
   }
 
@@ -85,7 +85,6 @@
 }
 
 .docs-markdown {
-
   h2 {
     font-size: 20px;
     margin: 48px 0 12px;
@@ -105,7 +104,7 @@
     margin: 8px 0;
   }
   .comment {
-    @include ml-style(color, hintText);
+    @include ml.style(color, (foreground, hint-text));
   }
 
   code {

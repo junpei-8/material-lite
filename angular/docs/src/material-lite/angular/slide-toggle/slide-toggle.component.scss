@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../theming' as *;
+@use '../../angular-cdk/' as cdk;
 
 $thumb-size: 20px;
 $bar-border-radius: 8px;
@@ -117,6 +117,8 @@ $bar-track-width: $bar-width - $thumb-size;
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   border-radius: $bar-border-radius;
 }
 
@@ -132,11 +134,8 @@ $bar-track-width: $bar-width - $thumb-size;
   }
 }
 
-.ml-slide-toggle-thumb {
-  @include ml-elevation(1);
-}
 
-.ml-slide-toggle-bar,
+.ml-slide-toggle-bar-palette,
 .ml-slide-toggle-thumb {
   transition: background-color 80ms linear 50ms;
 
@@ -145,45 +144,20 @@ $bar-track-width: $bar-width - $thumb-size;
   }
 }
 
-.ml-slide-toggle-ripple-outlet {
+
+.ml-slide-toggle-overlay {
   position: absolute;
   top: calc(50% - #{$ripple-radius});
   left: calc(50% - #{$ripple-radius});
   height: $ripple-radius * 2;
   width: $ripple-radius * 2;
   z-index: 1;
-  pointer-events: none;
   border-radius: 50%;
-  transform: none !important;
+
+  @include cdk.initialize-overlay();
 }
 
-.ml-slide-toggle-overlay {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background-color: currentColor;
-
-  transition: ml-opacity-transition();
-
-  .ml-disabled & {
-    display: none;
-  }
-}
-
-.ml-slide-toggle-input {
-  &:focus {
-    + .ml-slide-toggle-thumb-container .ml-slide-toggle-overlay {
-      opacity: $ml-focused-opacity;
-    }
-  }
-
-  &:not(:focus-visible) {
-    + .ml-slide-toggle-thumb-container .ml-slide-toggle-overlay {
-      opacity: 0;
-    }
-  }
-}
-
-.ml-slide-toggle-bar:hover .ml-slide-toggle-overlay {
-  opacity: $ml-hovered-opacity !important;
+.ml-slide-toggle-focus,
+.ml-slide-toggle-hover {
+  @include cdk.initialize-overlay-content();
 }

@@ -1,15 +1,1 @@
-// @use '../material-lite/components/theming' as *;
-@forward '../material-lite/components/theming';
-
-$ml-themes: (
-  default: (
-    theme: ml-theme(cssVariable),
-    palette: ml-palette(cssVariable),
-  ),
-
-  '#dark-mode': (
-    theme: ml-theme(dark),
-    palette: ml-palette(deepPurple-amber),
-    root-selector: false
-  )
-);
+@forward '../../../../docs-scss/app-theme';
