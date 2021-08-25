@@ -1,0 +1,119 @@
+@use '../../react-cdk' as cdk;
+
+.ml-button {
+  display: inline-flex;
+  position: relative;
+  overflow: visible;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 14px;
+  white-space: nowrap;
+
+  color: inherit;
+  box-sizing: border-box;
+  will-change: opacity;
+
+  @include cdk.initialize-button();
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.ml-button a,
+a.ml-button {
+  text-decoration: none;
+  color: inherit;
+
+  &:link {
+    color: #2196F3;
+  }
+
+  &:visited {
+    color: #9C27B0;
+  }
+}
+
+.ml-simple-button {
+  background-color: transparent;
+}
+
+.ml-basic-button,
+.ml-raised-button,
+.ml-stroked-button,
+.ml-flat-button {
+  min-width: 64px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.ml-icon-button,
+.ml-fab {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 24px;
+  fill: currentColor;
+}
+
+.ml-stroked-button {
+  padding: 0 15px;
+  border-width: 1px;
+}
+
+
+.ml-anchor-button {
+  padding: 0;
+
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+
+.ml-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.ml-button-focus,
+.ml-button-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: currentColor;
+  transition-property: opacity;
+}
+
+.ml-button-hover {
+  opacity: 0;
+}
+
+.ml-disabled {
+  .#{ml-button + &} {
+    cursor: default;
+  }
+
+  .ml-button-overlay {
+    box-shadow: 0 0 0 0 transparent !important;
+  }
+}

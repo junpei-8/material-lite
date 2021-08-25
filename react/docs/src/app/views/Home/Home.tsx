@@ -2,14 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import MlButton from '../../../material-lite/components/Button';
+import MlButton from '../../../material-lite/react/Button';
 
 const Home = () => {
   const ref = useRef<any>(null);
 
   const [className, setClassName] = useState('1');
-
-  useEffect(() => console.log(ref));
 
   const changeClass = () => {
     if (className === '1') {
@@ -21,8 +19,11 @@ const Home = () => {
 
   return(
     <div>
-      <MlButton className={className} elementRef={ref} onClick={changeClass}>Button</MlButton>
-      <MlButton className={className} elementRef={ref}>Button</MlButton>
+      <MlButton element={
+        <button className={className} onClick={changeClass}>
+          <span>SPAN</span>
+        </button>
+      }/>
     </div>
   )
 };

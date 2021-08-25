@@ -79,6 +79,8 @@
 
 
 @mixin config($config: null, $ml: null) {
+  $ml: private.create-ml-map(config, $config, $ml);
+
   @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
     .ml-slide-toggle-thumb {
       @include cdk.elevation(1, $color, $opacity);

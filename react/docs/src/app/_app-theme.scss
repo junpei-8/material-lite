@@ -1,9 +1,1 @@
-@use './material-lite/components/theming' as *;
-
-$ml-themes: (
-  default: (
-    theme: ml-theme(cssVariable),
-    palette: ml-theme(cssVariable)
-  )
-);
-
+@forward '../../../../docs-scss/app-theme';

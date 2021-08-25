@@ -39,6 +39,40 @@
   padding: 0 16px 80px;
   box-sizing: border-box;
 
+  .indent {
+    padding-left: 8px;
+    
+    @include mp {
+      padding-left: 0 4px;
+    }
+  }
+
+  .indent-block {
+    padding: 0 8px;
+
+    @include mp {
+      padding: 0 4px;
+    }
+
+    h3, h4 {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .file-path {
+    display: block;
+    padding: 4px;
+    margin: -12px 8px 0;
+    width: fit-content;
+    color: white;
+    background: #616161;
+    border-radius: 4px;
+    font-size: 14px;
+    transform: translateY(48%);
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -95,7 +129,13 @@
 
   h3 {
     font-size: 18px;
-    margin: 16px 0 8px;
+    margin: 24px 0 8px;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 14px;
+    margin: 12px 0 8px;
     font-weight: 500;
   }
 
@@ -103,7 +143,7 @@
     margin: 8px 0;
   }
   .comment {
-    @include ml.style(color, (foreground, hint-text));
+    @include ml.style(color, (foreground, secondary-text));
   }
 
   code {

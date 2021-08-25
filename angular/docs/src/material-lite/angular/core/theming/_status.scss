@@ -6,6 +6,12 @@ $theme-map-keys: (
   config
 );
 
+$required-theme-map-keys: (
+  foreground,
+  background,
+  color
+);
+
 $components: (
   button,
   card,

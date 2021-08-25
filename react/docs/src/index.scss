@@ -1,1 +1,5 @@
-@import 'src/../../../docs-scss/entry';
+@use 'src/../../../docs-scss/entry';
+@use './app/app-theme' as ml;
+
+@include ml.core();
+@include ml.themes();

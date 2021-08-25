@@ -49,7 +49,11 @@
 
 
 @function create-ml-map($key, $value: null, $ml: null) {
-  @return if($value, (default: (key: $value)), $ml);
+  @if $value == false and $key == config {
+    @return global.$material-lite or (default: ());
+  }
+
+  @return if($value, (default: (key: $value)), $ml or $value);
 }
 
 

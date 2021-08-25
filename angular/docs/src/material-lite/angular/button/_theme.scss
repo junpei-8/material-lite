@@ -13,8 +13,10 @@
     .ml-button {
       color: $text;
 
-      &.ml-disabled {
-        color: $disabled-text !important;
+      @if $disabled-text {
+        &.ml-disabled {
+          color: $disabled-text !important;
+        }
       }
     }
   
@@ -33,8 +35,10 @@
     .ml-filled-button {
       background-color: $raised-button;
   
-      &.ml-disabled {
-        background-color: $disabled-button !important;
+      @if $disabled-button {
+        &.ml-disabled {
+          background-color: $disabled-button !important;
+        }
       }
     }
 
@@ -164,7 +168,7 @@ $default-config: (
   @include foreground(map.get($theme, foreground), $ml);
   @include background(map.get($theme, background), $ml);
   @include color(map.get($theme, color), $ml);
-  @include config(map.get($theme, config), $ml);
 
+  @include config(map.get($theme, config), $ml);
   // $typography: typography.get-typography($theme);
 }

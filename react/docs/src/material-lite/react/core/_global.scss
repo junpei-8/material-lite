@@ -1,0 +1,20 @@
+// $__test: (
+//   default: define-light-theme(),
+
+//   '.dark-theme': define-dark-theme((
+//     color: ml.$indigo-pink-template
+//   )),
+
+//   '.my-theme': (
+
+//   ),
+
+//   config: (
+//     ripple: (
+//       transition-timing-function: transition(standard)
+//     )  
+//   )
+// );
+
+$material-lite: null !default;
+

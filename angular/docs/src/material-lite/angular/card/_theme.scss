@@ -28,6 +28,8 @@
 
 $default-config: ();
 @mixin config($config: null, $ml: null) {
+  $ml: private.create-ml-map(config, $config, $ml);
+
   @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
     .ml-raised-card {
       @include cdk.elevation(1, $color, $opacity);

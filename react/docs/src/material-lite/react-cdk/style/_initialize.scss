@@ -1,0 +1,32 @@
+@use './vendor-prefixes';
+
+@mixin button {
+  @include vendor-prefixes.user-select(none);
+  cursor: pointer;
+  border-width: 0;
+  border-style: solid;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Firefox
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+@mixin overlay {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@mixin overlay-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  opacity: 0;
+
+  .ml-disabled & {
+    display: none;
+  }
+}
