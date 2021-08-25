@@ -1,6 +1,6 @@
 {
-  "short_name": "React ML",
-  "name": "Material Lite for React",
+  "short_name": "Vue ML",
+  "name": "Material Lite for Vue",
   "icons": [
     {
       "src": "assets/images/favicons/favicon.ico",
@@ -40,6 +40,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#61dafb",
-  "background_color": "rgba(0,0,0,0.88)"
+  "theme_color": "#41b883",
+  "background_color": "#34495e"
 }

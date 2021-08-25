@@ -1,6 +1,6 @@
 {
-  "short_name": "React ML",
-  "name": "Material Lite for React",
+  "short_name": "Angular ML",
+  "name": "Material Lite for Angular",
   "icons": [
     {
       "src": "assets/images/favicons/favicon.ico",
@@ -40,6 +40,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#61dafb",
-  "background_color": "rgba(0,0,0,0.88)"
+  "theme_color": "#DD0031",
+  "background_color": "#fff"
 }
