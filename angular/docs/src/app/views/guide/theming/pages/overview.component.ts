@@ -7,26 +7,15 @@ const DOCS_CODE: DocsCode<TD> = {
     typescript: /*javascript*/`
     import { Component } from '@angular/core';
     import { MlTheming } from '@material-lite/angular/core';
-
-    @Component({...})
-    export class AppComponent {
-
-      constructor(
-        mlTheming: MlTheming
-      ) {
-        mlTheming.initialize(null);
-      }
-
-    }
     `
   }
 };
 @Component({
-  selector: 'app-scss',
-  templateUrl: './scss.component.html',
+  selector: 'app-overview',
+  templateUrl: './overview.component.html',
   host: { class: 'docs-markdown' }
 })
-export class ScssComponent {
+export class OverviewComponent {
   docsCode = DOCS_CODE;
   constructor() {}
 }

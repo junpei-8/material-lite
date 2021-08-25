@@ -30,7 +30,9 @@ const routes: Routes = [
     children: [
       { path: 'categories', loadChildren: () => import('./views/guide/categories').then(m => m.CategoriesModule) },
       { path: 'getting-started', loadChildren: () => import('./views/guide/getting-started').then(m => m.GettingStartedModule) },
-      { path: 'theming', loadChildren: () => import('./views/guide/theming').then(m => m.ThemingModule)}
+      { path: 'theming', loadChildren: () => import('./views/guide/theming').then(m => m.ThemingModule)},
+      { path: 'elevation-styles', loadChildren: () => import('./views/guide/elevation-styles').then(m => m.ElevationStylesModule) },
+      { path: 'duplicate-styles', loadChildren: () => import('./views/guide/duplicate-styles').then(m => m.DuplicateStylesModule) }
     ]
   },
   { path: 'home', component: HomeComponent },

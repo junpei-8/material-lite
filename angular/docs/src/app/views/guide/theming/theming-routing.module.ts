@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ScssComponent, TypescriptComponent } from './pages';
+import { OverviewComponent, YourOwnThemesComponent } from './pages';
 import { ThemingComponent } from './theming.component';
 
 const routes: Routes = [
   {
     path: '', component: ThemingComponent, children: [
-      { path: 'typescript', component: TypescriptComponent },
-      { path: 'scss', component: ScssComponent },
+      { path: 'overview', component: OverviewComponent },
+      { path: 'your-own-themes', component: YourOwnThemesComponent },
       { path: '', redirectTo: 'overview', pathMatch: 'full' }
     ]
   }

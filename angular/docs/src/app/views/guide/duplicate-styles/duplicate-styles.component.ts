@@ -44,10 +44,10 @@ const DOCS_CODE: DocsCode<TD> = {
 }
 
 @Component({
-  selector: 'app-getting-started',
-  templateUrl: './getting-started.component.html',
+  selector: 'app-duplicate-styles',
+  templateUrl: './duplicate-styles.component.html',
   host: { class: 'docs-view docs-markdown' }
 })
-export class GettingStartedComponent {
+export class DuplicateStylesComponent {
   docsCode = DOCS_CODE;
 }

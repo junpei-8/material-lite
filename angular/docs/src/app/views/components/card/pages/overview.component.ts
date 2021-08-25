@@ -19,12 +19,12 @@ const DOCS_CODE: DocsCode<TD> = {
     html: /*html*/`
       <ml-card>
         <ml-card-header>
-          <img src="https://material-lite/angular/assets/img/japanese-hare-avatar.jpeg" mlCardAvatar />
+          <img src="https://material-lite/angular/assets/images/docs/japanese-hare-avatar.jpeg" mlCardAvatar />
           <ml-card-title>Japanese hare</ml-card-title>
           <ml-card-subtitle>Hare Breed</ml-card-subtitle>
         </ml-card-header>
 
-        <img src="https://material-lite/angular/assets/img/japanese-hare.jpeg" mlCardImage />
+        <img src="https://material-lite/angular/assets/images/docs/japanese-hare.jpeg" mlCardImage />
 
         <ml-card-content>
           <p>The Japanese hare is reddish-brown. ...(omitted)</p>
@@ -48,12 +48,12 @@ const DOCS_CODE: DocsCode<TD> = {
     html: /*html*/`
       <ml-card style="max-width: 320px">
         <ml-card-title>Japanese Sushi</ml-card-title>
-        <img mlCardImage src="https://material-lite/angular/assets/img/sushi.jpeg" />
+        <img mlCardImage src="https://material-lite/angular/assets/images/docs/sushi.jpeg" />
       </ml-card>
 
       <ml-card>
         <ml-card-title>Japanese Sushi</ml-card-title>
-        <div mlCardImage src="https://material-lite/angular/assets/img/sushi.jpeg"></div>
+        <div mlCardImage src="https://material-lite/angular/assets/images/docs/sushi.jpeg"></div>
       </ml-card>
     `
   }

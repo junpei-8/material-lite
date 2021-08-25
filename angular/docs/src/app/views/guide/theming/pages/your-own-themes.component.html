@@ -1,0 +1,24 @@
+<h2>Your <span class="ml-accent-color">own</span> themes</h2>
+<p><code>$material-lite</code>グローバル変数を用いて設定することをお勧めしています。</p>
+
+
+<h2>Preparing a partial file</h2>
+<p>
+  <code>$material-lite</code>グローバル変数を上書きしたファイルを<a class="eng" href="https://sass-lang.com/guide#topic-4" target="_blank" rel="noopener noreferrer">Partial file</a>として準備し、
+  そのファイルを読み込むことで、テーマの設定を共有できるだけでなく、付随した<code>Mixin</code>や<code>Function</code>の引数に<code>$theme</code>などの設定変数を代入する必要が無くなります。
+</p>
+<h3>Example</h3>
+<h4>Partial File</h4>
+<code class="file-path">src/app/_app-theme.scss</code>
+<docs-viewer [code]="docsCode.preparingExample" disableActions></docs-viewer>
+
+<h4>Entry theme</h4>
+<code class="file-path">src/styles.scss</code>
+<docs-viewer [code]="docsCode.preparingExample2" disableActions></docs-viewer>
+
+<h4>Example component scss file</h4>
+<code class="file-path">src/styles.scss</code>
+<docs-viewer [code]="docsCode.preparingExample3" disableActions></docs-viewer>
+
+<h4>Result</h4>
+<div class="example-status-bar">Example status bar</div>

@@ -1,0 +1,7 @@
+@use 'src/app/app-theme' as ml;
+
+.example-status-bar {
+  @include ml.style(background, (background, status-bar));
+  padding: 16px;
+  font-weight: 500;
+}
