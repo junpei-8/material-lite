@@ -5,5 +5,5 @@
 単体で用いることも可能です。
 
 
-## Demo page
+## Web documents
 <h3><a href='https://material-lite.web.app/angular'>https://material-lite.web.app/angular</a></h3>

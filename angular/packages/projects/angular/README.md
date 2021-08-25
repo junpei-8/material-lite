@@ -2,8 +2,8 @@
 [`Angular material`](https://material.angular.io/)を参考に制作している`MaterialDesign`コンポーネントです。
 レンダリングを抑えることと使いやすさに重きをおいています。
 
-## Demo page
-<h3><a href='https://material-lite/angular'>https://material-lite/angular</a></h3>
+## Web documents
+<h3><a href="https://material-lite.web.app/angular">https://material-lite.web.app/angular</a></h3>
 
 ## React版
 製作中。。。
