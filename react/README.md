@@ -1,4 +1,7 @@
 <h1 align="center">Material Lite for React</h1>
+<div align="center">
+  <img src="../logos/react-material-lite.svg" width="120px"></img>
+</div>
 
 <!-- ## Links
 - [Web document](https://material-lite.web.app/react)

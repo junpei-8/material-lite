@@ -1,4 +1,7 @@
 <h1 align="center">Material Lite for Angular</h1>
+<div align="center">
+  <img src="../logos/angular-material-lite.svg" width="120px"></img>
+</div>
 
 ## Install
 ```
