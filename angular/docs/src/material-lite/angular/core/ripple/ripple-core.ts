@@ -367,11 +367,11 @@ export class MlRippleCore {
     this._runOutsideNgZone(() => {
       setTimeout(() => {
         this._outletElement.removeChild(rippleElement);
-        this._hasFiredTouchstart = false;
 
         // @ts-expect-error: Assign to readonly variable
         const count = (this.activeRippleSize -= 1);
         if (count === 0) {
+          this._hasFiredTouchstart = false;
           this._outletElementRect = null;
         }
       }, leaveTiming);
