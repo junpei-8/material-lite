@@ -23,14 +23,19 @@ const Home = () => {
 
       <div className="home-body">
         <section className="home-section">
-          <h2 className="home-section-heading">インストール</h2>
+          <h2>インストール</h2>
           <div className="home-docs-codeblock">
-            <pre className="prism"><code>npm install @material-lite/react @material-lite/react-cdk</code></pre>
+            <pre className="prism"><code>npm i @material-lite/react @material-lite/react-cdk</code></pre>
+          </div>
+
+          <h3><span className="eng">Theming</span>に必要なライブラリのインストール</h3>
+          <div className="home-docs-codeblock">
+            <pre className="prism"><code>npm i sass @material-lite/theming</code></pre>
           </div>
         </section>
 
         <section className="home-section">
-          <h2 className="home-section-heading">概要</h2>
+          <h2>概要</h2>
           <p><span className="eng ml-accent-color">Material Lite for Angular</span>をベースにした、<span className="eng">React</span>用のコンポーネントライブラリです。</p>
           <p>デザインや機能は<span className="eng ml-accent-color">Angular Material</span>を参考にさせてもらっています。</p>
         </section>
