@@ -1,0 +1,38 @@
+@use '../../../app-theme' as ml;
+
+.guide-elevation-styles {
+  .card, .level-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+
+  .card {
+    height: 80px;
+    width: 240px;
+    @include ml.elevation(1);
+  }
+
+  .level-card {
+    height: 88px;
+    width: 88px;
+    margin: 16px 32px;
+
+    &.level-1 {
+      @include ml.elevation(1);
+    }
+  
+    &.level-8 {
+      @include ml.elevation(8);
+    }
+  
+    &.level-16 {
+      @include ml.elevation(16);
+    }
+  
+    &.level-24 {
+      @include ml.elevation(24);
+    }
+  }
+}

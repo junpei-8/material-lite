@@ -8,7 +8,7 @@ const DOCS_CODE: DocsCode<TP> = {
   overview: {
     jsx: /*jsx*/`
       import React from 'react';
-      import MlButton from '@material-lite/react/Button';
+      import { MlButton } from '@material-lite/react';
       
       export default function Overview() {
         return (

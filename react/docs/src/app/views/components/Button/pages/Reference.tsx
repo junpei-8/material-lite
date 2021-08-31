@@ -4,7 +4,7 @@ import DocsViewer, { DocsCode } from 'components/DocsViewer';
 type TP = 'importing';
 const DOCS_CODE: DocsCode<TP> = {
   importing: {
-    typescript: /*javascript*/`import MlButton from '@material-lite/react/Button';`
+    typescript: /*javascript*/`import { MlButton } from '@material-lite/react';`
   }
 }
 export const Reference = () => (

@@ -1,5 +1,5 @@
-@use '../angular/docs/src/material-lite/angular' as *;
-@forward '../angular/docs/src/material-lite/angular';
+@use '../theming' as *;
+@forward '../theming';
 
 $angular-color: (
   primary: (

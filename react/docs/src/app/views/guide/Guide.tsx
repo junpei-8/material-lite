@@ -4,6 +4,10 @@ import MlButton from '../../../material-lite/react/Button';
 import DocsSidenav from 'components/DocsSidenav';
 
 const Categories = lazy(() => import('./Categories'));
+const GettingStarted = lazy(() => import('./GettingStarted'));
+const Theming = lazy(() => import('./Theming'));
+const ElevationStyles = lazy(() => import('./ElevationStyles'));
+const DuplicateStyles = lazy(() => import('./DuplicateStyles'));
 
 const Guide = () => (
   <div className="app-view">
@@ -16,7 +20,11 @@ const Guide = () => (
 
     <Suspense fallback>
       <Switch>
-        <Route path='/guide/categories' component={Categories}></Route>
+        <Route path="/react/guide/categories" component={Categories}></Route>
+        <Route path="/react/guide/getting-started" component={GettingStarted}></Route>
+        <Route path="/react/guide/theming" component={Theming}></Route>
+        <Route path="/react/guide/elevation-styles" component={ElevationStyles}></Route>
+        <Route path="/react/guide/duplicate-styles" component={DuplicateStyles}></Route>
       </Switch>
     </Suspense>
   </div>
