@@ -26,6 +26,6 @@ export type ComponentProps<E = HTMLDivElement> = {
   elementRef?: RefObject<E>
 };
 
-export type DirectiveProps = {
-  children: ReactElement<any, any>
+export type DirectiveProps<T extends string | React.JSXElementConstructor<any> = any, P = any> = {
+  children: ReactElement<P, T>
 };

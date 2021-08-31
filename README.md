@@ -13,7 +13,7 @@
 - [npm (cdk)](https://www.npmjs.com/package/@material-lite/angular-cdk)
 
 ### React
-<!-- - [Web documents](https://material-lite.web.app/react) -->
+- [Web documents](https://material-lite.web.app/react)
 - [Github documents](https://github.com/junpei10/material-lite/tree/main/react#readme)
 <!-- - [npm (components)](https://www.npmjs.com/package/@material-lite/react) -->
 <!-- - [npm (cdk)](https://www.npmjs.com/package/@material-lite/react-cdk) -->

@@ -33,14 +33,15 @@ class MlButton extends MlButtonComponent implements Behaviors {
   readonly rippleCore: MlRippleCore;
   private _rippleCoreFactory: ((outletEl: HTMLElement) => MlRippleCore) | null;
 
-  _rippleConfig: Behaviors['_rippleConfig'] = {
-    _dynamic: {}
-  }
   _defaultRippleConfig: Behaviors['_defaultRippleConfig'] = {
     animation: {
       enter: 280,
       leave: 240
     }
+  }
+
+  _rippleConfig: Behaviors['_rippleConfig'] = {
+    _dynamic: this._defaultRippleConfig!
   }
 
   private _overlayElement = (

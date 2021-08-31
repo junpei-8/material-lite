@@ -1,5 +1,6 @@
 @use 'sass:math';
-@use '../../react-cdk/' as cdk;
+@use '../../../../../../theming/cdk' as cdk;
+
 
 $card-padding: 16px;
 

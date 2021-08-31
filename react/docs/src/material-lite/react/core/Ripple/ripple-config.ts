@@ -16,7 +16,7 @@ export namespace RippleConfig {
 
   export interface Member {
     _rippleConfig: CoreDynamicConfig<MlRippleCoreConfig>;
-    _defaultRippleConfig?: Prop
+    _defaultRippleConfig?: MlRippleCoreConfig
   }
 
   export type PrivateNames = keyof Member;
