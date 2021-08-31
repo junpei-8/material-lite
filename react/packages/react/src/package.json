@@ -1,0 +1,33 @@
+{
+  "name": "@material-lite/react",
+  "version": "2.4.0",
+  "license": "MIT",
+  "description": "Material Lite Components for Angular",
+  "keywords": [
+    "react",
+    "material",
+    "material design",
+    "components",
+    "material lite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junpei10/material-lite/tree/main/react"
+  },
+  "bugs": {
+    "url": "https://github.com/junpei10/material-lite/issues"
+  },
+  "homepage": "https://github.com/junpei10/material-lite/tree/main/react#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "@material-lite/react-cdk": "^2.4.4",
+    "@material-lite/theming": "^2.4.4"
+  },
+  "main": "index.js",
+  "module": "index.modern.js",
+  "typings": "index.d.ts",
+  "sideEffects": false
+}

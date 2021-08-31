@@ -1,0 +1,106 @@
+@use '../../../../../theming/cdk';
+
+.ml-button {
+  display: inline-flex;
+  position: relative;
+  overflow: visible;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+
+  color: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  white-space: nowrap;
+
+  box-sizing: border-box;
+  will-change: opacity;
+
+  @include cdk.initialize-button();
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.ml-button a,
+a.ml-button {
+  text-decoration: none;
+
+  &:link {
+    color: #2196F3;
+  }
+
+  &:visited {
+    color: #9C27B0;
+  }
+}
+
+.ml-simple-button {
+  background-color: transparent;
+}
+
+.ml-basic-button,
+.ml-raised-button,
+.ml-stroked-button,
+.ml-flat-button {
+  min-width: 64px;
+  min-height: 36px;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.ml-icon-button,
+.ml-fab {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.ml-stroked-button {
+  padding: 0 15px;
+  border-width: 1px;
+}
+
+
+.ml-anchor-button {
+  padding: 0;
+
+  a {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    width: 100%;
+    height: 100%;
+    padding: 8px 16px;
+  }
+}
+
+.ml-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  @include cdk.initialize-overlay();
+}
+
+.ml-button-focus,
+.ml-button-hover {
+  @include cdk.initialize-overlay-content()
+}
+
+.ml-disabled {
+  .#{ml-button + &} {
+    cursor: default;
+  }
+
+  .ml-button-overlay {
+    box-shadow: 0 0 0 0 transparent !important;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { cloneElement, Component, ReactElement } from 'react';
+
 import './StraightTracker.scss';
 
 import { ComponentProps, FalsyObject } from '../utils';

@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "dist",
+    "baseUrl": ".",
+    "outDir": "../dist/react",
     "module": "esnext",
-    "target":"es5",
-    "lib": ["dom", "esnext", "es2018"],
+    "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
     "sourceMap": true,
@@ -13,16 +12,14 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "skipLibCheck": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
-
     "paths": {
       "@material-lite/react-cdk/utils": [
-        "./src/utils"
+        "@material-lite/react-cdk"
       ]
     }
   },

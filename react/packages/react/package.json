@@ -1,10 +1,10 @@
 {
-  "name": "react-cdk",
-  "version": "2.4.4",
-  "description": "Material Lite CDK for React",
-  "author": "junpei10",
+  "name": "@material-lite/react",
+  "version": "1.0.0",
+  "description": "Material Lite Components for React",
+  "author": "junpei10/material-lite/react",
   "license": "MIT",
-  "repository": "junpei10/material-lite/react",
+  "repository": "junpei10/material-lite/react/react",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -24,6 +24,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "@material-lite/react-cdk": "^2.4.4",
+    "@material-lite/theming": "^2.4.4",
     "react": "^16.0.0"
   },
   "devDependencies": {
@@ -34,7 +36,6 @@
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
-    "@types/resize-observer-browser": "^0.1.6",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
@@ -61,5 +62,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@material-lite/react-cdk": "^2.4.4"
+  }
 }
