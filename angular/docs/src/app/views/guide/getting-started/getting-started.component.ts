@@ -30,14 +30,16 @@ const DOCS_CODE: DocsCode<TD> = {
 
   usageScss: {
     scss: /*css*/`
-      @use '@material-lite/angular' as ml;
+      @use '@material-lite/angular' as *;
 
-      $theme: ml.define-light-theme((
-        color: ml.$indigo-pink-color
-      ));
-
-      @include ml.core();
-      @include ml.themes($theme);
+      $material-lite: (
+        default: define-light-theme((
+          color: $indigo-pink-color
+        ))
+      );
+      
+      @include core();
+      @include themes();
     `
   }
 

@@ -26,10 +26,6 @@ const Categories = () => {
         <div className="app-categories-title">Elevation styles</div>
       </MlCard>
 
-      <MlCard variant="stroked" onClick={() => navRoute('duplicate-styles')}>
-        <div className="app-categories-title">Duplicate styles</div>
-      </MlCard>
-
       <div className="ml-card"></div>
       <div className="ml-card"></div>
     </div>

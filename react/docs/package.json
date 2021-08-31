@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build && mv build ../../dist/react",
+    "build": "react-app-rewired build && rm -f -r ../../dist/react && mv build ../../dist/react",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },

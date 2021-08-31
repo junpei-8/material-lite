@@ -12,7 +12,7 @@ const Components = () => (
     <DocsSidenav>
       <MlButton><Link to="/react/components/button">Button</Link></MlButton>
       <MlButton><Link to="/react/components/card">Card</Link></MlButton>
-      <MlButton><Link to="/react/components/ripple">Ripple</Link></MlButton>
+      {/* <MlButton><Link to="/react/components/ripple">Ripple</Link></MlButton> */}
     </DocsSidenav>
 
     <Suspense fallback>

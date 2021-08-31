@@ -27,14 +27,16 @@ const DOCS_CODE: DocsCode<TP> = {
   },
   usageOfScssTheme: {
     scss: /*css*/`
-      @use '@material-lite/angular' as ml;
+      @use '@material-lite/angular' as *;
 
-      $theme: ml.define-light-theme((
-        color: ml.$indigo-pink-color
-      ));
+      $material-lite: (
+        default: define-light-theme((
+          color: $indigo-pink-color
+        ))
+      );
       
-      @include ml.core();
-      @include ml.themes($theme);
+      @include core();
+      @include themes();
     `
   },
   usageOfCssTheme: {

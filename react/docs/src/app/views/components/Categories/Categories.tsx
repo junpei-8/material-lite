@@ -21,10 +21,10 @@ const Categories = () => {
       <MlCard variant="stroked" onClick={() => navRoute('card')}>
         <div className="app-categories-title">Card</div>
       </MlCard>
-
+{/* 
       <MlCard variant="stroked" onClick={() => navRoute('ripple')}>
         <div className="app-categories-title">Ripple</div>
-      </MlCard>
+      </MlCard> */}
 
       <div className="ml-card"></div>
       <div className="ml-card"></div>

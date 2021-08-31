@@ -7,7 +7,6 @@ const Categories = lazy(() => import('./Categories'));
 const GettingStarted = lazy(() => import('./GettingStarted'));
 const Theming = lazy(() => import('./Theming'));
 const ElevationStyles = lazy(() => import('./ElevationStyles'));
-const DuplicateStyles = lazy(() => import('./DuplicateStyles'));
 
 const Guide = () => (
   <div className="app-view">
@@ -15,7 +14,6 @@ const Guide = () => (
       <MlButton><Link to="/react/guide/getting-started">Getting started</Link></MlButton>
       <MlButton><Link to="/react/guide/theming">Theming</Link></MlButton>
       <MlButton><Link to="/react/guide/elevation-styles">Elevation styles</Link></MlButton>
-      <MlButton><Link to="/react/guide/duplicate-styles">Duplicate styles</Link></MlButton>
     </DocsSidenav>
 
     <Suspense fallback>
@@ -24,7 +22,7 @@ const Guide = () => (
         <Route path="/react/guide/getting-started" component={GettingStarted}></Route>
         <Route path="/react/guide/theming" component={Theming}></Route>
         <Route path="/react/guide/elevation-styles" component={ElevationStyles}></Route>
-        <Route path="/react/guide/duplicate-styles" component={DuplicateStyles}></Route>
+        {/* <Route path="/react/guide/duplicate-styles" component={DuplicateStyles}></Route> */}
       </Switch>
     </Suspense>
   </div>
