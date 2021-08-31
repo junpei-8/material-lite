@@ -1,5 +1,6 @@
 @use 'src/../../../docs-scss/entry';
 @use './app/app-theme' as ml;
+@use './app/prism/prism';
 
 @include ml.core();
 @include ml.themes();

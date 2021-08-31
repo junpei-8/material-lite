@@ -139,10 +139,7 @@ export class MlStraightTracker implements OnInit, OnChanges, AfterContentInit {
     @Inject(DOCUMENT) _document: MlDocument
   ) {
     this._coreFactory = (trackerEl) =>
-      new MlStraightTrackerCore(
-        this, _elementRef.nativeElement, trackerEl,
-        _runOutsideNgZone, _document.createElement.bind(_document)
-      );
+      new MlStraightTrackerCore(this, _elementRef.nativeElement, trackerEl, _runOutsideNgZone);
   }
 
   ngOnInit(): void {

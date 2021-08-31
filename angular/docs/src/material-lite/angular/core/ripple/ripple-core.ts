@@ -100,8 +100,8 @@ export class MlRippleCore {
             handlers[i] = this._createHandler(trigger);
 
           } else {
+            trigger.addEventListener('touchstart', handler.onTouchstart, { passive: true });
             trigger.addEventListener('mousedown', handler.onMousedown);
-            trigger.addEventListener('touchstart', handler.onTouchstart);
           }
         }
       });
@@ -178,7 +178,7 @@ export class MlRippleCore {
     const onTouchstart = (e: any) => this._onTouchstart(e, trigger);
 
     this._runOutsideNgZone(() => {
-      trigger.addEventListener('touchstart', onTouchstart);
+      trigger.addEventListener('touchstart', onTouchstart, { passive: true });
       trigger.addEventListener('mousedown', onMousedown);
     });
 

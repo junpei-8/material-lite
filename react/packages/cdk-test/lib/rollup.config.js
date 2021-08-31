@@ -9,6 +9,7 @@ import depsExternal from 'rollup-plugin-peer-deps-external';
 import ttypescript from 'ttypescript';
 import typescript from 'rollup-plugin-typescript2';
 import glob from 'glob';
+import fs from 'fs';
 import { terser } from 'rollup-plugin-terser';
 
 // import terser from ''
@@ -38,6 +39,15 @@ const directories = projectPaths.map(file => {
   return items[items.length - 1];
 })
 
+const input = {}
+directories.forEach(name => {
+  const path = `src/${name}/index.ts`
+
+  if (fs.existsSync(projectRoot + '/' + path)) {
+    input[name] = path;
+  }
+});
+
 const baseConfig = {
   plugins: {
     replace: {
@@ -65,7 +75,7 @@ const baseConfig = {
       ],
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
       babelHelpers: 'bundled',
-    },
+    }
   },
 };
 
@@ -76,12 +86,9 @@ const external = [
   // eg. 'jquery'
   'react',
   'rxjs',
-  '@material-lite/angular',
-  '@material-lite/angular-cdk'
+  '@material-lite/react',
+  '@material-lite/react-cdk'
 ];
-
-const input = {}
-directories.forEach(name => input[name] = `src/${name}/index.ts`);
 
 
 // Customize configs for individual targets
@@ -114,7 +121,6 @@ const settings = (format) => ({
     commonjs(),
 
     babel(baseConfig.plugins.babel),
-
   ]
 })
 

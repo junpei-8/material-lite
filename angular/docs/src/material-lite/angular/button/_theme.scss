@@ -147,7 +147,7 @@ $default-config: (
       }
 
       &:active .ml-button-overlay {
-        $z-index: cdk.$z-index-resting-fab;
+        $z-index: cdk.$z-index-pressed-fab;
         @include cdk.elevation($z-index, $color, $opacity);
       }
     }

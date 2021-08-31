@@ -54,12 +54,12 @@ $timing-function: (
 //   transition: transition-value((box-sizing, color)), opacity 160ms ease;;
 // }
 @function value($prop, $duration: normal, $timing-function: strong-acceleration) {
-  @return private.multiple-properties($prop) duration($duration) timing-function($duration);
+  @return private.multiple-properties($prop), duration($duration), timing-function($duration);
 }
 
 // .foo {
 //   @include transition(opacity, normal, standard);
 // }
 @mixin transition($prop, $duration: normal, $timing-function: strong-acceleration) {
-  transition: transition-value($prop, $duration, $timing-function);
+  transition: value($prop, $duration, $timing-function);
 }

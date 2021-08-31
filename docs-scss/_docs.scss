@@ -1,4 +1,5 @@
 @use './app-theme' as ml;
+@use './app-sizing' as *;
 @use './media-query' as *;
 
 .docs-view {

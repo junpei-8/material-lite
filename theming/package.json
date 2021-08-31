@@ -1,0 +1,26 @@
+{
+  "name": "@material-lite/theming",
+  "version": "2.4.4",
+  "license": "MIT",
+  "description": "Theming SCSS files for Material Lite",
+  "keywords": [
+    "material",
+    "material design",
+    "components",
+    "material lite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junpei10/material-lite/tree/main/theming"
+  },
+  "bugs": {
+    "url": "https://github.com/junpei10/material-lite/issues"
+  },
+  "homepage": "https://github.com/junpei10/material-lite/tree/main/theming#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "_index.scss",
+  "module": "_index.scss",
+  "sideEffects": false
+}

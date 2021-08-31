@@ -1,0 +1,12 @@
+@forward './animation' as animation-*;
+
+@forward './elevation' show elevation, overridable-elevation;
+@forward './elevation' as elevation-* hide elevation-elevation, elevation-overridable-elevation;
+
+@forward './initialize' as initialize-*;
+@forward './opacity';
+
+@forward './transition' show transition;
+@forward './transition' as transition-* hide transition-transition;
+
+@forward './z-index' as z-index-*;

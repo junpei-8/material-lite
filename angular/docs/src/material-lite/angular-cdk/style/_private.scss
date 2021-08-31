@@ -27,30 +27,7 @@ $_slash-exists: meta.function-exists('slash', 'list');
 }
 
 
-// Prefixes
-@mixin color-adjust($value) {
-  -webkit-print-color-adjust: $value;
-  color-adjust: $value;
-}
-
-@mixin background-clip($value) {
-  -webkit-background-clip: $value;
-  background-clip: $value;
-}
-
-@mixin cursor-grab {
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-
-@mixin cursor-grabbing {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-}
-
-
 // Original methods
-
 @function is-empty($value) {
   @if $value {
     @each $_ in $value {

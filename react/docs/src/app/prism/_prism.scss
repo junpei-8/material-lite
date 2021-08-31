@@ -1,0 +1,63 @@
+.prism {
+  .comment,
+  .prolog,
+  .doctype,
+  .cdata {
+    color: #999;
+  }
+
+  .id, .important {
+    color: #E91E63;
+  }
+  .tag,
+  .keyword,
+  .operator,
+  .rule,
+  .unit,
+  .shorter {
+    color: #f44336;
+  }
+  .punctuation,
+  .equal,
+  .binding,
+  .script {
+    color: white;
+  }
+
+  .selector,
+  .attr-name,
+  .function,
+  .arrow-function {
+    color: #9ee34f;
+  }
+
+  .attr-value,
+  .string {
+    color: #ffeb3b;
+  }
+  .value {
+    color: #fff59d;
+  }
+
+  .square-bracket,
+  .defined,
+  .builtin,
+  .property,
+  .class-name {
+    color: #81d4fa;
+  }
+
+  .literal,
+  .number,
+  .boolean {
+    color: #F48FB1;
+  }
+
+  .bracket {
+    color: #FAB85A;
+  }
+
+  .brace {
+    color: #FFE8D8;
+  }
+}

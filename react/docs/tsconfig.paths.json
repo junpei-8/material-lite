@@ -4,8 +4,17 @@
       "@material-lite/react-cdk/utils": [
         "./src/material-lite/react-cdk/utils"
       ],
-      "@material-lite/react/core": [
+      "@material-lite/react/Card": [
         "./src/material-lite/react/core"
+      ],
+      "components/DocsNavbar": [
+        "./src/app/components/DocsNavbar"
+      ],
+      "components/DocsSidenav": [
+        "./src/app/components/DocsSidenav"
+      ],
+      "components/DocsViewer": [
+        "./src/app/components/DocsViewer"
       ]
     },
   }

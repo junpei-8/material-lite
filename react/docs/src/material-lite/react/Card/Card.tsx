@@ -1,29 +1,53 @@
 import React, { Component } from 'react';
 import './Card.scss';
 
-import { classNamePipe, MlComponentProps } from '@material-lite/react-cdk/utils';
+import { classNamePipe, ComponentProps, FalsyObject } from '@material-lite/react-cdk/utils';
 
-export interface MlCardProps extends MlComponentProps, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-}
+export type MlCardVariant = 'raised' | 'stroked';
+
+export type MlCardProps =
+  ComponentProps &
+  FalsyObject<{
+    variant: MlCardVariant;
+  }> & JSX.IntrinsicElements['div'];
 
 class MlCard extends Component<MlCardProps> {
-  private _classList = ['ml-card'];
+  private _classList: string[];
 
-  componentDidMount() {
-    console.log(this.props.className);
-    // const elRef = this.props.elementRef;
-    // elRef!.current!.classList.add('ml-button');
+  constructor(props: MlCardProps) {
+    super(props);
+
+    this.shouldComponentUpdate(null!);
   }
 
-  onSetRippleOutlet(ref: HTMLDivElement) {
-    console.log(ref, 'outlet');
+  shouldComponentUpdate(nextProps: MlCardProps) {
+    let prevProps: MlCardProps;
+
+    if (nextProps) {
+      prevProps = this.props;
+
+    } else {
+      nextProps = this.props;
+      prevProps = { variant: '' } as any ;
+    }
+
+    const variant = nextProps.variant;
+    if (variant !== prevProps.variant) {
+      this._classList = [
+        'ml-card',
+        'ml-' + (variant || 'raised') + '-card'
+      ];
+      return true;
+    }
+
+    return false;
   }
 
   render() {
     const { elementRef, children, className, ...rest } = this.props;
 
     return (
-      <div {...rest} className={classNamePipe(this._classList)} ref={elementRef}>
+      <div {...rest} className={classNamePipe(this._classList, className)} ref={elementRef}>
         { children }
       </div>
     );

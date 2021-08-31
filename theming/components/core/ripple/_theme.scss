@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use '../../theming/private';
+
+@mixin foreground($foreground: null, $config: null, $ml: null) {
+}
+
+
+@mixin background($background: null, $ml: null) {
+}
+
+
+@mixin color($color: null, $ml: null) {
+}
+
+
+$default-config: (
+  ripple: (
+    default: (
+      transition-timing-function: deceleration
+    ),
+    overdrive: (
+      transition-timing-function: deceleration
+    )
+  )
+);
+@mixin config($config: null, $ml: null) {
+  $ml: private.create-ml-map(config, $config, $ml);
+
+  @include private.for-each-theme-config(ripple, (
+    (default, transition-timing-function), (overdrive, transition-timing-function)
+  ), $default-config, $ml, ripple) using ($_, $__, $default-timing-function, $overdrive-timing-function) {
+    .ml-ripple-element {
+      transition-timing-function: cdk.transition-timing-function($default-timing-function);
+    }
+
+    .ml-overdrive-element {
+      transition-timing-function: cdk.transition-timing-function($overdrive-timing-function);
+    }
+  }
+}
+
+
+@mixin theme($theme: null, $ml: null) {
+  $theme: private.component-theme-init($theme);
+  @include foreground(map.get($theme, foreground), $ml);
+  @include background(map.get($theme, background), $ml);
+  @include color(map.get($theme, color), $ml);
+  @include config(map.get($theme, config), $ml);
+
+  // $typography: typography.get-typography($theme);
+}

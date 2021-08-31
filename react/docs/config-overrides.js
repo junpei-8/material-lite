@@ -6,8 +6,9 @@ module.exports = (config) => {
     alias: {
       ...config.alias,
 
-      "@material-lite/react-cdk/utils": path.resolve(__dirname, './src/material-lite/react-cdk/utils'),
-      "@material-lite/react/core": path.resolve(__dirname, './src/material-lite/react/core'),
+      "@material-lite/react-cdk": path.resolve(__dirname, './src/material-lite/react-cdk'),
+      "@material-lite/react": path.resolve(__dirname, './src/material-lite/react'),
+      "components": path.resolve(__dirname, './src/app/components')
     }
   };
 

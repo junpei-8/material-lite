@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './Card.scss';
 
-import { classNamePipe, MlComponentProps } from '@material-lite/react-cdk/utils';
+import { classNamePipe, DirectiveProps } from '@material-lite/react-cdk/utils';
 
-export interface MlRippleProps extends MlComponentProps {
+export interface MlRippleProps {
 }
 
 class MlRipple extends Component<MlRippleProps> {

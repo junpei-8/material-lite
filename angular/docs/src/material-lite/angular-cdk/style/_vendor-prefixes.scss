@@ -13,6 +13,10 @@
   &:not(:focus-visible) #{$selector} {
     opacity: 0;
   }
+
+  &:hover #{$selector} {
+    opacity: 0;
+  }
 }
 
 @mixin input-placeholder {
@@ -33,6 +37,21 @@
   }
 }
 
+@mixin background-clip($value) {
+  -webkit-background-clip: $value;
+  background-clip: $value;
+}
+
+@mixin backface-visibility($value) {
+  -webkit-backface-visibility: $value;
+  backface-visibility: $value;
+}
+
+@mixin color-adjust($value) {
+  -webkit-print-color-adjust: $value;
+  color-adjust: $value;
+}
+
 @mixin cursor-grab {
   cursor: -webkit-grab;
   cursor: grab;
@@ -41,11 +60,6 @@
 @mixin cursor-grabbing {
   cursor: -webkit-grabbing;
   cursor: grabbing;
-}
-
-@mixin backface-visibility($value) {
-  -webkit-backface-visibility: $value;
-  backface-visibility: $value;
 }
 
 @mixin position-sticky($important: false) {

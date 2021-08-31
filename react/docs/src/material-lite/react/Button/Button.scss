@@ -6,14 +6,15 @@
   overflow: visible;
   justify-content: center;
   align-items: center;
+  text-align: center;
   vertical-align: middle;
 
+  color: inherit;
   font-weight: 500;
-  font-family: inherit;
   font-size: 14px;
+  font-family: inherit;
   white-space: nowrap;
 
-  color: inherit;
   box-sizing: border-box;
   will-change: opacity;
 
@@ -27,7 +28,6 @@
 .ml-button a,
 a.ml-button {
   text-decoration: none;
-  color: inherit;
 
   &:link {
     color: #2196F3;
@@ -47,8 +47,8 @@ a.ml-button {
 .ml-stroked-button,
 .ml-flat-button {
   min-width: 64px;
-  height: 36px;
-  padding: 0 16px;
+  min-height: 36px;
+  padding: 8px 16px;
   border-radius: 4px;
 }
 
@@ -59,7 +59,6 @@ a.ml-button {
   padding: 0;
   border-radius: 50%;
   font-size: 24px;
-  fill: currentColor;
 }
 
 .ml-stroked-button {
@@ -72,12 +71,12 @@ a.ml-button {
   padding: 0;
 
   a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
     width: 100%;
-    padding: 0 16px;
+    height: 100%;
+    padding: 8px 16px;
   }
 }
 
@@ -88,24 +87,12 @@ a.ml-button {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  pointer-events: none;
-  overflow: hidden;
-  transform: translateZ(0);
+  @include cdk.initialize-overlay();
 }
 
 .ml-button-focus,
 .ml-button-hover {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: currentColor;
-  transition-property: opacity;
-}
-
-.ml-button-hover {
-  opacity: 0;
+  @include cdk.initialize-overlay-content()
 }
 
 .ml-disabled {

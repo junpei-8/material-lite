@@ -110,12 +110,12 @@ $default-config: (
 
 @mixin transition($duration: null, $timing-function: null, $default-config: null, $ml: null) {
   @include transition-zone($duration, $timing-function, $default-config, $ml) using ($duration, $timing-function) {
-    transition: box-shadow $duration $timing-function;
+    transition: box-shadow, $duration, $timing-function;
   }
 }
 
 
-@mixin hierarchy($color: null, $opacity: null, $ml: null) {
+@mixin utility-classes($color: null, $opacity: null, $ml: null) {
   @for $i from 1 through cdk.$z-index-limit {
     .ml-elevation-z#{$i} {
       @include elevation($i, $color, $opacity, $ml);

@@ -46,7 +46,7 @@
       @if not map.get($config, button, hovered, current-color) {
         .ml-filled-button {
           .ml-button-hover {
-            background: rgb(color.red($hovered), color.green($hovered), color.blue($hovered));
+            background-color: rgb(color.red($hovered), color.green($hovered), color.blue($hovered));
           }
         }
       }
@@ -60,7 +60,7 @@
       @if not map.get($config, button, focused, current-color) {
         .ml-filled-button {
           .ml-button-focus {
-            background: rgb(color.red($focused), color.green($focused), color.blue($focused));
+            background-color: rgb(color.red($focused), color.green($focused), color.blue($focused));
           }
         }
       }
@@ -147,7 +147,7 @@ $default-config: (
       }
 
       &:active .ml-button-overlay {
-        $z-index: cdk.$z-index-resting-fab;
+        $z-index: cdk.$z-index-pressed-fab;
         @include cdk.elevation($z-index, $color, $opacity);
       }
     }

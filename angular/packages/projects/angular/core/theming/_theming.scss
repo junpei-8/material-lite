@@ -33,41 +33,43 @@
 
     $index: 0;
     @each $color in $colors {
-      // $paths-list.length == $colors.length
-      @if $style-is-map {
-        $index: $index + 1;
+      @if $color {
+        // $paths-list.length == $colors.length
+        @if $style-is-map {
+          $index: $index + 1;
 
-        @each $key, $value in $style {
-          $unbroken: true;
+          @each $key, $value in $style {
+            $unbroken: true;
 
-          $value: '#{$value}';
-      
-          $context: if($index == 1, '[color]', '[color-#{$index}]');
-          @if string.index($value, $context) {
-            $value: cdk.private-replace-string($value, $context, '#{$color}');
-            #{$key}: string.unquote($value);
-            $unbroken: false;
-          }
-      
-          @if $unbroken {
-            $paths: list.nth($paths-list, $index);
-
-            $context: if(
-              meta.type-of($paths) == list,
-              '[#{list.nth($paths, -2)}-#{list.nth($paths, -1)}]',
-              '[#{$paths}]'
-            );
-      
+            $value: '#{$value}';
+        
+            $context: if($index == 1, '[color]', '[color-#{$index}]');
             @if string.index($value, $context) {
               $value: cdk.private-replace-string($value, $context, '#{$color}');
               #{$key}: string.unquote($value);
+              $unbroken: false;
+            }
+        
+            @if $unbroken {
+              $paths: list.nth($paths-list, $index);
+
+              $context: if(
+                meta.type-of($paths) == list,
+                '[#{list.nth($paths, -2)}-#{list.nth($paths, -1)}]',
+                '[#{$paths}]'
+              );
+        
+              @if string.index($value, $context) {
+                $value: cdk.private-replace-string($value, $context, '#{$color}');
+                #{$key}: string.unquote($value);
+              }
             }
           }
-        }
 
-      } @else {
-        @each $key in $style {
-          #{$key}: $color;
+        } @else {
+          @each $key in $style {
+            #{$key}: $color;
+          }
         }
       }
     }

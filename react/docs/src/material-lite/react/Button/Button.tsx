@@ -1,46 +1,50 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import './Button.scss';
 
-import { createDirectiveProps, Falsy, FalsyObject, MlDirectiveProps } from '@material-lite/react-cdk/utils';
+import { Falsy, FalsyObject, DirectiveProps, classNamePipe } from '@material-lite/react-cdk/utils';
+import { getRippleConfig, updateRippleConfig, MlRippleCore, RippleConfig } from '../core';
+import { disableRipple, updateTheme, DisableRipple, Theme, ComponentBehavior } from '../core/common-behaviors';
 
 
 export type MlButtonVariant = 'basic' | 'raised' | 'stroked' | 'flat' | 'fab' | 'icon';
 export type MlButtonHoverAction = 'enabled' | 'disabled' | 'auto';
 
-export type MlButtonProps = MlDirectiveProps & FalsyObject<{
-  disabled: boolean;
-  variant: MlButtonVariant;
-  hoverAction: MlButtonHoverAction;
-  wrappedAnchor: boolean;
-}>
 
-class MlButton extends Component<MlButtonProps> {
+export type MlButtonProps =
+  DirectiveProps &
+  FalsyObject<{
+    disabled: boolean;
+    variant: MlButtonVariant;
+    hoverAction: MlButtonHoverAction;
+    wrappedAnchor: boolean;
+  }> & DisableRipple.Props & Theme.Props & RippleConfig.Props;
+
+type Behaviors = DisableRipple.Member & Theme.Member & RippleConfig.Member;
+type PrivateBehaviors = Theme.PrivateNames | RippleConfig.PrivateNames;
+
+const MlButtonComponent = Component as ComponentBehavior<MlButtonProps, DisableRipple.Method & Theme.Method & RippleConfig.Method>;
+
+class MlButton extends MlButtonComponent implements Behaviors {
   readonly isButtonElement: boolean;
 
-  set setDisabled(isDisabled: true | Falsy) {
-    // if (result) {
-    //   this._classList.push('ml-disabled');
-    //   // this.disableRipple = true;
+  _classList: Behaviors['_classList'];
+  _themeClassIndex = 6;
 
-    //   if (this.isButtonElement) {
-    //     el.disabled = true;
-    //   }
+  readonly rippleCore: MlRippleCore;
+  private _rippleCoreFactory: ((outletEl: HTMLElement) => MlRippleCore) | null;
 
-    // } else {
-    //   this._classList.push('ml-disabled');
-    //   // this.disableRipple = false;
-
-    //   if (this.isButtonElement) {
-    //     el.disabled = false;
-    //   }
-    // }
+  _rippleConfig: Behaviors['_rippleConfig'] = {
+    _dynamic: {}
   }
-  readonly disabled: boolean = false;
-
-  private _classList: string[];
+  _defaultRippleConfig: Behaviors['_defaultRippleConfig'] = {
+    animation: {
+      enter: 280,
+      leave: 240
+    }
+  }
 
   private _overlayElement = (
-    <span className="ml-button-overlay" key="ml-button-overlay" ref={this.onSetRippleOutlet}>
+    <span className="ml-button-overlay" key="ml-button-overlay" ref={this.onLoadRippleOutlet.bind(this)}>
       <span className="ml-button-hover"></span>
       <span className="ml-button-focus"></span>
     </span>
@@ -49,136 +53,209 @@ class MlButton extends Component<MlButtonProps> {
   constructor(props: MlButtonProps) {
     super(props);
 
-    const element = props.element;
-    console.log(element);
+    const isButtonEl = this.isButtonElement = props.children.type === 'button';
+    if (!isButtonEl) {
+      this._haltDisabledEvents = this._haltDisabledEvents.bind(this);
+    }
 
-    // const isButtonEl = this.isButtonElement = el instanceof HTMLButtonElement;
-    // if (!isButtonEl) {
-    //   // const onClick = ;
-    //   // if (el.props.onClick) {
+    this._rippleCoreFactory = (outletEl) =>
+      new MlRippleCore(this._rippleConfig, true, outletEl);
 
-    //   // }
-    //   el.addEventListener('click', this._haltDisabledEvents.bind(this));
-    // }
-    
-    this.shouldComponentUpdate(props);
+    this.shouldComponentUpdate(null!);
   }
 
-  onSetRippleOutlet(ref: HTMLDivElement) {
-    console.log(ref, 'outlet');
-  }
+  onLoadRippleOutlet(ref: HTMLDivElement) {
+    if (this._rippleCoreFactory) {
+      const props = this.props;
 
-  componentDidMount() {
+      // @ts-expect-error: Assign to readonly variable
+      const core = this.rippleCore = this._rippleCoreFactory(ref);
+      this._rippleCoreFactory = null;
+
+      core.presetTrigger(ref.parentElement!);
+
+      if (!(props.disableRipple || props.disabled)) {
+        core.setup();
+      }
+    }
   }
 
   shouldComponentUpdate(nextProps: MlButtonProps) {
-    const prevProps = this.props;
+    let needUpdateComponent = false;
 
-    let needSetVariant;
+    let prevProps: MlButtonProps;
 
-    if (needSetVariant) {
-      const v = nextProps.variant;
-      this._classList = [];
+    if (nextProps) {
+      prevProps = this.props;
 
-      if (!v || v === 'basic') {
+    } else {
+      nextProps = this.props
+      prevProps = { variant: '' } as any;
+    }
+
+    const { variant, hoverAction, disabled, wrappedAnchor } = nextProps;
+    if (!(variant === prevProps.variant && hoverAction === prevProps.hoverAction)) {
+      if (!variant || variant === 'basic') {
         this._classList = [
           'ml-button',
           'ml-basic-button',
           'ml-simple-button',
+          this._enableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._enableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
 
-      } else if (v === 'raised') {
+      } else if (variant === 'raised') {
         this._classList = [
           'ml-button',
           'ml-raised-button',
-          'ml-filled-button'
+          'ml-filled-button',
+          this._disableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._disableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
 
-      } else if (v === 'icon') {
+      } else if (variant === 'icon') {
         this._classList = [
           'ml-button',
           'ml-icon-button',
-          'ml-simple-button'
+          'ml-simple-button',
+          this._disableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = 'center';
-        this._disableHoverAction();
+        this._rippleConfig._dynamic.entrance = 'center';
 
-      } else if (v === 'fab') {
+      } else if (variant === 'fab') {
         this._classList = [
+          'ml-button',
           'ml-fab',
-          'ml-filled-button'
+          'ml-filled-button',
+          this._disableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._disableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
 
-      } else if (v === 'flat') {
+      } else if (variant === 'flat') {
         this._classList = [
           'ml-button',
           'ml-flat-button',
-          'ml-filled-button'
+          'ml-filled-button',
+          this._disableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._disableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
 
-      } else if (v === 'stroked') {
+      } else if (variant === 'stroked') {
         this._classList = [
           'ml-button',
           'ml-stroked-button',
           'ml-simple-button',
+          this._enableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._enableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
 
       } else {
         this._classList = [
           'ml-button',
           'ml-basic-button',
           'ml-simple-button',
+          this._enableHoverAction(hoverAction),
+          disabled ? 'ml-disabled' : null,
+          wrappedAnchor ? 'ml-anchor-button' : null,
         ];
-        // this._rippleDynamicConfig._dynamic.entrance = null;
-        this._enableHoverAction();
+        this._rippleConfig._dynamic.entrance = null;
+      }
+      needUpdateComponent = true;
+
+    } else {
+      const classList = this._classList;
+      if (disabled !== prevProps.disabled) {
+        classList[4] = disabled ? 'ml-disabled' : null;
+        needUpdateComponent = true;
+      }
+
+      if (wrappedAnchor !== prevProps.wrappedAnchor) {
+        classList[5] = wrappedAnchor ? 'ml-anchor-button' : null;
+        needUpdateComponent = true;
       }
     }
 
-    if (prevProps.disabled === nextProps.disabled) {
-      
-      
-      needSetVariant = true;
+    this.updateRippleConfig(nextProps.rippleConfig, prevProps.rippleConfig);
+
+    if (this.updateTheme(nextProps.theme, prevProps.theme)) needUpdateComponent = true;
+
+    if (this.disableRipple(disabled, prevProps.disabled) === void 0) {
+      this.disableRipple(nextProps.disableRipple, prevProps.disableRipple);
     }
 
-    return true;
+    return needUpdateComponent;
   }
 
-  private _enableHoverAction(): void {
-    if (this.props.hoverAction !== 'disabled') {
-      this._classList.push('ml-hoverable-button');
-    }
+  private _enableHoverAction(type: MlButtonHoverAction | Falsy): string | null {
+    return type !== 'disabled'
+      ? 'ml-hoverable-button'
+      : null;
   }
 
-  private _disableHoverAction(): void {
-    if (this.props.hoverAction === 'enabled') {
-      this._classList.push('ml-hoverable-button');
+  private _disableHoverAction(type: MlButtonHoverAction | Falsy): string | null {
+    return type === 'enabled'
+      ? 'ml-hoverable-button'
+      : null;
+  }
+
+  private _haltDisabledEvents(event: Event): void {
+    if (this.props.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
     }
   }
 
   render() {
-    const { element } = this.props;
+    const props = this.props;
 
-    const [elProps, elChildren] = createDirectiveProps(element.props, this._classList);
+    const child = props.children;
 
-    return React.cloneElement(
-      element,
-      elProps,
-      [
-        ...(elChildren || []),
-        this._overlayElement
-      ]
-    )
+    let childProps = child.props;
+
+    let grandchildren = childProps?.children;
+    grandchildren = grandchildren
+      ? [ ...Array.isArray(grandchildren) ? grandchildren : [grandchildren], this._overlayElement ]
+      : this._overlayElement
+
+    childProps = childProps
+      ? { ...childProps, className: classNamePipe(this._classList, childProps.className) }
+      : { className: classNamePipe(this._classList) }
+
+    if (this.isButtonElement) {
+      childProps.disabled = props.disabled;
+
+    } else {
+      const onClickEvent = childProps.onClick;
+      childProps.onClick = onClickEvent
+        ? (e: Event) => {
+            onClickEvent(e);
+            this._haltDisabledEvents(e);
+          }
+        : this._haltDisabledEvents;
+    }
+
+    return cloneElement(child, childProps, grandchildren);
   }
 }
 
-export default MlButton;
+(() => {
+  const proto = MlButton.prototype;
+  proto.disableRipple = disableRipple;
+  proto.updateTheme = updateTheme;
+  proto.updateRippleConfig = updateRippleConfig;
+  proto.getRippleConfig = getRippleConfig;
+})();
+
+export default MlButton as new (props: MlButtonProps) => (Omit<MlButton, PrivateBehaviors>);

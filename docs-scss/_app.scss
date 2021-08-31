@@ -1,4 +1,12 @@
+@use './app-theme' as ml;
+@use './app-sizing' as *;
 @use './media-query' as *;
+
+.app-view {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+}
 
 .app-categories {
   display: flex;
@@ -25,10 +33,84 @@
       width: 100%;
       max-width: 560px;
     }
+
+    &:hover {
+      background-color: rgba(0,0,0, .064);
+    }
+
+    &:empty {
+      background-color: transparent;
+    }
   }
 
   &-title {
     font-size: 20px;
     font-weight: bold;
+  }
+}
+
+.root-header {
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+  top: 0; left: 0;
+  z-index: 4;
+  @include ml.elevation(4);
+  display: flex;
+  justify-content: space-between;
+
+  .ml-button {
+    height: 40px;
+  }
+
+  a {
+    border-radius: 0;
+    &:link, &:visited {
+      color: inherit !important;
+    }
+  }
+
+  @include mp {
+    .ml-button {
+      width: 100%;
+    }
+    &-left-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    &-right-nav {
+      display: none;
+    }
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.root-main {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - #{$footer-height});
+  padding-top: 36px;
+}
+
+.root-footer {
+  display: flex;
+  height: $footer-height;
+  padding: 0 24px;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 14px;
+
+  &-anchor {
+    text-align: center;
+    text-decoration: none;
+    border-bottom: none;
+
+    &:link,
+    &:visited {
+      color: currentColor;
+    }
   }
 }

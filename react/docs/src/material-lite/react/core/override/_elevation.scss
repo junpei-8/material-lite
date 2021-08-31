@@ -110,7 +110,7 @@ $default-config: (
 
 @mixin transition($duration: null, $timing-function: null, $default-config: null, $ml: null) {
   @include transition-zone($duration, $timing-function, $default-config, $ml) using ($duration, $timing-function) {
-    transition: box-shadow $duration $timing-function;
+    transition: box-shadow, $duration, $timing-function;
   }
 }
 

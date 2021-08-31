@@ -66,7 +66,6 @@ export class MlStraightTrackerCore {
     private _hostElement: HTMLElement,
     private _trackerElement: HTMLElement,
     private _runOutsideNgZone: RunOutsideNgZone,
-    _createElement: (tagName: string, ...arg: any[]) => HTMLElement,
   ) {
     setCoreConfig(this, config);
 

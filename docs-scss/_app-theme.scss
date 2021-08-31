@@ -1,6 +1,36 @@
 @use '../angular/docs/src/material-lite/angular' as *;
 @forward '../angular/docs/src/material-lite/angular';
 
+$angular-color: (
+  primary: (
+    default: #ff3a66,
+    lighter: #dd5271,
+    darker:  #DD0031, // original
+    text:    #ff3a66,
+
+    default-contrast: $light-primary-text,
+    lighter-contrast: $dark-primary-text,
+    darker-contrast:  $light-primary-text
+  ),
+  accent: define-palette($indigo-palette),
+  warn: $warn-palette
+);
+
+$react-color: (
+  primary: (
+    default: #61bad3,
+    lighter: #61dafb, // original
+    darker:  #61aabe,
+    text:    #61dafb,
+
+    default-contrast: $light-primary-text,
+    lighter-contrast: $dark-primary-text,
+    darker-contrast:  $light-primary-text
+  ),
+  accent: define-palette($pink-palette),
+  warn: $warn-palette
+);
+
 $material-lite: (
   default: define-light-theme((
     color: $indigo-pink-color
@@ -8,5 +38,9 @@ $material-lite: (
 
   '.dark-theme': define-dark-theme((
     color: $deep-purple-amber-color
-  ))
+  )),
+
+  '.angular-theme': (color: $angular-color),
+
+  '.react-theme': (color: $react-color)
 );

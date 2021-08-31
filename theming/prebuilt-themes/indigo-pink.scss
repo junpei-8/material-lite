@@ -1,0 +1,8 @@
+@use '../index' as *;
+
+$material-lite: (
+  default: define-light-theme((color: $indigo-pink-color))
+);
+
+@include core();
+@include themes();
