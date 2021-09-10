@@ -1,0 +1,48 @@
+<docs-navbar [routes]="['overview']" [routeNames]="['Overview']"></docs-navbar>
+
+<div class="docs-markdown">
+  <h1>Advanced theming</h1>
+  <p><span class="eng">Material Lite</span>でコンポーネントを使用する際は、いずれかの<code>CSS</code>もしくは<code>Sass</code>を用いてテーマを設定する必要があります。</p>
+  <p>
+    SCSSの構成に関しては、このコンポーネントの参考元の<a href="https://github.com/junpei10/material-lite" target="_blank" rel="noopener noreferrer"><span class="eng">Angular Material</span></a>を参考にしており、デザインに関しては、<a href="https://github.com/junpei10/material-lite" target="_blank" rel="noopener noreferrer"><span class="eng">Angular Material</span></a>同様、Googleの<a href="https://material.io/design/material-theming/overview.html"><span class="eng">Material Design</span></a>に基づいて制作しています。
+  </p>
+
+
+  <h2>Installing</h2>
+  <docs-viewer [code]="docsCodeRef.installing"></docs-viewer>
+
+  <h3>Dart Sass</h3>
+  <p><span class="eng">Material Lite</span>のテーマ設定は、<span class="eng">CSS</span>でも可能ですが、<span class="eng">Sass</span>を用いて行うことをお勧めします。</p>
+  <p><span class="eng">Sass</span>を用いることで、複数のテーマを設定できたり、<span class="eng">Mixin</span>や<span class="eng">Function</span>を用いて簡単にスタイルを追加できたりなど、テーマ設定における柔軟性を最大限に引き出すことが可能になります。</p>
+  <p class="attention">注意点として、<span class="eng">React</span>などで使用されることが多い<span class="eng">Lib Sass (node-sass)</span>には対応していないので、既に<span class="eng">Lib Sass</span>を使用している場合は、<span class="eng">Dart Sass</span>へ移行する必要があります。</p>
+  <docs-viewer [code]="docsCodeRef.installDartSass"></docs-viewer>
+
+
+  <h2>Preparing a partial file</h2>
+  <p><span class="eng">Material Lite</span>では<span class="eng">Scss</span>の<a href="https://sass-lang.com/guide#topic-4" target="_blank" rel="noopener noreferrer"><span class="eng">Partial file</span></a>を用いてテーマを設定することをお勧めします。</p>
+  <p>
+    <code>$material-lite</code>グローバル変数を上書きしたファイルを<a class="eng" href="https://sass-lang.com/guide#topic-4" target="_blank" rel="noopener noreferrer">Partial file</a>として準備し、
+    そのファイルを読み込むことで、テーマの設定を簡単に共有できるだけでなく、<code>Mixin</code>や<code>Function</code>の引数に<code>$theme</code>などの設定変数を代入する必要が無くなります。
+  </p>
+  <!-- <h2>Usage of Component</h2>
+  <p>例として、<code>app.module.ts</code>に<span class="eng">Button</span>コンポーネントを読み込んでみます。<br></p>
+  <docs-viewer [code]="docsCode.usageTypescript" disableActions></docs-viewer>
+  <br>
+
+  <p>次に、<code>app.component.html</code>で、コンポーネントを使用していきます。</p>
+  <docs-viewer [code]="docsCode.usageHtml" disableActions></docs-viewer>
+  <br>
+
+  <p>次に、<code>src</code>ディレクトリ直下の<code>styles.scss</code>で、コンポーネントのスタイルを設定します。</p>
+  <p>今回は一例として<span class="eng">Scss</span>を用いていますが、<span class="eng">CSS</span>でも行えます。詳しくは<a routerLink="/guide/theming/overview">こちら</a>。</p>
+  <docs-viewer [code]="docsCode.usageScss" disableActions></docs-viewer>
+  <br> -->
+
+  <h2>Next steps</h2>
+  <ul>
+    <!-- <li><a routerLink="/guide/theming/overview">テーマについて詳しく知る</a></li>
+    <li><a routerLink="/guide/theming/your-own-themes">テーマをカスタマイズして柔軟に活用する</a></li>
+    <li><a routerLink="/guide/elevation-styles">要素に高さを表現する</a></li>
+    <li><a routerLink="/guide/duplicates-styles">スタイルの重複について知る</a></li> -->
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<ml-straight-tracker
+  [targetIndex]="activatedRouteIndex"
+  [transition]="{ duration: '400ms', property: 'left' }"
+  [transitionClasses]="{ initializing: true }"
+>
+  <div class="docs-navbar-tracker ml-accent-background"></div>
+</ml-straight-tracker>
+
+<button
+  *ngFor="let route of routes; let i = index;"
+  class="docs-navbar-button"
+  mlButton [theme]="route === activatedRoute ? 'accent' : ''"
+  [rippleConfig]="{ overdrive: { width: 1080 } }"
+  (click)="goToLink(route)"
+>
+  {{ routeNames[i] }}
+</button>
+

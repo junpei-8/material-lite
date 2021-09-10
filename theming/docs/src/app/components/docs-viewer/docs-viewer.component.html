@@ -1,0 +1,28 @@
+<div class="docs-viewer-content">
+  <ng-content></ng-content>
+</div>
+
+<div class="docs-viewer-codeblock">
+  <div class="docs-viewer-codeblock-header" *ngIf="!hasDisabledActions">
+    <nav class="docs-viewer-codeblock-nav">
+      <button
+        *ngFor="let code of codes; let i = index;"
+        class="docs-viewer-codeblock-nav-button"
+        mlButton variant="flat" hoverAction="enabled"
+        [theme]="i === selectedCodeIndex ? 'primary' : ''"
+        (click)="selectCode(i)"
+      >
+        {{ code.name || codeNameRef[code.language] }}
+      </button>
+    </nav>
+
+    <div class="docs-viewer-codeblock-actions">
+      <button mlButton variant="icon" (click)="toggleHiddenCodeState()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <pre class="prism" *ngIf="selectedCodeText"><code [innerHTML]="selectedCodeText"></code></pre>
+  <!-- <pre class="prism" *ngIf="!hasHiddenCode"><code [class]="'prism-' + selectedCodeType" [innerHTML]="selectedCodeText"></code></pre> -->
+</div>
