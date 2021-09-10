@@ -27,7 +27,7 @@ const DOCS_CODE: DocsCode<TP> = {
   },
   usageOfScssTheme: {
     scss: /*css*/`
-      @use '@material-lite/angular' as *;
+      @use '@material-lite/theming' as *;
 
       $material-lite: (
         default: define-light-theme((

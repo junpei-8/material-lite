@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import DocsNavbar from 'components/DocsNavbar';
 import { Overview, YourOwnThemes } from './pages';
 
-export const Name = () => {
+export const Theming = () => {
   const match = useRouteMatch();
 
   return (
@@ -21,4 +21,4 @@ export const Name = () => {
   );
 }
 
-export default Name;
+export default Theming;

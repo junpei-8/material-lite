@@ -1,4 +1,4 @@
-@use '../../../../../../theming/cdk' as cdk;
+@use '../../../../../../theming' as ml;
 
 .ml-button {
   display: inline-flex;
@@ -18,7 +18,7 @@
   box-sizing: border-box;
   will-change: opacity;
 
-  @include cdk.initialize-button();
+  @include ml.initialize-button();
 
   svg {
     fill: currentColor;
@@ -87,12 +87,12 @@ a.ml-button {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  @include cdk.initialize-overlay();
+  @include ml.initialize-overlay();
 }
 
 .ml-button-focus,
 .ml-button-hover {
-  @include cdk.initialize-overlay-content()
+  @include ml.initialize-overlay-content()
 }
 
 .ml-disabled {
