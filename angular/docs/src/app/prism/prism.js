@@ -1048,11 +1048,7 @@ Prism.languages.markup = {
 	'comment': /<!--[\s\S]*?-->/,
 	'prolog': /<\?[\s\S]+?\?>/,
 	'cdata': /<!\[CDATA\[[\s\S]*?\]\]>/i,
-	// 'typescript': {
-	// 	pattern: /\]=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/
-	// 	// insideは後から
-	// },
-	'binding': {
+	'data-binding': {
 		pattern: /{{.*}}/,
 	},
 	'tag': {
@@ -1067,27 +1063,23 @@ Prism.languages.markup = {
 				}
 			},
 			'special-attr': [],
-			// 'attr-punctuation': {
-			// 	pattern: /\[|\]/,
-			// 	lookbehind: true
-			// },
-			// 'attr-ts': {
-			// 	pattern: /\[.+?\]*\=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/
-			// },
-			'binding': {
-				pattern: /(?<=\[*]|\(*\)|\*.*)=\s*(?:"[^"]*"|'[^']*')/,
+			'data-attr-value': {
+				pattern: /(\[*]|\(*\)|\*.+)=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+				lookbehind: true,
+				lookbehindLength: 1,
 				inside: {
-					'binding': {
-						pattern: /(?<=["]).*(?=")|(?<=[']).*(?=')/
+					'data-binding': {
+						pattern: /[^'"=].*[^'"]/
 					}
 				}
 			},
 			'attr-value': {
 				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
 				inside: {
-					'equal': /^=/,
+					'equal': /^=/
 				}
 			},
+			'punctuation': /\/?>/,
 			'attr-name': {
 				pattern: /[^\s>\/]+/,
 				inside: {
@@ -1096,7 +1088,6 @@ Prism.languages.markup = {
 					'namespace': /^[^\s>\/:]+:/
 				}
 			},
-			'punctuation': /\/?>/
 		}
 	},
 	'entity': [
@@ -1275,18 +1266,15 @@ Prism.languages.html = Prism.languages.markup;
 			lookbehind: true
 		},
 		'value': {
-			pattern: /(?<=:).*(?=;)/,
+			pattern: /(:.*(;|\s|$))/,
 			inside: {
-				number: {
-					pattern: /[0-9].*?(?=\s|$)/,
-					inside: {
-						unit: /[^0-9].*/
-					}
-				},
-				important: /!important\b/i,
+				'color-code': /#.+?(?![0-9a-zA-Z])/,
+				punctuation: /[:,;]/,
+				number: /[0-9]+(?![0-9])/,
+				important: /(!important|!default)\b/i,
+
 			}
 		},
-		
 		'function': {
 			pattern: /(^|[^-a-z0-9])[-a-z0-9]+(?=\()/i,
 			lookbehind: true
@@ -1367,5 +1355,7 @@ Prism.languages.html = Prism.languages.markup;
 	}
 
 	var markupRef = Prism.languages.markup;
-	markupRef.binding.inside = markupRef.tag.inside.binding.inside.binding.inside = tsRef;
+
+	// var dataAttrInsideRef = markupRef.tag.inside['data-attr'].inside;
+	markupRef['data-binding'].inside = markupRef.tag.inside['data-attr-value'].inside['data-binding'].inside = tsRef;
 }(Prism));
