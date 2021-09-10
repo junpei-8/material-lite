@@ -9,19 +9,13 @@
   h1 {
     display: flex;
     max-width: 1024px;
-    margin: 0 auto;
+    margin: 36px auto 40px;
     padding: 0 16px;
-    margin-bottom: 40px;
 
     font-size: 30px;
     align-items: center;
     font-weight: bold;
 
-    &:first-child {
-      // padding-top: 32px;
-      padding: 32px 0 0;
-    }
-  
     code {
       font-size: 18px;
       opacity: .88;
@@ -39,6 +33,10 @@
   margin: 0 auto;
   padding: 0 16px 80px;
   box-sizing: border-box;
+
+  h1 {
+    padding: 0;
+  }
 
   .indent {
     padding-left: 8px;

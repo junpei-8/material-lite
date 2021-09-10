@@ -1,6 +1,13 @@
+@use 'sass:map';
 @use './app-theme' as ml;
 @use './app-sizing' as *;
 @use './media-query' as *;
+
+.attention {
+  padding: 8px;
+  background-color: rgba(map.get(ml.$yellow-palette, 400), 0.24);
+  border: 2px map.get(ml.$yellow-palette, 600) solid;
+}
 
 .app-view {
   display: flex;

@@ -8,7 +8,6 @@
   top: $header-height;
   z-index: 2;
   width: 100%;
-  margin-bottom: 24px;
   box-sizing: border-box;
 
   @include ml.style(background-color, (background, background));
@@ -47,7 +46,7 @@
   position: sticky;
   z-index: 3;
   top: $header-height;
-  height: calc(100vh - #{$header-height});
+  height: calc(100vh - #{$header-height - 4px});
   @include ml.style((border: 1px solid [color]), (foreground, divider));
 
   .ml-button {

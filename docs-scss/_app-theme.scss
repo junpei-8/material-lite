@@ -31,6 +31,20 @@ $react-color: (
   warn: $warn-palette
 );
 
+$sass-color: (
+  primary: (
+    default: #cf649a,
+    lighter: #db89b2,
+    darker:  #bf4080,
+
+    default-contrast: $light-primary-text,
+    lighter-contrast: $dark-primary-text,
+    darker-contrast:  $light-primary-text
+  ),
+  accent: define-palette($blue-grey-palette),
+  warn: $warn-palette
+);
+
 $material-lite: (
   default: define-light-theme((
     color: $indigo-pink-color
@@ -42,5 +56,7 @@ $material-lite: (
 
   '.angular-theme': (color: $angular-color),
 
-  '.react-theme': (color: $react-color)
+  '.react-theme': (color: $react-color),
+
+  '.sass-theme': (color: $sass-color)
 );
