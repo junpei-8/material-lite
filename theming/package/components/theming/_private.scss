@@ -36,24 +36,27 @@
     @return ();
 
   } @else {
-    @each $key in status.$theme-map-keys {
+    @each $key in status.$theme-map-important-keys {
       $value: map.get($theme, $key);
       @if not $value {
         $theme: map.set($theme, $key, false);
       }
     }
-    
+
     @return $theme;
   }
 }
 
 
-@function create-ml-map($key, $value: null, $ml: null) {
-  @if $value == false and $key == config {
-    @return global.$material-lite or (default: ());
+@function create-ml-map($key, $value, $ml: null) {
+  // @if $key == config {
+  //   @return if($value, (default: ($key: $value)), $ml or (default: ()));
+  // }
+  @if $value == false and list.index(status.$theme-map-optional-keys, $key) {
+    @return (default: ())
   }
 
-  @return if($value, (default: (key: $value)), $ml or $value);
+  @return if($value, (default: ($key: $value)), $ml or $value);
 }
 
 
@@ -116,7 +119,7 @@
       $config: merge-theme-config($ml, $theme);
 
       @if is-component-included($config, $component) {
-        $def-theme: if($selector == default, (), $default-theme);
+        $def-theme: if($selector == default, null, $default-theme);
 
         @if utils.private-is-empty($fixed-paths) and utils.private-is-empty($paths-list) {
           $data: (
@@ -173,7 +176,7 @@
   @include should-for-each-theme($ml) using ($ml) {
     $data-list: ();
 
-    $default-config: map.get($ml, default, config) or ();
+    $default-config: merge-theme-config($ml, map.get($ml, default) or ());
     @if $base-default-config {
       $default-config: map.deep-merge($base-default-config, $default-config);
     }
@@ -186,8 +189,9 @@
         $local-config: null;
 
         @if $selector == default {
-          $def-config: ();
+          $def-config: null;
           $local-config: $default-config;
+
         } @else {
           $def-config: $default-config;
           $local-config: map.get($theme, config);

@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '../../../cdk';
 @use '../../theming/private';
 
 @mixin foreground($foreground: null, $config: null, $ml: null) {
@@ -14,21 +15,20 @@
 
 
 $default-config: (
-  ripple: (
-    default: (
-      transition-timing-function: deceleration
-    ),
-    overdrive: (
-      transition-timing-function: deceleration
-    )
+  default: (
+    transition-timing-function: deceleration
+  ),
+  overdrive: (
+    transition-timing-function: deceleration
   )
 );
 @mixin config($config: null, $ml: null) {
   $ml: private.create-ml-map(config, $config, $ml);
 
-  @include private.for-each-theme-config(ripple, (
-    (default, transition-timing-function), (overdrive, transition-timing-function)
-  ), $default-config, $ml, ripple) using ($_, $__, $default-timing-function, $overdrive-timing-function) {
+  @include private.for-each-theme-config(
+    ripple, ((default, transition-timing-function), (overdrive, transition-timing-function)),
+    (ripple: $default-config), $ml, ripple
+  ) using ($_, $__, $default-timing-function, $overdrive-timing-function) {
     .ml-ripple-element {
       transition-timing-function: cdk.transition-timing-function($default-timing-function);
     }

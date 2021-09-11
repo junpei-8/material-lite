@@ -1,0 +1,150 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:string';
+@use '../../utils';
+@use '../global';
+@use './private';
+
+
+// @include style(background, ((color, primary, default)));
+// @include style(
+//   (background: [background], color: [primary-default]),
+//   ((background, background), (color, primary, default)),
+// );
+@mixin style($style, $paths-list, $ml: null, $component: null) {
+  $style-is-map: true;
+
+  @if meta.type-of($style) != map {
+    $paths-list: list.nth($paths-list, 1);
+    $style-is-map: false;
+  }
+
+  // (ex) $paths-list: (foreground, text, hint-text)
+  //  => $fixed-path: foreground
+  //  => $paths-list: (text, hint-text)
+  $first-path: list.nth($paths-list, 1);
+  $fixed-path: null;
+  @if meta.type-of($first-path) == string {
+    $fixed-path: $first-path;
+    $paths-list: utils.private-remove-nth($paths-list, 1);
+  }
+
+  @include private.for-each-theme($fixed-path, $paths-list, $ml, $component) using ($data...) {
+    $colors: utils.private-remove-nth($data, 1, 2);
+
+    $index: 0;
+    @each $color in $colors {
+      @if $color {
+        // $paths-list.length == $colors.length
+        @if $style-is-map {
+          $index: $index + 1;
+
+          @each $key, $value in $style {
+            $unbroken: true;
+
+            $value: '#{$value}';
+        
+            $context: if($index == 1, '[color]', '[color-#{$index}]');
+            @if string.index($value, $context) {
+              $value: utils.private-replace-string($value, $context, '#{$color}');
+              #{$key}: string.unquote($value);
+              $unbroken: false;
+            }
+        
+            @if $unbroken {
+              $paths: list.nth($paths-list, $index);
+
+              $context: if(
+                meta.type-of($paths) == list,
+                '[#{list.nth($paths, -2)}-#{list.nth($paths, -1)}]',
+                '[#{$paths}]'
+              );
+        
+              @if string.index($value, $context) {
+                $value: utils.private-replace-string($value, $context, '#{$color}');
+                #{$key}: string.unquote($value);
+              }
+            }
+          }
+
+        } @else {
+          @each $key in $style {
+            #{$key}: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// @include style-zone() using ($color) { ... }
+@mixin style-zone($paths-list, $ml: null, $component: null) {
+  // (ex) $paths-list: (foreground, text, hint-text)
+  //  => $fixed-path: foreground
+  //  => $paths-list: (text, hint-text)
+  $first-path: list.nth($paths-list, 1);
+  $fixed-path: null;
+  @if meta.type-of($first-path) == string {
+    $fixed-path: $first-path;
+    $paths-list: utils.private-remove-nth($paths-list, 1);
+  }
+
+  @include private.for-each-theme($fixed-path, $paths-list, $ml, $component) using ($data...) {
+    $colors: utils.private-remove-nth($data, 1, 2);
+    @content($colors...);
+  };
+}
+
+
+// @include private-zone(typography, $material-lite) using ($typography) { ... }
+// @include zone((background, color), $material-lite) using ($background, $color) { ... }
+@mixin zone($keys, $ml: null, $component: null) {
+  @include private.for-each-theme(null, $ml, $component) using ($selector, $config, $theme) {
+    $contents: ();
+
+    $theme: map.set($theme, selector, $selector);
+    $theme: map.set($theme, global-config, $config);
+
+    @each $key in $keys {
+      $contents: list.append($contents, map.get($theme, $key));
+    }
+
+    @content($contents...);
+  }
+}
+
+
+// ($wrapper-class, $config, $contents...) => $contents
+@function _data-to-contents($data, $keys) {
+  $contents: (list.nth($data, -1));
+
+  @each $key in $keys {
+    $contents:
+      list.append(
+        $contents,
+        list.nth($data, list.index($data, $key))
+      );
+  }
+
+  @return $contents;
+}
+
+
+// @include private-palette-zone($material-lite) using ($theme) { ... }
+// @include private-palette-zone((selector, config), $material-lite) using ($theme, $selector, $config) { ... }
+@mixin theme-zone($keys, $ml: null, $component: null) {
+  @include private.for-each-theme(nul, null, $ml, $component) using ($data...) {
+    @content(_data-to-contents($data, $keys)...);
+  }
+}
+
+
+// @include private-palette-zone($material-lite) using ($palette) { ... }
+// @include private-palette-zone((selector, name), $material-lite) using ($palette, $selector, $name) { ... }
+@mixin palette-zone($keys, $ml: null, $component: null) {
+  @include private.for-each-theme-color(null, $ml, $component) using ($data...) {
+    @content(_data-to-contents($data, $keys));
+  }
+}

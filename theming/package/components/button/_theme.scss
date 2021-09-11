@@ -3,7 +3,7 @@
 @use '../../cdk';
 @use '../../utils';
 @use '../theming/private';
-@use '../core/override/elevation';
+@use '../core/override/private-elevation';
 
 
 @mixin foreground($foreground: null, $ml: null) {
@@ -96,39 +96,41 @@
 
 
 $default-config: (
-  button: (
-    hovered: (
-      // current-color: false, (omitted)
-      transition-duration: normal,
-      transition-timing-function: strong-acceleration
-    ),
-    focused: (
-      // current-color: false, (omitted)
-      transition-duration: slow,
-      transition-timing-function: strong-acceleration
-    )
+  hovered: (
+    // current-color: false, (omitted)
+    transition-duration: faster,
+    transition-timing-function: strong-acceleration
+  ),
+  focused: (
+    // current-color: false, (omitted)
+    transition-duration: fast,
+    transition-timing-function: strong-acceleration
   )
 );
 @mixin config($config: null, $ml: null) {
   $ml: private.create-ml-map(config, $config, $ml);
 
-  @include private.for-each-theme-config((button, hovered), (transition-duration, transition-timing-function), $default-config, $ml)
-  using ($_, $__, $duration, $timing-function) {
+  @include private.for-each-theme-config(
+    (button, hovered), (transition-duration, transition-timing-function),
+    (button: $default-config), $ml, button) using ($_, $__, $duration, $timing-function
+  ) {
     .ml-button-hover {
       transition-duration: cdk.transition-duration($duration);
       transition-timing-function: cdk.transition-timing-function($timing-function);
     }
   }
 
-  @include private.for-each-theme-config((button, focused), (transition-duration, transition-timing-function), $default-config, $ml)
-  using ($_, $__, $duration, $timing-function) {
+  @include private.for-each-theme-config(
+    (button, focused), (transition-duration, transition-timing-function),
+    (button: $default-config), $ml, button
+  ) using ($_, $__, $duration, $timing-function) {
     .ml-button-focus {
       transition-duration: cdk.transition-duration($duration);
       transition-timing-function: cdk.transition-timing-function($timing-function);
     } 
   }
 
-  @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
+  @include private-elevation.zone(null, null, $ml, button) using ($color, $opacity) {
     .ml-raised-button {
       .ml-button-overlay {
         $z-index: cdk.$z-index-resting-contained-button;
@@ -154,7 +156,7 @@ $default-config: (
     }
   }
 
-  @include elevation.transition-zone(null, null, $ml: $ml) using ($duration, $timing-function) {
+  @include private-elevation.transition-zone(null, null, $ml, button) using ($duration, $timing-function) {
     .ml-raised-button, .ml-fab {
       .ml-button-overlay {
         transition: box-shadow $duration $timing-function;

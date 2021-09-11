@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '../../cdk';
 @use '../theming/private';
-@use '../core/override/elevation';
+@use '../core/override/private-elevation';
 
 @mixin foreground($foreground: null, $config: null, $ml: null) {
   $ml: private.create-ml-map(foreground, $foreground, $ml);
@@ -20,6 +20,13 @@
 
 
 @mixin background($background: null, $ml: null) {
+  $ml: private.create-ml-map(background, $background, $ml);
+
+  @include private.for-each-theme(background, (card), $ml, card) using ($_, $__, $card) {
+    .ml-card {
+      background-color: $card;
+    }
+  }
 }
 
 
@@ -30,7 +37,7 @@ $default-config: ();
 @mixin config($config: null, $ml: null) {
   $ml: private.create-ml-map(config, $config, $ml);
 
-  @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
+  @include private-elevation.zone(null, null, $ml, card) using ($color, $opacity) {
     .ml-raised-card {
       @include cdk.elevation(1, $color, $opacity);
     }

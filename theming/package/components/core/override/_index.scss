@@ -1,2 +1,5 @@
 @forward './elevation' show elevation, overridable-elevation;
 @forward './elevation' as elevation-* hide elevation-elevation, elevation-overridable-elevation;
+
+@forward './private-elevation' show private-for-each-elevation-theme, private-elevation, private-overridable-elevation, elevation-default-config;
+@forward './private-elevation' as private-elevation-* hide private-elevation-private-for-each-elevation-theme, private-elevation-private-elevation, private-elevation-private-overridable-elevation, private-elevation-elevation-default-config;

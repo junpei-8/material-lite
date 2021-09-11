@@ -3,18 +3,33 @@ $theme-map-keys: (
   background,
   color,
   typography,
-  config
+  config,
+  default
 );
 
-$required-theme-map-keys: (
+$theme-map-coloring-keys: (
   foreground,
   background,
   color
+);
+
+$theme-map-optional-keys: (
+  config,
+  typography
+);
+
+$theme-map-important-keys: (
+  foreground,
+  background,
+  color,
+  typography,
+  config,
 );
 
 $components: (
   button,
   card,
   card-contents,
-  slide-toggle
+  slide-toggle,
+  ripple
 );

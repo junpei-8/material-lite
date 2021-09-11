@@ -1,0 +1,133 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../../../cdk';
+@use '../../global';
+@use '../../theming/private';
+
+$elevation-default-config: (
+  color: cdk.$elevation-color,
+  opacity: cdk.$elevation-opacity,
+  transition-duration: cdk.$elevation-transition-duration,
+  transition-timing-function: cdk.$elevation-transition-timing-function,
+);
+
+@mixin private-for-each-elevation-theme($ml: null, $component: null) {
+  @include private.should-for-each-theme($ml) using ($ml) {
+    $default-theme: map.get($ml, default) or ();
+    $default-config: map.deep-merge((elevation: $elevation-default-config), private.merge-theme-config($ml, $default-theme));
+
+    @each $selector, $theme in map.remove($ml, config) {
+      @if private.is-component-included(private.merge-theme-config($ml, $theme), $component) {
+        $is-default: true;
+        $def-theme: null;
+        $def-config: null;
+        $local-config: null;
+  
+        @if $selector == default {
+          $local-config: $default-config;
+  
+        } @else {
+          $is-default: false;
+          $def-theme: $default-theme;
+          $def-config: $default-config;
+          $local-config: map.get($theme, config);
+        }
+  
+        // (elevation, color) が被った場合は、(foreground, elevation) の色を見る
+        // (elevation, color) > (foreground, elevation)
+        $color: map.get($local-config or (), elevation, color);
+        @if $color == map.get($def-config or (), elevation, color) {
+
+          $color: map.get($theme, foreground, elevation);
+          @if $color == map.get($def-theme, foreground, elevation) {
+            $color: null;
+          };
+        }
+  
+        $opacity: map.get($local-config or (), elevation, opacity);
+        @if $opacity == map.get($def-config or (), elevation, opacity) {
+          $opacity: null;
+        }
+  
+        @if $is-default {
+          @content($color, $opacity);
+      
+        } @else if & {
+          #{$selector} & {
+            @content($color, $opacity);
+          }
+      
+        } @else {
+          #{$selector} {
+            @content($color, $opacity);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@mixin zone($color: null, $opacity: null, $ml: null, $component: null) {
+  @if $color and $opacity {
+    @content($color, $opacity);
+
+  } @else {
+    @include private-for-each-elevation-theme($ml, $component) using ($theme-color, $theme-opacity) {
+      @if $theme-color or $theme-opacity {
+        @content(
+          $theme-color   or $color   or map.get($elevation-default-config, color),
+          $theme-opacity or $opacity or map.get($elevation-default-config, opacity)
+        );
+      }
+    }
+  }
+}
+
+
+@mixin private-elevation($z-index, $color: null, $opacity: null, $ml: null, $component: null) {
+  @include zone($color, $opacity, $ml, $component) using ($color, $opacity) {
+    @include cdk.elevation($z-index, $color, $opacity);
+  }
+}
+
+
+@mixin private-overridable-elevation($z-index, $color: null, $opacity: null, $ml: null, $component: null) {
+  &:not([class*='ml-elevation-z']) {
+    @include private-elevation($z-index, $color, $opacity, $ml, $component);
+  }
+}
+
+@mixin transition-zone($duration: null, $timing-function: null, $ml: null, $component: null) {
+  @if $duration and $timing-function {
+    @content($duration, $timing-function);
+
+  } @else {
+    @include private.for-each-theme-config(elevation, (transition-duration, transition-timing-function),
+    (elevation: $elevation-default-config), $ml, $component) using ($_, $__, $theme-duration, $theme-timing-function) {
+      @if $theme-duration or $theme-timing-function {
+        $duration:        $theme-duration        or $duration;
+        $timing-function: $theme-timing-function or $timing-function;
+
+        @content(
+          cdk.transition-duration($duration),
+          cdk.transition-timing-function($timing-function)
+        );
+      }
+    }
+  }
+}
+
+@mixin transition($duration: null, $timing-function: null, $ml: null, $component: null) {
+  @include transition-zone($duration, $timing-function, $ml, $component) using ($duration, $timing-function) {
+    transition: box-shadow, $duration, $timing-function;
+  }
+}
+
+@mixin utility-classes($color: null, $opacity: null, $ml: null, $component: null) {
+  @for $i from 1 through cdk.$z-index-limit {
+    .ml-elevation-z#{$i} {
+      @include private-elevation($i, $color, $opacity, $ml, $component);
+    }
+  }
+}

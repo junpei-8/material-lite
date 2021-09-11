@@ -3,7 +3,7 @@
 @use '../../cdk';
 @use '../../utils';
 @use '../theming/private';
-@use '../core/override/elevation';
+@use '../core/override/private-elevation';
 
 @mixin foreground($foreground: null, $ml: null) {
   $ml: private.create-ml-map(foreground, $foreground, $ml);
@@ -82,13 +82,13 @@
 @mixin config($config: null, $ml: null) {
   $ml: private.create-ml-map(config, $config, $ml);
 
-  @include elevation.zone(null, null, $ml: $ml) using ($color, $opacity) {
+  @include private-elevation.zone(null, null, $ml, slide-toggle) using ($color, $opacity) {
     .ml-slide-toggle-thumb {
       @include cdk.elevation(1, $color, $opacity);
     }
   }
 
-  @include elevation.transition-zone(null, null, $ml: $ml) using ($duration, $timing-function) {
+  @include private-elevation.transition-zone(null, null, $ml, slide-toggle) using ($duration, $timing-function) {
     .ml-slide-toggle-thumb {
       transition: box-shadow $duration $timing-function;
     }
