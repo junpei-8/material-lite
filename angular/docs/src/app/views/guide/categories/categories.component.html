@@ -1,20 +1,24 @@
+<docs-navbar [routes]="['categories']" [routeNames]="['Categories']"></docs-navbar>
+
 <h1>Guide</h1>
 
-<ml-card variant="stroked" routerLink="/guide/getting-started">
-  <div class="app-categories-title">Getting started</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/guide/theming/overview">
-  <div class="app-categories-title">Theming</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/guide/elevation-styles">
-  <div class="app-categories-title">Elevation styles</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/guide/duplicate-styles">
-  <div class="app-categories-title">Duplicate styles</div>
-</ml-card>
-
-<div class="ml-card"></div>
-<div class="ml-card"></div>
+<div class="docs-categories">
+  <ml-card variant="stroked" routerLink="/guide/getting-started">
+    <h2>Getting started</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/guide/theming/overview">
+    <h2>Theming</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/guide/elevation-styles">
+    <h2>Elevation styles</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/guide/duplicate-styles">
+    <h2>Duplicate styles</h2>
+  </ml-card>
+  
+  <div class="ml-card"></div>
+  <div class="ml-card"></div>  
+</div>

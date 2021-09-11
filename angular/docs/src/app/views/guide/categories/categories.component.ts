@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   encapsulation: ViewEncapsulation.None,
-  host: {'class': 'app-categories'}
+  host: {'class': 'docs-view'}
 })
 export class CategoriesComponent {
 }

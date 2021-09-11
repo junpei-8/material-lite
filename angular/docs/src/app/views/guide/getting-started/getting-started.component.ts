@@ -48,7 +48,7 @@ const DOCS_CODE: DocsCode<TD> = {
 @Component({
   selector: 'app-getting-started',
   templateUrl: './getting-started.component.html',
-  host: { class: 'docs-view docs-markdown' }
+  host: { class: 'docs-view' }
 })
 export class GettingStartedComponent {
   docsCode = DOCS_CODE;

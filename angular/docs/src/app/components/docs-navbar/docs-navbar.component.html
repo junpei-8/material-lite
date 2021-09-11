@@ -10,6 +10,7 @@
   *ngFor="let route of routes; let i = index;"
   class="docs-navbar-button"
   mlButton [theme]="route === activatedRoute ? 'primary' : ''"
+  [rippleConfig]="{ overdrive: { width: 1080 } }"
   (click)="goToLink(route)"
 >
   {{ routeNames[i] }}

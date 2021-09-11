@@ -39,19 +39,33 @@ export class DocsNavbarComponent implements OnInit, OnDestroy {
   onChangeRoute(): void {
     const state = this._youngestRoute.state;
 
-    const currRoute = this.activatedRoute = state.routeConfig!.path!;
-    this.activatedRouteIndex = this.routes.indexOf(currRoute);
+    let route = state.routeConfig!.path!;
+
+    if (route === '') {
+      route = this.routes[0];
+    }
+
+    this.activatedRoute = route;
+    this.activatedRouteIndex = this.routes.indexOf(route);
   }
 
   goToLink(route: string): void {
-    window.scrollTo({top:0});
     const router = this._router;
 
-    const urlArr: string[] = router.url.split('/');
-    urlArr[urlArr.length - 1] = route;
+    const pathList: string[] = router.url.split('/');
 
-    const entryRoute = urlArr.join('/');
+    const lastIndex= pathList.length - 1;
+    if (pathList[lastIndex] !== route) {
+      window.scrollTo({ top:0 });
 
-    router.navigate([entryRoute]);
+      pathList[lastIndex] = route;
+
+      const entryRoute = pathList.join('/');
+  
+      router.navigate([entryRoute]);
+
+    } else {
+      window.scrollTo({ top:0, behavior: 'smooth' });
+    }
   }
 }

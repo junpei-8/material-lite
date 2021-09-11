@@ -1,20 +1,25 @@
+<docs-navbar [routes]="['categories']" [routeNames]="['Categories']"></docs-navbar>
+
 <h1>Components</h1>
 
-<ml-card variant="stroked" routerLink="/components/button">
-  <div class="app-categories-title">Button</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/components/card">
-  <div class="app-categories-title">Card</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/components/ripple">
-  <div class="app-categories-title">Ripple</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/components/slide-toggle">
-  <div class="app-categories-title">Slide toggle</div>
-</ml-card>
-
-<div class="ml-card"></div>
-<div class="ml-card"></div>
+<div class="docs-categories">
+  <ml-card variant="stroked" routerLink="/components/button">
+    <h2>Button</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/components/card">
+    <h2>Card</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/components/ripple">
+    <h2>Ripple</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/components/slide-toggle">
+    <h2>Slide toggle</h2>
+  </ml-card>
+  
+  <div class="ml-card"></div>
+  <div class="ml-card"></div>
+  
+</div>

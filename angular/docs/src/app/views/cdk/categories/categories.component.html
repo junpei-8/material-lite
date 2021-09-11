@@ -1,12 +1,16 @@
+<docs-navbar [routes]="['categories']" [routeNames]="['Categories']"></docs-navbar>
+
 <h1>CDK</h1>
 
-<ml-card variant="stroked" routerLink="/cdk/portal">
-  <div class="app-categories-title">Portal</div>
-</ml-card>
-
-<ml-card variant="stroked" routerLink="/cdk/straight-tracker">
-  <div class="app-categories-title">Straight Tracker</div>
-</ml-card>
-
-<div class="ml-card"></div>
-<div class="ml-card"></div>
+<div class="docs-categories">
+  <ml-card variant="stroked" routerLink="/cdk/portal">
+    <h2>Portal</h2>
+  </ml-card>
+  
+  <ml-card variant="stroked" routerLink="/cdk/straight-tracker">
+    <h2>Straight Tracker</h2>
+  </ml-card>
+  
+  <div class="ml-card"></div>
+  <div class="ml-card"></div>  
+</div>

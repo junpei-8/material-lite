@@ -43,10 +43,10 @@
 
 .docs-sidenav {
   display: inline-block;
-  position: sticky;
-  z-index: 3;
+  @include ml.position-sticky();
   top: $header-height;
-  height: calc(100vh - #{$header-height - 4px});
+  z-index: 3;
+  height: calc(100vh - #{$header-height});
   @include ml.style((border: 1px solid [color]), (foreground, divider));
 
   .ml-button {
@@ -110,7 +110,7 @@
     @include ml.style(background-color, (background, background));
 
     .ml-button {
-      width: 120px;
+      width: 160px;
       min-height: 40px;
       padding: 8px 24px;
       flex-shrink: 0;

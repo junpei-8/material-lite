@@ -46,17 +46,13 @@ $sass-color: (
 );
 
 $material-lite: (
-  default: define-light-theme((
-    color: $indigo-pink-color
-  )),
+  default: define-light-theme(),
 
-  '.dark-theme': define-dark-theme((
-    color: $deep-purple-amber-color
-  )),
+  '.dark-theme': define-dark-theme(),
 
   '.angular-theme': (color: $angular-color),
 
   '.react-theme': (color: $react-color),
 
-  '.sass-theme': (color: $sass-color)
+  '.sass-theme': (color: $sass-color),
 );

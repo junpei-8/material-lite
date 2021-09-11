@@ -15,47 +15,6 @@
   height: 100%;
 }
 
-.app-categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 24px 16px;
-  width: 100%;
-
-  @include mp {
-    padding-top: 40px;
-  }
-
-  h1 {
-    font-size: 24px;
-    margin: 16px 0 24px;
-    width: 100%;
-  }
-
-  .ml-card {
-    margin: 0 24px 24px;
-    width: 280px;
-
-    @include mp {
-      width: 100%;
-      max-width: 560px;
-    }
-
-    &:hover {
-      background-color: rgba(0,0,0, .064);
-    }
-
-    &:empty {
-      background-color: transparent;
-    }
-  }
-
-  &-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-}
-
 .root-header {
   position: fixed;
   width: 100%;
@@ -99,7 +58,8 @@
   position: relative;
   width: 100%;
   min-height: calc(100vh - #{$footer-height});
-  padding-top: 36px;
+  padding-top: $header-height;
+  box-sizing: border-box;
 }
 
 .root-footer {

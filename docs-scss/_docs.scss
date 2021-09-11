@@ -9,7 +9,7 @@
   h1 {
     display: flex;
     max-width: 1024px;
-    margin: 36px auto 40px;
+    margin: 24px auto 40px;
     padding: 0 16px;
 
     font-size: 30px;
@@ -26,8 +26,7 @@
   }
 }
 
-.docs-markdown, .docs-reference {
-  display: block;
+.docs-markdown, .docs-reference, .docs-categories {
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
@@ -37,6 +36,10 @@
   h1 {
     padding: 0;
   }
+}
+
+.docs-markdown, .docs-reference {
+  display: block;
 
   .indent {
     padding-left: 8px;
@@ -219,5 +222,33 @@
   .strong {
     margin: 0 2px;
     font-weight: 500;
+  }
+}
+
+.docs-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .ml-card {
+    margin: 0 24px 24px;
+    width: 280px;
+
+    @include mp {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: rgba(0,0,0, .064);
+    }
+
+    &:empty {
+      background-color: transparent;
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
   }
 }
