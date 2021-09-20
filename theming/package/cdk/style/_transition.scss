@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:string';
 @use './animation';
 @use '../../utils';
 
@@ -10,6 +11,11 @@ $duration: (
   slow:      320ms,
   slower:    360ms,
   very-slow: 400ms,
+
+  ease-out:    400ms,
+  ease-in:     280ms,
+  ease-in-out: 480ms,
+  linear:       80ms,
 
   swift-ease-out:    400ms,
   swift-ease-in:     300ms,
@@ -34,6 +40,11 @@ $timing-function: (
   deceleration:       cubic-bezier(0, 0, 0.2, 1),
   linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1),
 
+  ease-out:    cubic-bezier(0.24, 0.8, 0.24, 1),
+  ease-in:     cubic-bezier(0.56, 0, 0.56, 0.2),
+  ease-in-out: cubic-bezier(0.36, 0, 0.24, 1),
+  liner:       linear
+
   swift-ease-out:    cubic-bezier(0.25, 0.8, 0.25, 1),
   swift-ease-in:     cubic-bezier(0.55, 0, 0.55, 0.2),
   swift-ease-in-out: cubic-bezier(0.35, 0, 0.25, 1),
@@ -53,13 +64,24 @@ $timing-function: (
 // .foo {
 //   transition: transition-value((box-sizing, color)), opacity 160ms ease;;
 // }
-@function value($prop, $duration: normal, $timing-function: strong-acceleration) {
-  @return utils.private-multiple-properties($prop), duration($duration), timing-function($duration);
+@function value($props, $duration: normal, $timing-function: ease-out) {
+  $result: '';
+  $type: duration($duration) timing-function($timing-function);
+  
+  @each $prop in $props {
+    $result: $result + $prop + ' ' + $type + ', ';
+  }
+
+  @return string.slice($result, 0, -3);
+}
+
+@function transition($props, $duration: normal, $timing-function: ease-out) {
+  @return value($props, $duration, $timing-function);
 }
 
 // .foo {
 //   @include transition(opacity, normal, standard);
 // }
-@mixin transition($prop, $duration: normal, $timing-function: strong-acceleration) {
+@mixin transition($prop, $duration: normal, $timing-function: ease-out) {
   transition: value($prop, $duration, $timing-function);
 }
