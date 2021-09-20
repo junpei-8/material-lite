@@ -117,8 +117,8 @@
 
 
 // ($wrapper-class, $config, $contents...) => $contents
-@function _data-to-contents($data, $keys) {
-  $contents: (list.nth($data, -1));
+@function _data-to-contents($last-index, $data, $keys) {
+  $contents: ();
 
   @each $key in $keys {
     $contents:
@@ -133,18 +133,19 @@
 
 
 // @include private-palette-zone($material-lite) using ($theme) { ... }
-// @include private-palette-zone((selector, config), $material-lite) using ($theme, $selector, $config) { ... }
+// @include private-palette-zone((selector, config), $material-lite) using ($selector, $config) { ... }
 @mixin theme-zone($keys, $ml: null, $component: null) {
-  @include private.for-each-theme(nul, null, $ml, $component) using ($data...) {
+  @include private.for-each-theme(null, null, $ml, $component) using ($data...) {
     @content(_data-to-contents($data, $keys)...);
   }
 }
 
 
 // @include private-palette-zone($material-lite) using ($palette) { ... }
-// @include private-palette-zone((selector, name), $material-lite) using ($palette, $selector, $name) { ... }
+// @include private-palette-zone((selector, default-contrast), $material-lite) using ($name, $selector, $default-contrast) { ... }
 @mixin palette-zone($keys, $ml: null, $component: null) {
   @include private.for-each-theme-color(null, $ml, $component) using ($data...) {
-    @content(_data-to-contents($data, $keys));
+    $keys: list.join(list.nth($data, 3), $keys);
+    @content(_data-to-contents($data, $keys...));
   }
 }

@@ -266,6 +266,7 @@
             $data: (
               $selector,
               $config,
+              $name,
               if($default-plt == $plt, null, $plt)
             );
   
