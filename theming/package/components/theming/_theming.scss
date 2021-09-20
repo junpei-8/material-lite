@@ -38,7 +38,7 @@
 // @include palette-zone() using ($palette) { ... }
 // @include palette-zone(selector, name) using ($palette, $selector, $name) { ... }
 @mixin palette-zone($keys...) {
-  @include private-theming.palette-zone($keys, global.$material-lite) using ($data...) {
+  @include private-theming.palette-zone($keys) using ($data...) {
     @content($data...);
   };
 }
