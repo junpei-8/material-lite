@@ -117,7 +117,7 @@
 
 
 // ($wrapper-class, $config, $contents...) => $contents
-@function _data-to-contents($last-index, $data, $keys) {
+@function _data-to-contents($data, $keys) {
   $contents: ();
 
   @each $key in $keys {
@@ -146,6 +146,6 @@
 @mixin palette-zone($keys, $ml: null, $component: null) {
   @include private.for-each-theme-color(null, $ml, $component) using ($data...) {
     $keys: list.join(list.nth($data, 3), $keys);
-    @content(_data-to-contents($data, $keys...));
+    @content(_data-to-contents($data, $keys)...);
   }
 }
