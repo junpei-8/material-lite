@@ -1,8 +1,5 @@
 @use '../index' as *;
 
-// $material-lite: (
-//   default: define-light-theme((color: $deep-purple-amber-color))
-// );
 $theme: define-light-theme((
   color: $deep-purple-amber-color
 ));

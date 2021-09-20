@@ -1,8 +1,6 @@
 @use '../index' as *;
 
-$material-lite: (
-  default: define-dark-theme((color: $purple-green-color))
-);
+$theme: define-dark-theme((color: $purple-green-color));
 
 @include core();
-@include themes();
+@include themes($theme);
