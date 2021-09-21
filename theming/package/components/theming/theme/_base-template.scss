@@ -2,7 +2,7 @@
 @use './palette';
 
 $light-foreground: (
-  base:              black,
+  base:              white,
   divider:           palette.$dark-dividers,
   dividers:          palette.$dark-dividers,
   disabled:          palette.$dark-disabled-text,
@@ -39,7 +39,7 @@ $light-background: (
 
 
 $dark-foreground: (
-  base:              white,
+  base:              black,
   divider:           palette.$light-dividers,
   dividers:          palette.$light-dividers,
   disabled:          palette.$light-disabled-text,
