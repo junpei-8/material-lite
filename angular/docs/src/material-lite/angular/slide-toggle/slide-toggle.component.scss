@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../../angular-cdk/' as cdk;
+@use '~/../../../theming' as ml;
 
 $thumb-size: 20px;
 $bar-border-radius: 8px;
@@ -154,10 +154,10 @@ $bar-track-width: $bar-width - $thumb-size;
   z-index: 1;
   border-radius: 50%;
 
-  @include cdk.initialize-overlay();
+  @include ml.initialize-overlay();
 }
 
 .ml-slide-toggle-focus,
 .ml-slide-toggle-hover {
-  @include cdk.initialize-overlay-content();
+  @include ml.initialize-overlay-content();
 }

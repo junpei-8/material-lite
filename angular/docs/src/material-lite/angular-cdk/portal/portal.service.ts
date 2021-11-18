@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import {
-  ComponentFactoryResolver, Inject, Injectable, Injector,
+  Inject, Injectable, Injector,
   StaticProvider, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { Class, Falsy, MlDocument, ML_DATA, ML_REF, RunOutsideNgZone, RUN_OUTSIDE_NG_ZONE } from '@material-lite/angular-cdk/utils';
@@ -127,14 +127,12 @@ export class MlPortal {
       }
 
       const elInjector = Injector.create({ providers, parent: this._injector });
-      const compResolver = elInjector.get(ComponentFactoryResolver);
 
-      // const index = compConf.index || vcRef.length;
-      const ref =
-        vcRef.createComponent(
-          compResolver.resolveComponentFactory(content), compConf.index,
-          elInjector, compConf.ngContent
-        );
+      const ref = vcRef.createComponent(content, {
+        index: compConf.index,
+        injector: elInjector,
+        projectableNodes: compConf.ngContent
+      });
 
       contentRef.rootElement = ref.location.nativeElement;
       contentRef.destroy = () => {

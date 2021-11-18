@@ -1,9 +1,0 @@
-@use './a11y';
-
-@mixin cdk($config: ()) {
-  @include a11y.a11y();
-}
-
-@mixin cdk-core($config: ()) {
-  @include cdk($config);
-}

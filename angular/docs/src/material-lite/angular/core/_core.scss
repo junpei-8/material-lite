@@ -1,7 +1,0 @@
-@use '../../angular-cdk' as cdk;
-@use './ripple/core' as ripple;
-
-@mixin core() {
-  @include cdk.cdk();
-  @include ripple.ripple();
-}
