@@ -118,6 +118,19 @@ $_slash-exists: meta.function-exists('slash', 'list');
   @return $list;
 }
 
+@function slice-list($list, $start: 1, $end: list.length($list)) {
+  $result: ();
+
+  @if $start < $end {
+    $start: $start + 1;
+    @for $i from $start through $end {
+      $result: list.append($result, list.nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
 @function replace-string($string, $search, $replace, $all: true) {
   $index: string.index($string, $search);
 

@@ -8,7 +8,6 @@
   ],
   "lib": {
     "entryFile": "index.ts",
-    "amdId": "components",
     "flatModuleFile": "components"
   }
 }

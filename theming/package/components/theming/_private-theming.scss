@@ -116,36 +116,10 @@
 }
 
 
-// ($wrapper-class, $config, $contents...) => $contents
-@function _data-to-contents($data, $keys) {
-  $contents: ();
-
-  @each $key in $keys {
-    $contents:
-      list.append(
-        $contents,
-        list.nth($data, list.index($data, $key))
-      );
-  }
-
-  @return $contents;
-}
-
-
-// @include private-palette-zone($material-lite) using ($theme) { ... }
-// @include private-palette-zone((selector, config), $material-lite) using ($selector, $config) { ... }
-@mixin theme-zone($keys, $ml: null, $component: null) {
-  @include private.for-each-theme(null, null, $ml, $component) using ($data...) {
-    @content(_data-to-contents($data, $keys)...);
-  }
-}
-
-
 // @include private-palette-zone($material-lite) using ($palette) { ... }
 // @include private-palette-zone((selector, default-contrast), $material-lite) using ($name, $selector, $default-contrast) { ... }
-@mixin palette-zone($keys, $ml: null, $component: null) {
-  @include private.for-each-theme-color(null, $ml, $component) using ($data...) {
-    $keys: list.join(list.nth($data, 3), $keys);
-    @content(_data-to-contents($data, $keys)...);
+@mixin palette-zone($paths, $ml: null, $component: null) {
+  @include private.for-each-theme-color($paths, $ml, $component) using ($data...) {
+    @content(utils.private-slice-list($data, 2)...);
   }
 }

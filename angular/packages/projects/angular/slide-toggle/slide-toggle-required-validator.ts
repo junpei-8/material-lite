@@ -3,7 +3,6 @@
  * `Angular material`のソースコードから抜粋
  */
 
-
 import { Directive, forwardRef, Provider } from '@angular/core';
 import { CheckboxRequiredValidator, NG_VALIDATORS } from '@angular/forms';
 

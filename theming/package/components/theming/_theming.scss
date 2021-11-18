@@ -26,15 +26,6 @@
 }
 
 
-// @include private-palette-zone() using ($theme) { ... }
-// @include private-palette-zone(selector, config) using ($theme, $selector, $config) { ... }
-@mixin theme-zone($keys...) {
-  @include private-theming.theme-zone($keys) using ($data...) {
-    @content($data...);
-  }
-}
-
-
 // @include palette-zone() using ($palette) { ... }
 // @include palette-zone(selector, name) using ($palette, $selector, $name) { ... }
 @mixin palette-zone($keys...) {

@@ -1,6 +1,0 @@
-@use '../index' as *;
-
-$theme: define-light-theme((color: $deep-purple-amber-color));
-
-@include core();
-@include themes($theme);

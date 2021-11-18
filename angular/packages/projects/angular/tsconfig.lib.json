@@ -13,6 +13,9 @@
       "es2018"
     ],
     "paths": {
+      "@material-lite/theming": [
+        "../../theming/package"
+      ],
       "@material-lite/angular-cdk/utils": [
         "dist/angular-cdk/utils"
       ]

@@ -1,5 +1,0 @@
-@use '../index' as ml;
-
-$theme: ml.define-dark-theme((color: ml.$deep-purple-amber-color, config: ()));
-@include ml.core();
-@include ml.themes($theme);
