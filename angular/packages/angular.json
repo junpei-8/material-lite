@@ -69,5 +69,5 @@
       }
     }
   },
-  "defaultProject": "cdk"
+  "defaultProject": "components"
 }
