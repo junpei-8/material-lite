@@ -3,7 +3,7 @@
 @use '../theming/private';
 @use '../core/override/private-elevation';
 
-@mixin foreground($foreground: null, $config: null, $ml: null) {
+@mixin foreground($foreground: null, $ml: null) {
   $ml: private.create-ml-map(foreground, $foreground, $ml);
 
   @include private.for-each-theme(foreground, (divider, secondary-text), $ml, card)
@@ -22,7 +22,7 @@
 @mixin background($background: null, $ml: null) {
   $ml: private.create-ml-map(background, $background, $ml);
 
-  @include private.for-each-theme(background, (card), $ml, card) using ($_, $__, $card) {
+  @include private.for-each-theme(background, card, $ml, card) using ($_, $__, $card) {
     .ml-card {
       background-color: $card;
     }
