@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  vertical-align: middle;
 
   color: inherit;
   font-weight: 500;
@@ -16,7 +15,7 @@
   white-space: nowrap;
 
   box-sizing: border-box;
-  will-change: opacity;
+  transform: translate3d(0,0,0);
 
   @include ml.initialize-button();
 
@@ -28,13 +27,12 @@
 .ml-button a,
 a.ml-button {
   text-decoration: none;
-//   &:link {
-//     color: #2196F3;
-//   }
-
-//   &:visited {
-//     color: #9C27B0;
-//   }
+  // &:link {
+  //   color: #3f51b5;
+  // }
+  // &:visited {
+  //   color: #9C27B0;
+  // }
 }
 
 .ml-simple-button {
@@ -81,6 +79,7 @@ a.ml-button {
 
 .ml-button-overlay {
   position: absolute;
+  z-index: 1; // For Safari
   top: 0;
   left: 0;
   width: 100%;
@@ -100,6 +99,6 @@ a.ml-button {
   }
 
   .ml-button-overlay {
-    box-shadow: 0 0 0 0 transparent !important;
+    box-shadow: none !important;
   }
 }

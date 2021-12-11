@@ -1,5 +1,6 @@
-@use 'sass:map';
 @use 'sass:color';
+@use 'sass:map';
+@use 'sass:meta';
 @use '../../cdk';
 @use '../../utils';
 @use '../theming/private';
@@ -27,7 +28,9 @@
     }
 
     @if $hovered {
-      @if not map.get($config, button, hovered, current-color) {
+      $is-color: meta.type-of($hovered) == color;
+
+      @if $is-color and not map.get($config, button, hovered, current-color) {
         .ml-slide-toggle-hover {
           background: rgb(color.red($hovered), color.green($hovered), color.blue($hovered));
         }
@@ -35,20 +38,24 @@
 
       .ml-slide-toggle-bar {
         &:hover .ml-slide-toggle-hover {
-          opacity: color.opacity($hovered);
+          $opacity: if($is-color, color.opacity($hovered), cdk.$hovered-opacity);
+          opacity: $opacity;
         }
       }
     }
 
     @if $focused {
-      @if not map.get($config, button, focused, current-color) {
+      $is-color: meta.type-of($focused) == color;
+
+      @if $is-color and not map.get($config, button, focused, current-color) {
         .ml-slide-toggle-focus {
           background: rgb(color.red($focused), color.green($focused), color.blue($focused));
         }
       }
 
       .ml-slide-toggle-input {
-        @include utils.focus-visible(color.opacity($focused), '+ .ml-slide-toggle-thumb-container .ml-slide-toggle-focus');
+        $opacity: if($is-color, color.opacity($focused), cdk.$focused-opacity);
+        @include utils.focus-visible($opacity, '+ .ml-slide-toggle-thumb-container .ml-slide-toggle-focus');
       }
     }
   }
