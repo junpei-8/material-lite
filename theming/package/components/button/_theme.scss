@@ -1,5 +1,6 @@
-@use 'sass:map';
 @use 'sass:color';
+@use 'sass:map';
+@use 'sass:meta';
 @use '../../cdk';
 @use '../../utils';
 @use '../theming/private';
@@ -44,7 +45,9 @@
     }
 
     @if $hovered {
-      @if not map.get($config, button, hovered, current-color) {
+      $is-color: meta.type-of($hovered) == color;
+
+      @if $is-color and not map.get($config, button, hovered, current-color)  {
         .ml-filled-button {
           .ml-button-hover {
             background-color: rgb(color.red($hovered), color.green($hovered), color.blue($hovered));
@@ -53,12 +56,15 @@
       }
 
       .ml-hoverable-button:hover .ml-button-hover {
-        opacity: color.opacity($hovered);
+        $opacity: if($is-color, color.opacity($hovered), cdk.$hovered-opacity);
+        opacity: $opacity;
       }
     }
 
     @if $focused {
-      @if not map.get($config, button, focused, current-color) {
+      $is-color: meta.type-of($focused) == color;
+
+      @if $is-color not map.get($config, button, focused, current-color) {
         .ml-filled-button {
           .ml-button-focus {
             background-color: rgb(color.red($focused), color.green($focused), color.blue($focused));
@@ -67,7 +73,8 @@
       }
 
       .ml-button {
-        @include utils.focus-visible(color.opacity($focused), '.ml-button-focus');
+        $opacity: if($is-color, color.opacity($focused), cdk.$focused-opacity);
+        @include utils.focus-visible($opacity, '.ml-button-focus');
       }
     }
   }
