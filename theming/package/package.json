@@ -1,6 +1,6 @@
 {
   "name": "@material-lite/theming",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "license": "MIT",
   "description": "Theming SCSS files for Material Lite",
   "keywords": [
