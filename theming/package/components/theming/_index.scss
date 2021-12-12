@@ -1,4 +1,5 @@
 @forward './base-style';
+@forward './css-variables';
 @forward './private-theming' as private-*;
 @forward './private' as private-*;
 @forward './status';

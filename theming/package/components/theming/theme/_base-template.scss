@@ -75,8 +75,7 @@ $dark-background: (
 );
 
 
-// CSS Variables は後々
-$css-variable-foreground: (
+$css-variables-foreground: (
   base:              var(--ml-fg-base),
   divider:           var(--ml-fg-divider),
   dividers:          var(--ml-fg-dividers),
@@ -94,7 +93,7 @@ $css-variable-foreground: (
   slider-off-active: var(--ml-fg-slider-off-active),
 );
 
-$css-variable-background: (
+$css-variables-background: (
   status-bar:               var(--ml-bg-status-bar),
   app-bar:                  var(--ml-bg-app-ber),
   background:               var(--ml-bg-background),

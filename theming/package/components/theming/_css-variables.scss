@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '../../utils/private';
+
+// TODO: グローバル変数($ml)を活用した関数の制作
+// また、$mlの構造を少し変更するなどを行い、無駄なプロパティを削除する等の最適化が簡単にできるようにしたい
+@mixin css-variables-style($theme, $config: ()) {
+  $selector: map.get($config, selector) or ':root';
+
+  #{$selector} {
+    $foreground: map.get($theme, foreground);
+    @if $foreground {
+      @each $key, $value in $foreground {
+        --ml-fg-#{$key}: #{map.get($theme, foreground, $key)};
+      }
+    }
+
+
+    $background: map.get($theme, background);
+    @if $background {
+      @each $key, $value in $background {
+        --ml-bg-#{$key}: #{map.get($theme, background, $key)};
+      }
+    }
+
+
+    $color: map.get($theme, color);
+    @if $color {
+      @each $plt-name, $plt in $color {
+        @each $key, $value in $plt {
+          $key: if($key == default, '', -#{private.replace-string($key, default-, '')});
+          --ml-#{$plt-name}#{$key}: #{$value};
+        }
+      }
+    }
+  }
+}
