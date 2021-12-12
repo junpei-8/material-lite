@@ -66,17 +66,17 @@
 }
 
 @function css-variables-palette($prefix) {
-  $prefix: 'ml-#{$prefix}';
+  $prefix: --ml-#{$prefix};
 
   @return (
-    default: $prefix,
-    lighter: '#{$prefix}-lighter',
-    darker:  '#{$prefix}-darker',
-    text:    '#{$prefix}-text',
+    default: var(#{$prefix}),
+    lighter: var(#{$prefix}-lighter),
+    darker:  var(#{$prefix}-darker),
+    text:    var(#{$prefix}-text),
 
-    default-contrast: '#{$prefix}-default-contrast',
-    lighter-contrast: '#{$prefix}-lighter-contrast',
-    darker-contrast:  '#{$prefix}-dark-contrast'
+    default-contrast: var(#{$prefix}-contrast),
+    lighter-contrast: var(#{$prefix}-lighter-contrast),
+    darker-contrast:  var(#{$prefix}-dark-contrast)
   );
 }
 

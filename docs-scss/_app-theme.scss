@@ -55,4 +55,6 @@ $material-lite: (
   '.react-theme': (color: $react-color),
 
   '.sass-theme': (color: $sass-color),
+
+  '.css-variables': (color: define-css-variables-color((primary, secondary, accent, warn)))
 );
