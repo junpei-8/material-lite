@@ -64,7 +64,7 @@
     @if $focused {
       $is-color: meta.type-of($focused) == color;
 
-      @if $is-color not map.get($config, button, focused, current-color) {
+      @if $is-color and not map.get($config, button, focused, current-color) {
         .ml-filled-button {
           .ml-button-focus {
             background-color: rgb(color.red($focused), color.green($focused), color.blue($focused));
